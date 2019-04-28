@@ -54,6 +54,7 @@ namespace MovieManagement
 
             // we register them as scoped because services are using dbcontext, which should be the same for during the operation.
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddRoleManager<RoleManager<IdentityRole>>()

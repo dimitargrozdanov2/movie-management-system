@@ -1,0 +1,25 @@
+﻿@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-11 text-md-center">
+            <h1 class="headingMarginBottom display-4">Administration Dashboard</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="display-4">List of Users</h1>
+            <div>
+                @foreach (var user in Model.Users)
+                {
+                    <partial name="_UserPartial" model="user" />
+                    <hr />
+                }
+            </div>
+        </div>
+    </div>
+</div>

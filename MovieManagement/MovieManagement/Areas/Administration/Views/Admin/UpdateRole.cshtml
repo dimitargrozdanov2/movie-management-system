@@ -1,0 +1,27 @@
+﻿@model UpdateRoleViewModel
+
+@{
+    ViewData["Title"] = "UpdateRole";
+}
+
+<h1 class="headingMarginBottom display-4">Update user role</h1>
+
+<div class="form-row">
+    <form class="col-lg-7" method="post">
+
+        @*<input type="hidden" class="hidden" value="@Model?.UserName" name="UserName" />*@
+
+        <input type="hidden" asp-for="UserName" />
+
+        <div class="form-group">
+            <label asp-for="RoleName">RoleName</label>
+            <input class="form-control" asp-for="RoleName" />
+            <span asp-validation-for="RoleName"></span>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-warning" type="submit">Assign</button>
+        </div>
+    </form>
+</div>
+

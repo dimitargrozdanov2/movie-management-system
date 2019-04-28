@@ -1,0 +1,29 @@
+[
+    {
+        "ID": 1,
+        "Name": "Marvel",
+        "Duration": 90,
+        "Storyline": "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.",
+        "Director": "Anna Boden",
+        "GenreID": 2,
+        "IsDeleted": false
+    },
+    {
+        "ID": 2,
+        "Name": "Aladdin",
+        "Duration": 120,
+        "Storyline": "A kindhearted Arabian street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make the deepest wishes come true.",
+        "Director": "Guy Ritchie",
+        "GenreID": 1,
+        "IsDeleted": false
+    },
+    {
+        "ID": 3,
+        "Name": "Bumblebee",
+        "Duration": 90,
+        "Storyline": "On the run in the year of 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken.",
+        "Director": "Travis Knight",
+        "GenreID": 2,
+        "IsDeleted": false
+    }
+]

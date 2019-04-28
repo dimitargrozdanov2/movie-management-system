@@ -15,14 +15,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Areas\" />
-    <Folder Include="Areas\Administration\Controllers\" />
-    <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Administration\Views\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <ProjectReference Include="..\MovieManagement.Data\MovieManagement.Data.csproj" />
     <ProjectReference Include="..\MovieManagement.Services\MovieManagement.Services.csproj" />
   </ItemGroup>

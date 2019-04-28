@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieManagement.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,5 +16,7 @@ namespace MovieManagement.Services.Contracts
         //User RemoveMoviefromUserWatchlist(string movieName, string userName);
 
         //ICollection<string> ShowAllMoviesfromWatchlist(string userName);
+
+        IEnumerable<ApplicationUser> GetAllUsers();
     }
 }
