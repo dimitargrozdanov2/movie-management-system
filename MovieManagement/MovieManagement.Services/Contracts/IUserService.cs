@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MovieManagement.Services.Contracts
 {
@@ -17,6 +18,6 @@ namespace MovieManagement.Services.Contracts
 
         //ICollection<string> ShowAllMoviesfromWatchlist(string userName);
 
-        IEnumerable<ApplicationUser> GetAllUsers();
+        Task<IEnumerable<ApplicationUser>> GetAllUsers();
     }
 }

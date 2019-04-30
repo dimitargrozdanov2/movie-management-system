@@ -50,9 +50,9 @@ namespace MovieManagement.Areas.Administration.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CreateRoleViewModel model)
+        public async Task<IActionResult> Create(CreateRoleViewModel model)
         {
-            var role = this.roleManager.CreateAsync(new IdentityRole(model.Name)).Result;
+            var role = await this.roleManager.CreateAsync(new IdentityRole(model.Name));
 
             return this.RedirectToAction(nameof(Index), "Role");
         }
@@ -66,7 +66,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
-            var role = this.roleManager.FindByNameAsync(id).Result;
+            var role = await this.roleManager.FindByNameAsync(id);
 
             if (role == null)
             {
@@ -93,7 +93,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditViewModel model)
         {
-            var role = this.roleManager.FindByNameAsync(model.OldName).Result;
+            var role = await this.roleManager.FindByNameAsync(model.OldName);
 
             if (role == null)
             {

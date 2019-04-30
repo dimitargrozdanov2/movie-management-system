@@ -1,10 +1,12 @@
-﻿using MovieManagement.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieManagement.Data;
 using MovieManagement.DataModels;
 using MovieManagement.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MovieManagement.Services
 {
@@ -17,9 +19,9 @@ namespace MovieManagement.Services
             this.context = context;
         }
 
-        public IEnumerable<ApplicationUser> GetAllUsers()
+        public async Task<IEnumerable<ApplicationUser>> GetAllUsers()
         {
-            var users = this.context.Users.ToList();
+            var users = await this.context.Users.ToListAsync();
 
             return users;
         }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Areas.Administration.Models;
 using MovieManagement.DataModels;
 using MovieManagement.Services.Contracts;
+using MovieManagement.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,27 +16,27 @@ namespace MovieManagement.Areas.Administration.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IUserManagerWrapper managerWrapper;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IUserService userService;
         private readonly IMapper mapper;
 
-        public AdminController(UserManager<ApplicationUser> userManager,
+        public AdminController(IUserManagerWrapper managerWrapper,
             RoleManager<IdentityRole> roleManager,
             IUserService userService,
             IMapper mapper)
         {
-            this.userManager = userManager;
+            this.managerWrapper = managerWrapper;
             this.roleManager = roleManager;
             this.userService = userService;
             this.mapper = mapper;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var model = new IndexViewModel();
 
-            var users = this.userService.GetAllUsers();
+            var users = await this.userService.GetAllUsers();
 
             var mappedUsers = this.mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(users);
 
@@ -54,9 +55,9 @@ namespace MovieManagement.Areas.Administration.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateRole(UpdateRoleViewModel model)
+        public async Task<IActionResult> UpdateRole(UpdateRoleViewModel model)
         {
-            Task<ApplicationUser> user = this.userManager.FindByNameAsync(model.UserName);
+            var user = await this.managerWrapper.FindByNameAsync(model.UserName);
 
             if (user == null)
             {
@@ -74,7 +75,8 @@ namespace MovieManagement.Areas.Administration.Controllers
 
             //var d = this.userManager.Users;
 
-            this.userManager.AddToRoleAsync(user.Result, model.RoleName).Wait();
+            // TODO ADD THIS TOO;
+            //await this.managerWrapper.AddToRoleAsync(user, model.RoleName);
 
             return this.RedirectToAction(nameof(Index));
         }
