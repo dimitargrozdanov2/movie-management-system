@@ -7,12 +7,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-11 text-md-center">
-            <h1 class="headingMarginBottom display-4">Administration Dashboard</h1>
+            <h1 class="headerText">Administration Dashboard</h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <h1 class="display-4">List of Users</h1>
+        <div class="col-md-10">
+            <h1 class="headerText">List of Users</h1>
             <div>
                 @foreach (var user in Model.Users)
                 {
@@ -20,6 +20,16 @@
                     <hr />
                 }
             </div>
+        </div>
+        <div class="col-md-2">
+            <hr />
+            <a asp-area="" asp-controller="Movie" asp-action="Create" class="btn btn-warning btn-block">Create Movie</a>
+            <a asp-area="" asp-controller="Actor" asp-action="Create" class="btn btn-warning btn-block">Create Actor</a>
+            <a asp-area="" asp-controller="Genre" asp-action="Create" class="btn btn-warning btn-block">Create Genre</a>
+            <a asp-area="" asp-controller="News" asp-action="Create" class="btn btn-warning btn-block">Create News</a>
+            <hr />
+            <a asp-area="Administration" asp-controller="Role" asp-action="Index" class="btn btn-warning btn-block">Manage Roles</a>
+
         </div>
     </div>
 </div>

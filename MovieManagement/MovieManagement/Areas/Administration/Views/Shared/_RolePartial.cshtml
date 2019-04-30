@@ -1,0 +1,10 @@
+﻿@model IdentityRole
+@{
+    ViewData["Title"] = "_RolePartial";
+}
+
+<h4 class="userListingText">
+    @Model.Name
+    <a asp-area="Administration" asp-controller="Role" asp-action="Edit" asp-route-id="@Model.Name" class="btn btn-danger">Edit</a>
+    <a asp-area="Administration" asp-controller="Role" asp-action="Delete" asp-route-id="@Model.Name" class="btn btn-danger">Delete</a>
+</h4>

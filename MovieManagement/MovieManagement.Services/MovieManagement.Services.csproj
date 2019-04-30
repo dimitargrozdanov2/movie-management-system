@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MovieManagement.DataModels\MovieManagement.DataModels.csproj" />
     <ProjectReference Include="..\MovieManagement.Data\MovieManagement.Data.csproj" />
+    <ProjectReference Include="..\MovieManagement.Infrastructure\MovieManagement.Infrastructure.csproj" />
+    <ProjectReference Include="..\MovieManagement.ViewModels\MovieManagement.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

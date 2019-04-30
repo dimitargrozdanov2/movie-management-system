@@ -1,0 +1,12 @@
+﻿@model ListMovieViewModel
+@{
+    ViewData["Title"] = "TopRated";
+}
+
+<h1>TopRated</h1>
+
+@foreach (var item in Model.Movies)
+{
+    <p>@item.Name</p>
+}
+

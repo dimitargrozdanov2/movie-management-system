@@ -1,0 +1,32 @@
+﻿@model RoleIndexViewModel
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-11 text-md-center">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+            <h1 class="headerText">List of Roles</h1>
+            <div>
+                @foreach (var role in Model.Roles)
+                {
+                    <partial name="_RolePartial" model="role" />
+                    <hr />
+                }
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <hr />
+            <a asp-area="Administration" asp-controller="Role" asp-action="Create" class="btn btn-warning btn-block">Create Role</a>
+        </div>
+    </div>
+</div>

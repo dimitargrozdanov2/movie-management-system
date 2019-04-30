@@ -1,4 +1,5 @@
 ﻿using MovieManagement.DataModels;
+using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,5 +28,7 @@ namespace MovieManagement.Services.Contracts
         //Task<ICollection<Movie>> GetAllMoviesFromGenreAsync(string genreName);
 
         //Task<ICollection<Movie>> ShowTopMoviesAsync(int amount);
+
+        Task<ICollection<MovieViewModel>> GetTopRatedMovies();
     }
 }

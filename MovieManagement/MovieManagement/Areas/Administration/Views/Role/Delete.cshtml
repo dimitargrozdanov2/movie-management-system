@@ -1,0 +1,18 @@
+﻿@model IdentityRole
+
+@{
+    ViewData["Title"] = "Delete Role";
+}
+
+<h1 class="headerText">Are you sure want to delete this role?</h1>
+
+<div class="form-row">
+    <form class="col-lg-7" method="post">
+        <input type="hidden" asp-for="Name" />
+
+        <div class="form-group">
+            <button class="btn btn-warning" type="submit">Assign</button>
+        </div>
+    </form>
+</div>
+

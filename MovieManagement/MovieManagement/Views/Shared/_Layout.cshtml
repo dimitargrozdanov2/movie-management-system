@@ -23,7 +23,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-warning border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApplication2</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SMovies</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -32,11 +32,27 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Team" asp-action="Create">Movies</a></li>
-                        <li> <a class="nav-link text-dark" asp-area="" asp-controller="Player" asp-action="Create">Actors</a></li>
-                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Player" asp-action="Search">News</a></li>
+                        <li>
+                            <div class="dropdown show">
+                                <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown">
+                                    Movies
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Movie" asp-action="ComingSoon">Coming soon</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Movie" asp-action="Latest">Latest Movies</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Movie" asp-action="TopRated">Top Rated Movies</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li> <a class="nav-link text-dark" asp-area="" asp-controller="Actor" asp-action="Create">Actors</a></li>
+                        <li><a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Search">News</a></li>
                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a></li>
                         <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Admin" asp-action="Index">Administration</a></li>
+
+
+
                     </ul>
 
                 </div>
@@ -49,6 +65,7 @@
             @RenderBody()
         </main>
     </div>
+
 
     <footer class="border-top footer text-muted">
         <div class="container">

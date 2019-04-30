@@ -1,4 +1,13 @@
-﻿.teamDescription {
+﻿.userListingText {
     font-family: Courier New, Courier, monospace;
     font-size: 19px;
 }
+
+.headerText {
+    padding-bottom: 10px;
+    font-family: Courier New, Courier, monospace;
+    font-size: 30px;
+}
+
+    
+

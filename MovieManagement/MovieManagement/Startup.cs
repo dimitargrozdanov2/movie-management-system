@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MovieManagement.Data;
 using MovieManagement.DataModels;
+using MovieManagement.Infrastructure;
 using MovieManagement.Services;
 using MovieManagement.Services.Contracts;
 
@@ -55,6 +56,7 @@ namespace MovieManagement
             // we register them as scoped because services are using dbcontext, which should be the same for during the operation.
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IMappingProvider, MappingProvider>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddRoleManager<RoleManager<IdentityRole>>()

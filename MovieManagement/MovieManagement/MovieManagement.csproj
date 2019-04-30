@@ -15,8 +15,8 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\MovieManagement.Data\MovieManagement.Data.csproj" />
     <ProjectReference Include="..\MovieManagement.Services\MovieManagement.Services.csproj" />
+    <ProjectReference Include="..\MovieManagement.ViewModels\MovieManagement.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
