@@ -20,4 +20,9 @@
     <ProjectReference Include="..\MovieManagement.ViewModels\MovieManagement.ViewModels.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Views\User\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Models.Movie;
 using MovieManagement.Services.Contracts;
 using System.Threading.Tasks;
@@ -28,5 +29,23 @@ namespace MovieManagement.Controllers
             model.Movies = movies;
             return this.View(model);
         }
+
+        [Area("Administration")]
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        //[Area("Administration")]
+        //[Authorize(Roles = "Admin")]
+        //[HttpPost]
+        //public async Task<IActionResult> Create(CreateRoleViewModel model)
+        //{
+        //    var role = await this.roleManagerWrapper.CreateRoleAsync(model.Name);
+
+        //    return this.RedirectToAction(nameof(Index), "Role");
+        //}
     }
 }

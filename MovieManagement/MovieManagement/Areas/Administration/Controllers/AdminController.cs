@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Areas.Administration.Models;
+using MovieManagement.Areas.Administration.Models.User;
 using MovieManagement.DataModels;
 using MovieManagement.Services.Contracts;
 using MovieManagement.Wrappers;
@@ -16,13 +17,13 @@ namespace MovieManagement.Areas.Administration.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        private readonly IUserManagerWrapper managerWrapper;
+        private readonly IUserManagerWrapper userManagerWrapper;
         private readonly IUserService userService;
 
-        public AdminController(IUserManagerWrapper managerWrapper,
+        public AdminController(IUserManagerWrapper userManagerWrapper,
             IUserService userService)
         {
-            this.managerWrapper = managerWrapper;
+            this.userManagerWrapper = userManagerWrapper;
             this.userService = userService;
         }
 
@@ -49,12 +50,40 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateRole(UpdateRoleViewModel model)
         {
-            var user = await this.managerWrapper.FindByNameAsync(model.UserName);
+            var user = await this.userManagerWrapper.FindByNameAsync(model.UserName);
 
             if (user == null)
             {
                 throw new ArgumentNullException("User not found!");
             }
+
+            await this.userManagerWrapper.AddToRoleAsync(user, model.RoleName);
+
+            return this.RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult EditUser(string id)
+        {
+            var model = new EditUserViewModel();
+            model.OldName = id;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(EditUserViewModel model)
+        {
+            var user = await this.userManagerWrapper.FindByNameAsync(model.OldName);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException("User not found!");
+            }
+
+            user.UserName = model.NewName;
+
+            var ss = await this.userManagerWrapper.UpdateUserAsync(user);
 
             //var role = this.roleManager.CreateAsync(new IdentityRole(model.RoleName));
             //role.Wait();
@@ -67,8 +96,6 @@ namespace MovieManagement.Areas.Administration.Controllers
 
             //var d = this.userManager.Users;
 
-            // TODO ADD THIS TOO;
-            //await this.managerWrapper.AddToRoleAsync(user, model.RoleName);
 
             return this.RedirectToAction(nameof(Index));
         }
