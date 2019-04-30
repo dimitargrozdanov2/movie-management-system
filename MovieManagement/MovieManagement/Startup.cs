@@ -12,6 +12,7 @@ using MovieManagement.DataModels;
 using MovieManagement.Infrastructure;
 using MovieManagement.Services;
 using MovieManagement.Services.Contracts;
+using MovieManagement.Wrappers;
 
 namespace MovieManagement
 {
@@ -37,7 +38,7 @@ namespace MovieManagement
             });
 
             services.AddDbContext<MovieManagementContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("TConnection")));
+                options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             if (this.Environment.IsDevelopment())
             {
@@ -57,6 +58,8 @@ namespace MovieManagement
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IMappingProvider, MappingProvider>();
+            services.AddScoped<IUserManagerWrapper, UserManagerWrapper>();
+            services.AddScoped<IRoleManagerWrapper, RoleManagerWrapper>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddRoleManager<RoleManager<IdentityRole>>()

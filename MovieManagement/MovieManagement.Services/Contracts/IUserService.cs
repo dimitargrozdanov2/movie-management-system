@@ -1,4 +1,5 @@
 ﻿using MovieManagement.DataModels;
+using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,6 +19,6 @@ namespace MovieManagement.Services.Contracts
 
         //ICollection<string> ShowAllMoviesfromWatchlist(string userName);
 
-        Task<IEnumerable<ApplicationUser>> GetAllUsers();
+        Task<IEnumerable<ApplicationUserViewModel>> GetAllUsers();
     }
 }

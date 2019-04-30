@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Areas.Administration.Models.Role;
 using MovieManagement.DataModels;
 using MovieManagement.Services.Contracts;
+using MovieManagement.Wrappers;
 
 namespace MovieManagement.Areas.Administration.Controllers
 {
@@ -16,27 +17,18 @@ namespace MovieManagement.Areas.Administration.Controllers
     [Authorize(Roles = "Admin")]
     public class RoleController : Controller
     {
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly RoleManager<IdentityRole> roleManager;
-        private readonly IUserService userService;
-        private readonly IMapper mapper;
+        private readonly IRoleManagerWrapper roleManagerWrapper;
 
-        public RoleController(UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager,
-            IUserService userService,
-            IMapper mapper)
+        public RoleController(IRoleManagerWrapper roleManagerWrapper)
         {
-            this.userManager = userManager;
-            this.roleManager = roleManager;
-            this.userService = userService;
-            this.mapper = mapper;
+            this.roleManagerWrapper = roleManagerWrapper;
         }
 
         public IActionResult Index()
         {
             var model = new RoleIndexViewModel();
 
-            var roles = this.roleManager.Roles.OrderBy(x => x.Name).ToList();
+            var roles = this.roleManagerWrapper.GetAllRoles().OrderBy(x => x.Name);
 
             model.Roles = roles;
 
@@ -52,7 +44,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateRoleViewModel model)
         {
-            var role = await this.roleManager.CreateAsync(new IdentityRole(model.Name));
+            var role = await this.roleManagerWrapper.CreateRoleAsync(model.Name);
 
             return this.RedirectToAction(nameof(Index), "Role");
         }
@@ -66,18 +58,14 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
-            var role = await this.roleManager.FindByNameAsync(id);
+            var role = await this.roleManagerWrapper.FindByNameAsync(id);
 
             if (role == null)
             {
                 throw new ArgumentNullException("Role not found!");
             }
 
-            //var roles = this.roleManager.Roles.ToList();
-
-            await this.roleManager.DeleteAsync(role);
-
-            //var roles2 = this.roleManager.Roles.ToList();
+            await this.roleManagerWrapper.DeleteRoleAsync(id);
 
             return this.RedirectToAction(nameof(Index));
         }
@@ -93,18 +81,21 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditViewModel model)
         {
-            var role = await this.roleManager.FindByNameAsync(model.OldName);
+            var role = await this.roleManagerWrapper.FindByNameAsync(model.OldName);
 
             if (role == null)
             {
                 throw new ArgumentNullException("Role not found!");
             }
 
+            if(role.Name == "Admin")
+            {
+                throw new ArgumentException("You are not allowed to edit the Admin role!");
+            }
+
             role.Name = model.NewName;
 
-            await this.roleManager.UpdateAsync(role);
-
-            //await this.roleManager.SetRoleNameAsync(role, model.NewName);
+            await this.roleManagerWrapper.UpdateRoleAsync(role);
 
             return this.RedirectToAction(nameof(Index));
         }

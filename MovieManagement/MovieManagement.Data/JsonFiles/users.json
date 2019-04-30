@@ -4,7 +4,7 @@
       "UserName": "admin",
       "NormalizedUserName": "ADMIN",
       "Email": "admin@admin.admin",
-      "NormalizedEmail": "ADMIN@ADMIN.ADMIN",
+      "NormalizedEmail": "ADMIN@ADMIN.ADMIN", // Tisho1@
       "PasswordHash": "AQAAAAEAACcQAAAAEHzP/Ds0oHiv5C7IjlaA+ce9X9hucPveVIL0EgYgT7ScxgYCFnZFsMQQZLRC5BPKLw==",
       "SecurityStamp": "7I2NUNAXILZUAHNGX7TRSNQCNRWCEOSX",
       "ConcurrencyStamp": "b318fa87-5d53-4bc3-8019-23d7aa37da20"

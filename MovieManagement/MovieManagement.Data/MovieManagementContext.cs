@@ -59,8 +59,8 @@ namespace MovieManagement.Data
             var rolesPath = @"..\MovieManagement.Data\JsonFiles\roles.json";
             var userRolesPath = @"..\MovieManagement.Data\JsonFiles\userRoles.json";
 
-            var isPathFound = File.Exists(moviePath) && File.Exists(genrePath) && File.Exists(actorsPath) && File.Exists(userPath)
-                && File.Exists(rolesPath) && File.Exists(userRolesPath);
+            var isPathFound = File.Exists(moviePath) &&  File.Exists(genrePath) && File.Exists(genrePath) 
+                && File.Exists(actorsPath) && File.Exists(userPath) && File.Exists(rolesPath) && File.Exists(userRolesPath);
             if (isPathFound)
             {
                 var genres = JsonConvert.DeserializeObject<Genre[]>(File.ReadAllText(genrePath));

@@ -20,14 +20,14 @@ namespace MovieManagement.Infrastructure
             return this.mapper.Map<TDestination>(source);
         }
 
-        public IEnumerable<TDestination> ProjectTo<TDestination>(IEnumerable<object> source)
-        {
-            return this.ProjectTo<TDestination>(source);
-        }
+        //public IEnumerable<TDestination> ProjectTo<TDestination>(IEnumerable<object> source)
+        //{
+        //    return this.ProjectTo<TDestination>(source);
+        //}
 
-        public IQueryable<TDestination> ProjectTo<TDestination>(IQueryable<object> source)
-        {
-            return this.ProjectTo<TDestination>(source);
-        }
+        //public IQueryable<TDestination> ProjectTo<TDestination>(IQueryable<object> source)
+        //{
+        //    return this.ProjectTo<TDestination>(source);
+        //}
     }
 }

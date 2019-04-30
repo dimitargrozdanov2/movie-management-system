@@ -17,19 +17,13 @@ namespace MovieManagement.Areas.Administration.Controllers
     public class AdminController : Controller
     {
         private readonly IUserManagerWrapper managerWrapper;
-        private readonly RoleManager<IdentityRole> roleManager;
         private readonly IUserService userService;
-        private readonly IMapper mapper;
 
         public AdminController(IUserManagerWrapper managerWrapper,
-            RoleManager<IdentityRole> roleManager,
-            IUserService userService,
-            IMapper mapper)
+            IUserService userService)
         {
             this.managerWrapper = managerWrapper;
-            this.roleManager = roleManager;
             this.userService = userService;
-            this.mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -38,9 +32,7 @@ namespace MovieManagement.Areas.Administration.Controllers
 
             var users = await this.userService.GetAllUsers();
 
-            var mappedUsers = this.mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(users);
-
-            model.Users = mappedUsers;
+            model.Users = users;
 
             return View(model);
         }

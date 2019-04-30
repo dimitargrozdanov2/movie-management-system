@@ -10,8 +10,8 @@ using MovieManagement.Data;
 namespace MovieManagement.Data.Migrations
 {
     [DbContext(typeof(MovieManagementContext))]
-    [Migration("20190428200320_JsonAdded")]
-    partial class JsonAdded
+    [Migration("20190430165038_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
