@@ -12,17 +12,17 @@ namespace MovieManagement.Data.Configurations
         public void Configure(EntityTypeBuilder<MovieActor> builder)
         {
             builder
-                .HasKey(ma => new { ma.MovieID, ma.ActorID });
+                .HasKey(ma => new { ma.MovieId, ma.ActorId });
 
             builder
                 .HasOne(ma => ma.Actor)
                 .WithMany(a => a.MovieActor)
-                .HasForeignKey(ma => ma.ActorID);
+                .HasForeignKey(ma => ma.ActorId);
 
             builder
                .HasOne(ma => ma.Movie)
                .WithMany(m => m.MovieActor)
-               .HasForeignKey(ma => ma.MovieID);
+               .HasForeignKey(ma => ma.MovieId);
         }
     }
 }

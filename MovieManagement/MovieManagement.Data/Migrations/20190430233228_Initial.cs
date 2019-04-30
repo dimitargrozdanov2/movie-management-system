@@ -12,13 +12,12 @@ namespace MovieManagement.Data.Migrations
                 name: "Actors",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Actors", x => x.ID);
+                    table.PrimaryKey("PK_Actors", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,8 +63,7 @@ namespace MovieManagement.Data.Migrations
                 name: "Genres",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ID = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -77,8 +75,7 @@ namespace MovieManagement.Data.Migrations
                 name: "News",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<string>(nullable: false),
                     DatePosted = table.Column<DateTime>(nullable: false),
                     Title = table.Column<string>(maxLength: 50, nullable: false),
                     Text = table.Column<string>(nullable: false)
@@ -198,49 +195,48 @@ namespace MovieManagement.Data.Migrations
                 name: "Movies",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     Duration = table.Column<int>(nullable: false),
                     Storyline = table.Column<string>(nullable: true),
                     Director = table.Column<string>(maxLength: 50, nullable: false),
-                    GenreID = table.Column<int>(nullable: false),
+                    GenreID = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: false),
                     VotesCount = table.Column<int>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Movies", x => x.ID);
+                    table.PrimaryKey("PK_Movies", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Movies_Genres_GenreID",
                         column: x => x.GenreID,
                         principalTable: "Genres",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "MovieActor",
                 columns: table => new
                 {
-                    MovieID = table.Column<int>(nullable: false),
-                    ActorID = table.Column<int>(nullable: false)
+                    MovieId = table.Column<string>(nullable: false),
+                    ActorId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieActor", x => new { x.MovieID, x.ActorID });
+                    table.PrimaryKey("PK_MovieActor", x => new { x.MovieId, x.ActorId });
                     table.ForeignKey(
-                        name: "FK_MovieActor_Actors_ActorID",
-                        column: x => x.ActorID,
+                        name: "FK_MovieActor_Actors_ActorId",
+                        column: x => x.ActorId,
                         principalTable: "Actors",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MovieActor_Movies_MovieID",
-                        column: x => x.MovieID,
+                        name: "FK_MovieActor_Movies_MovieId",
+                        column: x => x.MovieId,
                         principalTable: "Movies",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -248,7 +244,7 @@ namespace MovieManagement.Data.Migrations
                 name: "UserMovies",
                 columns: table => new
                 {
-                    MovieID = table.Column<int>(nullable: false),
+                    MovieID = table.Column<string>(nullable: false),
                     UserID = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -258,7 +254,7 @@ namespace MovieManagement.Data.Migrations
                         name: "FK_UserMovies_Movies_MovieID",
                         column: x => x.MovieID,
                         principalTable: "Movies",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserMovies_AspNetUsers_UserID",
@@ -270,14 +266,14 @@ namespace MovieManagement.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Actors",
-                columns: new[] { "ID", "Name" },
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "JeffGoldblum" },
-                    { 2, "ChrisEvans" },
-                    { 3, "ScarlettJohansson" },
-                    { 4, "SandraBullock" },
-                    { 5, "JohnnyDepp" }
+                    { "395ff6d8-1d31-4326-97d8-af0474ad9e2a", "JeffGoldblum" },
+                    { "b09e23ef-0974-4cb7-a073-3641cb152690", "ChrisEvans" },
+                    { "06e06210-f637-4c75-b775-a128ae9f6a28", "ScarlettJohansson" },
+                    { "fe75908b-30b6-4ad8-a1dc-076f8c9b1648", "SandraBullock" },
+                    { "142df8e1-a1d5-4ed2-958e-6185ec3a7b36", "JohnnyDepp" }
                 });
 
             migrationBuilder.InsertData(
@@ -295,9 +291,9 @@ namespace MovieManagement.Data.Migrations
                 columns: new[] { "ID", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Horror" },
-                    { 2, "Psycho" },
-                    { 3, "Fantasy" }
+                    { "3f957cb7-339b-4efe-b38d-6e6d478ba76a", "Horror" },
+                    { "6637840b-113b-4d9f-8448-2b320201d01f", "Psycho" },
+                    { "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", "Fantasy" }
                 });
 
             migrationBuilder.InsertData(
@@ -305,10 +301,10 @@ namespace MovieManagement.Data.Migrations
                 columns: new[] { "Id", "DatePosted", "Text", "Title" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc), "This year will mark the last Avengers movie", "Avengers" },
-                    { 2, new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc), "According to Maya's people today will be the day the world ends. There will be no more movies", "WorldEnds" },
-                    { 3, new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc), "Manchester lost to Barca on Old Trafford.", "ManchesterLost" },
-                    { 4, new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc), "Tickets have been soldout for the premirer of Shazam", "TicketsSoldout" }
+                    { "3848d835-fdc3-497c-a3dd-6cea088dfdf4", new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc), "This year will mark the last Avengers movie", "Avengers" },
+                    { "4e75e75e-dfdb-4da7-a516-f82ede490535", new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc), "According to Maya's people today will be the day the world ends. There will be no more movies", "WorldEnds" },
+                    { "3c758ab5-73d0-4e6e-87d4-69d60136a016", new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc), "Manchester lost to Barca on Old Trafford.", "ManchesterLost" },
+                    { "815149c8-8721-4046-9e67-1b80a964be39", new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc), "Tickets have been soldout for the premirer of Shazam", "TicketsSoldout" }
                 });
 
             migrationBuilder.InsertData(
@@ -318,13 +314,18 @@ namespace MovieManagement.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Movies",
-                columns: new[] { "ID", "Director", "Duration", "GenreID", "IsDeleted", "Name", "Rating", "Storyline", "VotesCount" },
+                columns: new[] { "Id", "Director", "Duration", "GenreID", "IsDeleted", "Name", "Rating", "Storyline", "VotesCount" },
                 values: new object[,]
                 {
-                    { 2, "Guy Ritchie", 120, 1, false, "Aladdin", 0.0, "A kindhearted Arabian street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make the deepest wishes come true.", 0 },
-                    { 1, "Anna Boden", 90, 2, false, "Marvel", 0.0, "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.", 0 },
-                    { 3, "Travis Knight", 90, 2, false, "Bumblebee", 0.0, "On the run in the year of 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken.", 0 }
+                    { "79087c1f-07ee-4747-924a-ab6b6a2ede1d", "Guy Ritchie", 120, "3f957cb7-339b-4efe-b38d-6e6d478ba76a", false, "Aladdin", 0.0, "A kindhearted Arabian street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make the deepest wishes come true.", 0 },
+                    { "42af373f-8aba-45a5-932b-9e20cc46c0c5", "Anna Boden", 90, "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", false, "Marvel", 0.0, "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.", 0 },
+                    { "4f643260-3675-48ca-bd80-b461e8e6f7ea", "Travis Knight", 90, "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", false, "Bumblebee", 0.0, "On the run in the year of 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken.", 0 }
                 });
+
+            migrationBuilder.InsertData(
+                table: "MovieActor",
+                columns: new[] { "MovieId", "ActorId" },
+                values: new object[] { "42af373f-8aba-45a5-932b-9e20cc46c0c5", "395ff6d8-1d31-4326-97d8-af0474ad9e2a" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -366,9 +367,9 @@ namespace MovieManagement.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieActor_ActorID",
+                name: "IX_MovieActor_ActorId",
                 table: "MovieActor",
-                column: "ActorID");
+                column: "ActorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Movies_GenreID",

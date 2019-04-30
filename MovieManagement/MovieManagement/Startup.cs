@@ -38,7 +38,7 @@ namespace MovieManagement
             });
 
             services.AddDbContext<MovieManagementContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(this.Configuration.GetConnectionString("TConnection")));
 
             if (this.Environment.IsDevelopment())
             {
@@ -57,6 +57,7 @@ namespace MovieManagement
             // we register them as scoped because services are using dbcontext, which should be the same for during the operation.
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IGenreService, GenreService>();
             services.AddScoped<IMappingProvider, MappingProvider>();
             services.AddScoped<IUserManagerWrapper, UserManagerWrapper>();
             services.AddScoped<IRoleManagerWrapper, RoleManagerWrapper>();

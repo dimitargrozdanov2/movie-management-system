@@ -6,7 +6,7 @@ namespace MovieManagement.DataModels
 {
     public class ApplicationUserMovie
     {
-        public int MovieID { get; set; }
+        public string MovieID { get; set; }
         public Movie Movie { get; set; }
 
         public string UserID { get; set; }

@@ -6,7 +6,7 @@ namespace MovieManagement.DataModels
 {
     public class News
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public DateTime DatePosted { get; set; }
 

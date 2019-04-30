@@ -147,42 +147,41 @@ namespace MovieManagement.Data.Migrations
 
             modelBuilder.Entity("MovieManagement.DataModels.Actor", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Actors");
 
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            Id = "395ff6d8-1d31-4326-97d8-af0474ad9e2a",
                             Name = "JeffGoldblum"
                         },
                         new
                         {
-                            ID = 2,
+                            Id = "b09e23ef-0974-4cb7-a073-3641cb152690",
                             Name = "ChrisEvans"
                         },
                         new
                         {
-                            ID = 3,
+                            Id = "06e06210-f637-4c75-b775-a128ae9f6a28",
                             Name = "ScarlettJohansson"
                         },
                         new
                         {
-                            ID = 4,
+                            Id = "fe75908b-30b6-4ad8-a1dc-076f8c9b1648",
                             Name = "SandraBullock"
                         },
                         new
                         {
-                            ID = 5,
+                            Id = "142df8e1-a1d5-4ed2-958e-6185ec3a7b36",
                             Name = "JohnnyDepp"
                         });
                 });
@@ -261,7 +260,7 @@ namespace MovieManagement.Data.Migrations
                 {
                     b.Property<string>("UserID");
 
-                    b.Property<int>("MovieID");
+                    b.Property<string>("MovieID");
 
                     b.HasKey("UserID", "MovieID");
 
@@ -272,9 +271,8 @@ namespace MovieManagement.Data.Migrations
 
             modelBuilder.Entity("MovieManagement.DataModels.Genre", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -287,26 +285,25 @@ namespace MovieManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            ID = "3f957cb7-339b-4efe-b38d-6e6d478ba76a",
                             Name = "Horror"
                         },
                         new
                         {
-                            ID = 2,
+                            ID = "6637840b-113b-4d9f-8448-2b320201d01f",
                             Name = "Psycho"
                         },
                         new
                         {
-                            ID = 3,
+                            ID = "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
                             Name = "Fantasy"
                         });
                 });
 
             modelBuilder.Entity("MovieManagement.DataModels.Movie", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -314,7 +311,7 @@ namespace MovieManagement.Data.Migrations
 
                     b.Property<int>("Duration");
 
-                    b.Property<int>("GenreID");
+                    b.Property<string>("GenreID");
 
                     b.Property<bool>("IsDeleted");
 
@@ -328,7 +325,7 @@ namespace MovieManagement.Data.Migrations
 
                     b.Property<int>("VotesCount");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("GenreID");
 
@@ -337,10 +334,10 @@ namespace MovieManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            Id = "42af373f-8aba-45a5-932b-9e20cc46c0c5",
                             Director = "Anna Boden",
                             Duration = 90,
-                            GenreID = 2,
+                            GenreID = "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
                             IsDeleted = false,
                             Name = "Marvel",
                             Rating = 0.0,
@@ -349,10 +346,10 @@ namespace MovieManagement.Data.Migrations
                         },
                         new
                         {
-                            ID = 2,
+                            Id = "79087c1f-07ee-4747-924a-ab6b6a2ede1d",
                             Director = "Guy Ritchie",
                             Duration = 120,
-                            GenreID = 1,
+                            GenreID = "3f957cb7-339b-4efe-b38d-6e6d478ba76a",
                             IsDeleted = false,
                             Name = "Aladdin",
                             Rating = 0.0,
@@ -361,10 +358,10 @@ namespace MovieManagement.Data.Migrations
                         },
                         new
                         {
-                            ID = 3,
+                            Id = "4f643260-3675-48ca-bd80-b461e8e6f7ea",
                             Director = "Travis Knight",
                             Duration = 90,
-                            GenreID = 2,
+                            GenreID = "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
                             IsDeleted = false,
                             Name = "Bumblebee",
                             Rating = 0.0,
@@ -375,22 +372,28 @@ namespace MovieManagement.Data.Migrations
 
             modelBuilder.Entity("MovieManagement.DataModels.MovieActor", b =>
                 {
-                    b.Property<int>("MovieID");
+                    b.Property<string>("MovieId");
 
-                    b.Property<int>("ActorID");
+                    b.Property<string>("ActorId");
 
-                    b.HasKey("MovieID", "ActorID");
+                    b.HasKey("MovieId", "ActorId");
 
-                    b.HasIndex("ActorID");
+                    b.HasIndex("ActorId");
 
                     b.ToTable("MovieActor");
+
+                    b.HasData(
+                        new
+                        {
+                            MovieId = "42af373f-8aba-45a5-932b-9e20cc46c0c5",
+                            ActorId = "395ff6d8-1d31-4326-97d8-af0474ad9e2a"
+                        });
                 });
 
             modelBuilder.Entity("MovieManagement.DataModels.News", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DatePosted");
 
@@ -408,28 +411,28 @@ namespace MovieManagement.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = "3848d835-fdc3-497c-a3dd-6cea088dfdf4",
                             DatePosted = new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc),
                             Text = "This year will mark the last Avengers movie",
                             Title = "Avengers"
                         },
                         new
                         {
-                            Id = 2,
+                            Id = "4e75e75e-dfdb-4da7-a516-f82ede490535",
                             DatePosted = new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc),
                             Text = "According to Maya's people today will be the day the world ends. There will be no more movies",
                             Title = "WorldEnds"
                         },
                         new
                         {
-                            Id = 3,
+                            Id = "3c758ab5-73d0-4e6e-87d4-69d60136a016",
                             DatePosted = new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc),
                             Text = "Manchester lost to Barca on Old Trafford.",
                             Title = "ManchesterLost"
                         },
                         new
                         {
-                            Id = 4,
+                            Id = "815149c8-8721-4046-9e67-1b80a964be39",
                             DatePosted = new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc),
                             Text = "Tickets have been soldout for the premirer of Shazam",
                             Title = "TicketsSoldout"
@@ -498,20 +501,19 @@ namespace MovieManagement.Data.Migrations
                 {
                     b.HasOne("MovieManagement.DataModels.Genre", "Genre")
                         .WithMany()
-                        .HasForeignKey("GenreID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GenreID");
                 });
 
             modelBuilder.Entity("MovieManagement.DataModels.MovieActor", b =>
                 {
                     b.HasOne("MovieManagement.DataModels.Actor", "Actor")
                         .WithMany("MovieActor")
-                        .HasForeignKey("ActorID")
+                        .HasForeignKey("ActorId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MovieManagement.DataModels.Movie", "Movie")
                         .WithMany("MovieActor")
-                        .HasForeignKey("MovieID")
+                        .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

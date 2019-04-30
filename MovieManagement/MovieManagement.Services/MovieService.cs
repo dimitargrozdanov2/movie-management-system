@@ -19,13 +19,44 @@ namespace MovieManagement.Services
 
         public MovieService(MovieManagementContext context, IMappingProvider mappingProvider)
         {
-            this.context = context;
-            this.mappingProvider = mappingProvider;
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.mappingProvider = mappingProvider ?? throw new ArgumentNullException(nameof(mappingProvider));
         }
 
-        public Task<Movie> CreateMovieAsync(string name, string genreType, string directorName, int duration)
+        public async Task<MovieViewModel> CreateMovieAsync(string name, int duration, string storyLine, string director, string genreName)
         {
-            throw new NotImplementedException();
+            if (await this.context.Movies.AnyAsync(m => m.Name == name))
+            {
+                throw new ArgumentException($"Movie with '{name}' title already exist!");
+            }
+
+            var genre = await this.context.Genres.FirstOrDefaultAsync(g => g.Name == genreName);
+
+            if (genre == null)
+            {
+                throw new ArgumentException($"{genreName} genre has not been found!");
+            }
+
+            var movie = new Movie() { Name = name, Genre = genre, Director = director, Duration = duration };
+
+            await this.context.Movies.AddAsync(movie);
+            await this.context.SaveChangesAsync();
+
+            var returnMovie = this.mappingProvider.MapTo<MovieViewModel>(movie);
+
+            return returnMovie;
+        }
+
+        public async Task<MovieViewModel> GetMovieByNameAsync(string name)
+        {
+            var movie = await this.context.Movies
+                .Include(m => m.MovieActor)
+                    .ThenInclude(a => a.Actor)
+                .FirstOrDefaultAsync(m => m.Name == name);
+
+            var returnMovie = this.mappingProvider.MapTo<MovieViewModel>(movie);
+
+            return returnMovie;
         }
 
         public async Task<ICollection<MovieViewModel>> GetTopRatedMovies()

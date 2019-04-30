@@ -26,7 +26,7 @@ namespace MovieManagement.Infrastructure.Mappings
             //        .Select(x => x.Actor.Name)
             //        .ToList();
             CreateMap<Movie, MovieViewModel>()
-                .ForMember(dest => dest.ID, opts => opts.MapFrom(src => src.ID))
+                .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Duration, opts => opts.MapFrom(src => src.Duration))
                 .ForMember(dest => dest.Storyline, opts => opts.MapFrom(src => src.Storyline))

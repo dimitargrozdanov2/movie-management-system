@@ -1,0 +1,46 @@
+﻿@model CreateMovieViewModel
+
+@{
+    ViewData["Title"] = "Create Movie";
+}
+
+<h1 class="headerText">Create Movie</h1>
+
+<div class="form-row">
+    <form class="col-lg-7" method="post">
+        <div class="form-group">
+            <label asp-for="Name">Name</label>
+            <input class="form-control" asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Duration">Duration</label>
+            <input class="form-control" asp-for="Duration" />
+            <span asp-validation-for="Duration"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Storyline">Storyline</label>
+            <input class="form-control" asp-for="Storyline" />
+            <span asp-validation-for="Storyline"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Director">Director</label>
+            <input class="form-control" asp-for="Director" />
+            <span asp-validation-for="Director"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="GenreName">GenreName</label>
+            <select asp-for="GenreName" class="custom-select" asp-items="@Model?.GenreList"></select>
+        </div>
+
+
+        <div class="form-group">
+            <button class="btn btn-warning" type="submit">Create</button>
+        </div>
+    </form>
+</div>
+

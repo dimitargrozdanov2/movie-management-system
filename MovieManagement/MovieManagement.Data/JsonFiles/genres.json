@@ -1,14 +1,14 @@
 [
-    {
-        "ID": 1,
-        "Name": "Horror"
-    },
-    {
-        "ID": 2,
-        "Name": "Psycho"
-    },
-    {
-        "ID": 3,
-        "Name": "Fantasy"
-    }
+  {
+    "ID": "3f957cb7-339b-4efe-b38d-6e6d478ba76a",
+    "Name": "Horror"
+  },
+  {
+    "ID": "6637840b-113b-4d9f-8448-2b320201d01f",
+    "Name": "Psycho"
+  },
+  {
+    "ID": "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
+    "Name": "Fantasy"
+  }
 ]

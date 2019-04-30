@@ -1,29 +1,29 @@
 [
-    {
-        "ID": 1,
-        "Name": "Marvel",
-        "Duration": 90,
-        "Storyline": "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.",
-        "Director": "Anna Boden",
-        "GenreID": 2,
-        "IsDeleted": false
-    },
-    {
-        "ID": 2,
-        "Name": "Aladdin",
-        "Duration": 120,
-        "Storyline": "A kindhearted Arabian street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make the deepest wishes come true.",
-        "Director": "Guy Ritchie",
-        "GenreID": 1,
-        "IsDeleted": false
-    },
-    {
-        "ID": 3,
-        "Name": "Bumblebee",
-        "Duration": 90,
-        "Storyline": "On the run in the year of 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken.",
-        "Director": "Travis Knight",
-        "GenreID": 2,
-        "IsDeleted": false
-    }
+  {
+    "ID": "42af373f-8aba-45a5-932b-9e20cc46c0c5",
+    "Name": "Marvel",
+    "Duration": 90,
+    "Storyline": "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.",
+    "Director": "Anna Boden",
+    "GenreID": "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
+    "IsDeleted": false
+  },
+  {
+    "ID": "79087c1f-07ee-4747-924a-ab6b6a2ede1d",
+    "Name": "Aladdin",
+    "Duration": 120,
+    "Storyline": "A kindhearted Arabian street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make the deepest wishes come true.",
+    "Director": "Guy Ritchie",
+    "GenreID": "3f957cb7-339b-4efe-b38d-6e6d478ba76a",
+    "IsDeleted": false
+  },
+  {
+    "ID": "4f643260-3675-48ca-bd80-b461e8e6f7ea",
+    "Name": "Bumblebee",
+    "Duration": 90,
+    "Storyline": "On the run in the year of 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken.",
+    "Director": "Travis Knight",
+    "GenreID": "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
+    "IsDeleted": false
+  }
 ]

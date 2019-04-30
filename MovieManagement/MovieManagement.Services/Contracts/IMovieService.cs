@@ -9,7 +9,7 @@ namespace MovieManagement.Services.Contracts
 {
     public interface IMovieService
     {
-        Task<Movie> CreateMovieAsync(string name, string genreType, string directorName, int duration);
+        Task<MovieViewModel> CreateMovieAsync(string name, int duration, string storyLine, string director, string genreName);
 
         //Task<int> DeleteMovieAsync(string movieName);
 
@@ -30,5 +30,7 @@ namespace MovieManagement.Services.Contracts
         //Task<ICollection<Movie>> ShowTopMoviesAsync(int amount);
 
         Task<ICollection<MovieViewModel>> GetTopRatedMovies();
+
+        Task<MovieViewModel> GetMovieByNameAsync(string name);
     }
 }

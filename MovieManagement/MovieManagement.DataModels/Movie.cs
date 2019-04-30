@@ -6,7 +6,7 @@ namespace MovieManagement.DataModels
 {
     public class Movie
     {
-        public int ID { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
 
@@ -16,7 +16,7 @@ namespace MovieManagement.DataModels
 
         public string Director { get; set; }
 
-        public int GenreID { get; set; }
+        public string GenreID { get; set; }
 
         public Genre Genre { get; set; }
 
