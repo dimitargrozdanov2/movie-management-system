@@ -1,12 +1,46 @@
 ﻿@model ListMovieViewModel
+
 @{
-    ViewData["Title"] = "TopRated";
+    ViewData["Title"] = "Admin Dashboard";
+
 }
 
-<h1>TopRated</h1>
+@*<div class="container">
+    <div class="row">
+        <div class="col-md-11 text-md-center">
 
-@foreach (var item in Model.Movies)
-{
-    <p>@item.Name</p>
-}
+        </div>
+    </div>*@
 
+    @*<div class="row">
+        <div class="col-md-10">
+            <h1 class="headerText">Top 20 movies</h1>
+            <div>
+
+                @foreach (var movie in Model.Movies)
+                {
+
+                    <partial name="_MoviePartial" model="movie" />
+                }
+            </div>
+        </div>
+
+    </div>*@
+@*</div>*@
+<table class="table table-hover col-md-10">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Rating</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model.Movies)
+        {
+            <partial name="_MoviePartial" model="movie" />
+        }
+
+    </tbody>
+</table>

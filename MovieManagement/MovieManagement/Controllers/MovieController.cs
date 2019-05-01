@@ -36,29 +36,5 @@ namespace MovieManagement.Controllers
             model.Movies = movies;
             return this.View(model);
         }
-
-        [Area("Administration")]
-        [Authorize(Roles = "Admin")]
-        [HttpGet]
-        public async Task<IActionResult> Create()
-        {
-            var model = new CreateMovieViewModel();
-            var genres = await this.genreService.GetAllGenres();
-            model.GenreList = genres.Select(t => new SelectListItem(t.Name, t.Name)).ToList();
-
-            return View(model);
-        }
-
-        [Area("Administration")]
-        [Authorize(Roles = "Admin")]
-        [HttpPost]
-        public async Task<IActionResult> Create(CreateMovieViewModel model)
-        {
-            var role = await this.movieService.CreateMovieAsync(model.Name, model.Duration, model.Storyline, model.Director, model.GenreName);
-
-
-            // TODO: RETURN DIRECTOYL TO THE DETAILS OF THIS ONE;
-            return this.RedirectToAction(nameof(Index), "Role");
-        }
     }
 }

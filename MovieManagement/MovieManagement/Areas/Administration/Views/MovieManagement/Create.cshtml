@@ -10,30 +10,30 @@
     <form class="col-lg-7" method="post">
         <div class="form-group">
             <label asp-for="Name">Name</label>
-            <input class="form-control" asp-for="Name" />
+            <input class="form-control" asp-for="Name"  placeholder="Name" />
             <span asp-validation-for="Name"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="Duration">Duration</label>
-            <input class="form-control" asp-for="Duration" />
+            <input class="form-control" asp-for="Duration"/>
             <span asp-validation-for="Duration"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="Storyline">Storyline</label>
-            <input class="form-control" asp-for="Storyline" />
+            <input class="form-control" asp-for="Storyline" placeholder="Storyline"/>
             <span asp-validation-for="Storyline"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="Director">Director</label>
-            <input class="form-control" asp-for="Director" />
+            <input class="form-control" asp-for="Director" placeholder="Director Name"/>
             <span asp-validation-for="Director"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="GenreName">GenreName</label>
+            <label asp-for="GenreName">Genre Name</label>
             <select asp-for="GenreName" class="custom-select" asp-items="@Model?.GenreList"></select>
         </div>
 

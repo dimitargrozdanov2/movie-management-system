@@ -71,5 +71,30 @@ namespace MovieManagement.Services
 
             return returnMovies;
         }
+
+        public async Task<MovieViewModel> RateMovie(string name, double rating)
+        {
+            var movie = await this.context.Movies.FirstOrDefaultAsync(x => x.Name == name);
+
+            if (movie == null)
+            {
+                throw new ArgumentException($"Movie `{name}` does not exist.");
+            }
+
+            movie.VotesCount++;
+
+            double currentRating = movie.Rating;
+            double totalRating = currentRating * (movie.VotesCount - 1);
+
+            totalRating += rating;
+
+            movie.Rating = totalRating / movie.VotesCount;
+
+            await this.context.SaveChangesAsync();
+
+            var returnMovie = this.mappingProvider.MapTo<MovieViewModel>(movie);
+
+            return returnMovie;
+        }
     }
 }

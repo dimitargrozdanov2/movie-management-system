@@ -1,4 +1,5 @@
 ﻿using MovieManagement.DataModels;
+using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ namespace MovieManagement.Services.Contracts
 {
     public interface IGenreService
     {
-        //Genre CreateGenre(string name);
+        Task<GenreViewModel> CreateGenreAsync(string name);
 
         Task<ICollection<Genre>> GetAllGenres();
     }

@@ -49,9 +49,13 @@
                         <li> <a class="nav-link text-dark" asp-area="" asp-controller="Actor" asp-action="Create">Actors</a></li>
                         <li><a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Search">News</a></li>
                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Watchlist" asp-action="Index">Watchlist</a></li>
+                        }
                         @if (User.IsInRole("Admin"))
                         {
-                        <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Admin" asp-action="Index">Administration</a></li>
+                            <li><a class="nav-link text-dark" asp-area="Administration" asp-controller="Admin" asp-action="Index">Administration</a></li>
                         }
 
 
