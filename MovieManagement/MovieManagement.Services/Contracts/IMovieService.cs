@@ -9,7 +9,7 @@ namespace MovieManagement.Services.Contracts
 {
     public interface IMovieService
     {
-        Task<MovieViewModel> CreateMovieAsync(string name, int duration, string storyLine, string director, string genreName);
+        Task<MovieViewModel> CreateMovieAsync(string name, int duration, string storyLine, string director, string imageUrl, string genreName);
 
         //Task<int> DeleteMovieAsync(string movieName);
 

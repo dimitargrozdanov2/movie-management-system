@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MovieManagement.Areas.Administration.Models.Movie
 {
@@ -15,6 +12,8 @@ namespace MovieManagement.Areas.Administration.Models.Movie
         public string Storyline { get; set; }
 
         public string Director { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public string GenreName { get; set; }
 

@@ -313,6 +313,8 @@ namespace MovieManagement.Data.Migrations
 
                     b.Property<string>("GenreID");
 
+                    b.Property<string>("ImageUrl");
+
                     b.Property<bool>("IsDeleted");
 
                     b.Property<string>("Name")
@@ -338,6 +340,7 @@ namespace MovieManagement.Data.Migrations
                             Director = "Anna Boden",
                             Duration = 90,
                             GenreID = "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
+                            ImageUrl = "marvel.png",
                             IsDeleted = false,
                             Name = "Marvel",
                             Rating = 0.0,
@@ -350,6 +353,7 @@ namespace MovieManagement.Data.Migrations
                             Director = "Guy Ritchie",
                             Duration = 120,
                             GenreID = "3f957cb7-339b-4efe-b38d-6e6d478ba76a",
+                            ImageUrl = "aladdin.png",
                             IsDeleted = false,
                             Name = "Aladdin",
                             Rating = 0.0,
@@ -362,6 +366,7 @@ namespace MovieManagement.Data.Migrations
                             Director = "Travis Knight",
                             Duration = 90,
                             GenreID = "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
+                            ImageUrl = "bumblebee.png",
                             IsDeleted = false,
                             Name = "Bumblebee",
                             Rating = 0.0,

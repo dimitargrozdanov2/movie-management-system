@@ -38,7 +38,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateMovieViewModel model)
         {
-            var role = await this.movieService.CreateMovieAsync(model.Name, model.Duration, model.Storyline, model.Director, model.GenreName);
+            var role = await this.movieService.CreateMovieAsync(model.Name, model.Duration, model.Storyline, model.Director, model.ImageUrl, model.GenreName);
 
 
             // TODO: RETURN DIRECTOYL TO THE DETAILS OF THIS ONE;

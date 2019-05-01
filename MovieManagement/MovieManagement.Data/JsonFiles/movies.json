@@ -5,6 +5,7 @@
     "Duration": 90,
     "Storyline": "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.",
     "Director": "Anna Boden",
+    "ImageUrl": "marvel.png",
     "GenreID": "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
     "IsDeleted": false
   },
@@ -14,6 +15,7 @@
     "Duration": 120,
     "Storyline": "A kindhearted Arabian street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make the deepest wishes come true.",
     "Director": "Guy Ritchie",
+    "ImageUrl": "aladdin.png",
     "GenreID": "3f957cb7-339b-4efe-b38d-6e6d478ba76a",
     "IsDeleted": false
   },
@@ -23,6 +25,7 @@
     "Duration": 90,
     "Storyline": "On the run in the year of 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken.",
     "Director": "Travis Knight",
+    "ImageUrl": "bumblebee.png",
     "GenreID": "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
     "IsDeleted": false
   }

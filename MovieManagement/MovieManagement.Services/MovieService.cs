@@ -23,7 +23,8 @@ namespace MovieManagement.Services
             this.mappingProvider = mappingProvider ?? throw new ArgumentNullException(nameof(mappingProvider));
         }
 
-        public async Task<MovieViewModel> CreateMovieAsync(string name, int duration, string storyLine, string director, string genreName)
+        public async Task<MovieViewModel> CreateMovieAsync(string name, int duration, 
+            string storyLine, string director, string imageUrl, string genreName)
         {
             if (await this.context.Movies.AnyAsync(m => m.Name == name))
             {
@@ -37,7 +38,7 @@ namespace MovieManagement.Services
                 throw new ArgumentException($"{genreName} genre has not been found!");
             }
 
-            var movie = new Movie() { Name = name, Genre = genre, Director = director, Duration = duration };
+            var movie = new Movie() { Name = name, Genre = genre, Director = director, Duration = duration, ImageUrl = imageUrl};
 
             await this.context.Movies.AddAsync(movie);
             await this.context.SaveChangesAsync();

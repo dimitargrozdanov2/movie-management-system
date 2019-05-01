@@ -26,6 +26,8 @@ namespace MovieManagement.DataModels
 
         public bool IsDeleted { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public ICollection<MovieActor> MovieActor { get; set; }
 
         public ICollection<ApplicationUserMovie> ApplicationUserMovie { get; set; }

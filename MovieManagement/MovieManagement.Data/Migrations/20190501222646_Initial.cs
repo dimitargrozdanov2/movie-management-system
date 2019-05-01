@@ -203,7 +203,8 @@ namespace MovieManagement.Data.Migrations
                     GenreID = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: false),
                     VotesCount = table.Column<int>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false)
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -314,12 +315,12 @@ namespace MovieManagement.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Movies",
-                columns: new[] { "Id", "Director", "Duration", "GenreID", "IsDeleted", "Name", "Rating", "Storyline", "VotesCount" },
+                columns: new[] { "Id", "Director", "Duration", "GenreID", "ImageUrl", "IsDeleted", "Name", "Rating", "Storyline", "VotesCount" },
                 values: new object[,]
                 {
-                    { "79087c1f-07ee-4747-924a-ab6b6a2ede1d", "Guy Ritchie", 120, "3f957cb7-339b-4efe-b38d-6e6d478ba76a", false, "Aladdin", 0.0, "A kindhearted Arabian street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make the deepest wishes come true.", 0 },
-                    { "42af373f-8aba-45a5-932b-9e20cc46c0c5", "Anna Boden", 90, "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", false, "Marvel", 0.0, "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.", 0 },
-                    { "4f643260-3675-48ca-bd80-b461e8e6f7ea", "Travis Knight", 90, "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", false, "Bumblebee", 0.0, "On the run in the year of 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken.", 0 }
+                    { "79087c1f-07ee-4747-924a-ab6b6a2ede1d", "Guy Ritchie", 120, "3f957cb7-339b-4efe-b38d-6e6d478ba76a", "aladdin.png", false, "Aladdin", 0.0, "A kindhearted Arabian street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make the deepest wishes come true.", 0 },
+                    { "42af373f-8aba-45a5-932b-9e20cc46c0c5", "Anna Boden", 90, "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", "marvel.png", false, "Marvel", 0.0, "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.", 0 },
+                    { "4f643260-3675-48ca-bd80-b461e8e6f7ea", "Travis Knight", 90, "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", "bumblebee.png", false, "Bumblebee", 0.0, "On the run in the year of 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken.", 0 }
                 });
 
             migrationBuilder.InsertData(

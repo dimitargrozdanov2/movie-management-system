@@ -35,6 +35,7 @@ namespace MovieManagement.Infrastructure.Mappings
                 .ForMember(dest => dest.Rating, opts => opts.MapFrom(src => src.Rating))
                 .ForMember(dest => dest.VotesCount, opts => opts.MapFrom(src => src.VotesCount))
                 .ForMember(dest => dest.IsDeleted, opts => opts.MapFrom(src => src.IsDeleted))
+                .ForMember(dest => dest.ImageUrl, opts => opts.MapFrom(src => src.ImageUrl))
                 .ForMember(dest => dest.Actors, opts => opts.MapFrom(src => src.MovieActor.Select(x => x.Actor.Name).ToList()));
         }
     }

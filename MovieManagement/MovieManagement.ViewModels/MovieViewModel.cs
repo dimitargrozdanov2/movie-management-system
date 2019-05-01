@@ -24,6 +24,8 @@ namespace MovieManagement.ViewModels
 
         public bool IsDeleted { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public ICollection<string> Actors { get; set; }
     }
 }
