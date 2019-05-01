@@ -5,7 +5,8 @@ using MovieManagement.Services.Contracts;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using MovieManagement.ViewModels;
+using System;
 
 namespace MovieManagement.Controllers
 {
@@ -35,6 +36,14 @@ namespace MovieManagement.Controllers
 
             model.Movies = movies;
             return this.View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            var model = await this.movieService.GetMovieByNameAsync(id);
+
+            return View(model);
         }
     }
 }

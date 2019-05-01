@@ -5,32 +5,9 @@
 
 }
 
-@*<div class="container">
-    <div class="row">
-        <div class="col-md-11 text-md-center">
-
-        </div>
-    </div>*@
-
-    @*<div class="row">
-        <div class="col-md-10">
-            <h1 class="headerText">Top 20 movies</h1>
-            <div>
-
-                @foreach (var movie in Model.Movies)
-                {
-
-                    <partial name="_MoviePartial" model="movie" />
-                }
-            </div>
-        </div>
-
-    </div>*@
-@*</div>*@
-<table class="table table-hover col-md-10">
+<table class="table table-hover col-md-10" onload="getx();">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Title</th>
             <th scope="col">Rating</th>
 

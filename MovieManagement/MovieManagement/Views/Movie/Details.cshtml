@@ -1,0 +1,38 @@
+﻿@model MovieViewModel
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+
+}
+
+<div class="form-row movieTitleText p-3 mb-2 bg-dark text-light col-lg-8">
+    <div class="col-lg-5"><h4>@Model.Name</h4></div>
+    <div class="col-lg-5 ratingTitleRight"><h4 class="coloredStar">☆ @Model.Rating</h4></div>
+    <div class="col-lg-2 ratingTitleRight"><h4 class="coloredStar">☆ @Model.Rating s</h4></div>
+
+</div>
+
+<div class="form-row p-3 mb-2 bg-light text-dark col-lg-8">
+    <div class="form-group">
+        <div class="form-row">
+            <p>@Model.Storyline</p>
+        </div>
+        <div class="form-row">
+            <p class="font-weight-bold">Director:</p> <br /><p class="pLeftPush">@Model.Director</p>
+
+        </div>
+        <div class="form-row">
+            <p class="font-weight-bold">Duration:</p> <br /><p class="pLeftPush">@Model.Duration</p>
+        </div>
+        <div class="form-row">
+            <p class="font-weight-bold">Genre:</p> <br /><p class="pLeftPush">@string.Join(" ", @Model.Genre)</p>
+        </div>
+        <div class="form-row">
+            <p class="font-weight-bold">Actors:</p> <br /><p class="pLeftPush">@string.Join(", ", @Model.Actors)</p>
+        </div>
+        <div class="form-row">
+            <button class="btn btn-primary" type="submit">+ Add to Watchlist</button>
+        </div>
+    </div>
+</div>
+

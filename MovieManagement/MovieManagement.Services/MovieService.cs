@@ -50,9 +50,15 @@ namespace MovieManagement.Services
         public async Task<MovieViewModel> GetMovieByNameAsync(string name)
         {
             var movie = await this.context.Movies
+                .Include(x => x.Genre)
                 .Include(m => m.MovieActor)
                     .ThenInclude(a => a.Actor)
                 .FirstOrDefaultAsync(m => m.Name == name);
+
+            if (movie == null)
+            {
+                throw new ArgumentException($"Movie `{name}` does not exist.");
+            }
 
             var returnMovie = this.mappingProvider.MapTo<MovieViewModel>(movie);
 

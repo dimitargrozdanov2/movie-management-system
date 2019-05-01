@@ -9,5 +9,21 @@
     font-size: 30px;
 }
 
+.movieTitleText {
+    border: ridge
+}
+
+.ratingTitleRight{
+    text-align: right;
+}
+
+.coloredStar{
+    color: gold;
+}
+
+.pLeftPush{
+    padding-left: 5px;
+}
+
     
 
