@@ -12,8 +12,7 @@
 </div>
 
 <div class="form-row movieTitleText p-3 mb-2 bg-dark text-light col-lg-8">
-    @*<img src="~/images/marvel.png" alt="Visual Studio" class="img-responsive" style="width: 100%; height:100%;" />*@
-    <img src="~/images/@Model.ImageUrl" alt="Visual Studio" class="img-responsive" style="width: 100%; height:250px;" />
+    <img src="~/images/@Model.ImageUrl" alt="Visual Studio" class="img-fluid" style="width: 100%; height:250px;" />
 
 </div>
 
@@ -36,7 +35,7 @@
             <p class="font-weight-bold">Actors:</p> <br /><p class="pLeftPush">@string.Join(", ", @Model.Actors)</p>
         </div>
         <div class="form-row">
-            <button class="btn btn-primary" type="submit">+ Add to Watchlist</button>
+            <a asp-area="" asp-controller="Movie" asp-action="Watchlist" asp-route-id="@Model.Name" class="btn btn-primary">+ Add to Watchlist</a>
         </div>
     </div>
 </div>

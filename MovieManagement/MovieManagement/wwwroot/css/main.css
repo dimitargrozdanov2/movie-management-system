@@ -10,7 +10,7 @@
 }
 
 .movieTitleText {
-    border: ridge
+    border: ridge;
 }
 
 .ratingTitleRight{
@@ -23,6 +23,22 @@
 
 .pLeftPush{
     padding-left: 5px;
+}
+
+.genreTitleTag{
+    font-size: 10px;
+    color: darkgrey
+}
+
+.ratingInTitleToRight {
+    /*padding-left: 20%;*/
+    text-align: right;
+    color: gold;
+}
+
+.homeMovieListAlign{
+    margin-left: 8%;
+    margin-bottom: 4%;
 }
 
     

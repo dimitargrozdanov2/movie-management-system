@@ -1,9 +1,28 @@
-﻿@{
+﻿@model HomeIndexViewModel
+
+@{
     ViewData["Title"] = "Home Page";
+
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Movie Management System - Very Basic</p>
-    <img src="~/images/marvel.png" alt="Visual Studio" class="img-responsive" style="width: 700px; height:250px;" />
+<div class="container">
+    <p class="headerText">Most Recent Movies</p>
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="row">
+                @foreach (var movie in Model.Movies)
+                {
+                    <partial name="_HomeMoviePartial" model="movie" />
+                }
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="well">
+                <p>Place FOR NEWS</p>
+            </div>
+            <div class="well">
+                <p>Place FOR NEWS</p>
+            </div>
+        </div>
+    </div>
 </div>

@@ -5,14 +5,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Models;
+using MovieManagement.Models.Home;
+using MovieManagement.Services.Contracts;
 
 namespace MovieManagement.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IMovieService movieService;
+
+        public HomeController(IMovieService movieService)
         {
-            return View();
+            this.movieService = movieService ?? throw new ArgumentNullException(nameof(movieService));
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var model = new HomeIndexViewModel();
+            var movies = await this.movieService.GetTopRatedMovies();
+
+            model.Movies = movies;
+            return this.View(model);
         }
 
         public IActionResult Privacy()

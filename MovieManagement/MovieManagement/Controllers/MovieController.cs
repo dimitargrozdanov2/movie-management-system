@@ -17,8 +17,8 @@ namespace MovieManagement.Controllers
 
         public MovieController(IMovieService movieService, IGenreService genreService)
         {
-            this.movieService = movieService ?? throw new System.ArgumentNullException(nameof(movieService));
-            this.genreService = genreService ?? throw new System.ArgumentNullException(nameof(genreService));
+            this.movieService = movieService ?? throw new ArgumentNullException(nameof(movieService));
+            this.genreService = genreService ?? throw new ArgumentNullException(nameof(genreService));
         }
 
         public IActionResult Index()
@@ -29,8 +29,6 @@ namespace MovieManagement.Controllers
         [HttpGet]
         public async Task<IActionResult> TopRated()
         {
-
-            var getmovieswithActors = await this.movieService.GetMovieByNameAsync("Marvel");
             var model = new ListMovieViewModel();
             var movies = await this.movieService.GetTopRatedMovies();
 
