@@ -74,5 +74,22 @@ namespace MovieManagement.Areas.Administration.Controllers
 
             return this.RedirectToAction("TopRated", "Movie");
         }
+
+        [HttpGet]
+        public IActionResult ManageActors(string name)
+        {
+            var model = new MovieManageActorsViewModel();
+            model.MovieName = name;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ManageActors(MovieManageActorsViewModel model)
+        {
+            await this.movieService.ManageActor(model.MovieName, model.ActorName);
+
+            return this.RedirectToAction("TopRated", "Movie");
+        }
     }
 }

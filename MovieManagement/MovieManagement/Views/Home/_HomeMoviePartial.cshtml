@@ -7,11 +7,13 @@
     <div>
         <img src="~/images/@Model.ImageUrl" alt="Movie Image" class="img-fluid" style="width: 100%; height:100px;" />
         <a asp-area="" asp-controller="Movie" asp-action="Details" asp-route-id="@Model.Name" class="text-dark">
-            <h4 class="homeTitleMovie">@Model.Name
-            <span class="ratingInTitleToRight ">☆@Model.Rating</span></h4>
+            <h4 class="homeTitleMovie">
+                @Model.Name
+                <span class="ratingInTitleToRight ">☆@Model.Rating</span>
+            </h4>
         </a>
         <div class="genreTitleTag btn btn-dark">@Model.Genre</div>
         <div>@Model.Storyline</div>
-        <a asp-area="" asp-controller="Movie" asp-action="Watchlist" asp-route-id="@Model.Name" class= "homeTitleMovie genreTitleTag btn btn-warning">+ Add to Watchlist</a>
+        <a asp-area="" asp-controller="Movie" asp-action="Watchlist" asp-route-id="@Model.Name" class="homeTitleMovie genreTitleTag btn btn-warning">+ Add to Watchlist</a>
     </div>
 </div>

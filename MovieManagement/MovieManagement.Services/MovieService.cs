@@ -144,5 +144,47 @@ namespace MovieManagement.Services
 
             return returnMovie;
         }
+
+        public async Task<MovieViewModel> ManageActor(string movieName, string actorName)
+        {
+            var movie = await this.context.Movies
+               .Include(m => m.MovieActor)
+                   .ThenInclude(a => a.Actor)
+               .FirstOrDefaultAsync(m => m.Name == movieName);
+            if (movie == null)
+            {
+                throw new ArgumentException($"{movieName} has not been found!");
+            }
+
+            var actor = await this.context.Actors.FirstOrDefaultAsync(a => a.Name == actorName);
+            if (actor == null)
+            {
+                throw new ArgumentException($"{actorName} has not been found!");
+            }
+
+            // Checks whether this actor is already assigned to this movie or not.
+            var isActorAlreadyAssigned = movie.MovieActor.Any(x => x.Actor == actor && x.Movie == movie);
+
+            if (isActorAlreadyAssigned)
+            {
+                MovieActor actorToRemove = movie.MovieActor.FirstOrDefault(x => x.Actor?.Name == actorName);
+                movie.MovieActor.Remove(actorToRemove);
+            }
+            else
+            {
+                MovieActor movieActor = new MovieActor()
+                {
+                    ActorId = actor.Id,
+                };
+                movie.MovieActor.Add(movieActor);
+            }
+
+            await this.context.SaveChangesAsync();
+
+            var returnMovie = this.mappingProvider.MapTo<MovieViewModel>(movie);
+
+            return returnMovie;
+        }
+
     }
 }

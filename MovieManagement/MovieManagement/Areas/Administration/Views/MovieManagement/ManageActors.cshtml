@@ -1,0 +1,27 @@
+﻿@model MovieManageActorsViewModel
+
+@{
+    ViewData["Title"] = "Add Actor";
+}
+
+<h1 class="headerText">Add Actor </h1>
+
+<div class="form-row">
+    <form class="col-lg-7" method="post">
+
+        @*<input type="hidden" class="hidden" value="@Model?.UserName" name="UserName" />*@
+
+        <input type="hidden" asp-for="MovieName" />
+
+        <div class="form-group">
+            <label asp-for="ActorName">ActorName</label>
+            <input class="form-control" asp-for="ActorName" />
+            <span asp-validation-for="ActorName"></span>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-warning" type="submit">Assign</button>
+        </div>
+    </form>
+</div>
+
