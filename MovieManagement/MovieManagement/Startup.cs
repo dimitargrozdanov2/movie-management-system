@@ -67,6 +67,8 @@ namespace MovieManagement
                 .AddEntityFrameworkStores<MovieManagementContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddMemoryCache();
+
             services.AddAutoMapper();
 
 
