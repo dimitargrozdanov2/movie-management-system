@@ -27,7 +27,7 @@
 
 .genreTitleTag{
     font-size: 10px;
-    color: darkgrey
+    color: darkgrey;
 }
 
 .ratingInTitleToRight {
@@ -39,6 +39,15 @@
 .homeMovieListAlign{
     margin-left: 8%;
     margin-bottom: 4%;
+}
+
+.detailsMovieButton{
+    margin-bottom: 5%;
+    margin-left: 7%;
+}
+
+.homeTitleMovie{
+    margin-top: 2%;
 }
 
     

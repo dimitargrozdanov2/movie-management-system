@@ -73,13 +73,13 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Edit(string id)
         {
-            var model = new EditViewModel();
+            var model = new RoleEditViewModel();
             model.OldName = id;
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(EditViewModel model)
+        public async Task<IActionResult> Edit(RoleEditViewModel model)
         {
             var role = await this.roleManagerWrapper.FindByNameAsync(model.OldName);
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieManagement.Areas.Administration.Models.Role
 {
-    public class EditViewModel
+    public class RoleEditViewModel
     {
         [Required]
         public string OldName { get; set; }

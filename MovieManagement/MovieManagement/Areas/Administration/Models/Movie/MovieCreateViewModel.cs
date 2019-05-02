@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MovieManagement.Areas.Administration.Models.Movie
 {
-    public class CreateMovieViewModel
+    public class MovieCreateViewModel
     {
         public string Name { get; set; }
 
