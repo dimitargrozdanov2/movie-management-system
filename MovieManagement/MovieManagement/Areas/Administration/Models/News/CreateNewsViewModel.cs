@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace MovieManagement.DataModels
+namespace MovieManagement.Areas.Administration.Models.News
 {
-    public class News
+    public class CreateNewsViewModel
     {
-        public string Id { get; set; }
-
         public DateTime DatePosted { get; set; }
 
         public string Title { get; set; }
@@ -15,6 +14,5 @@ namespace MovieManagement.DataModels
         public string Text { get; set; }
 
         public string ImageUrl { get; set; }
-
     }
 }

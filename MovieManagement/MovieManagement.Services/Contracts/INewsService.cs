@@ -1,16 +1,20 @@
 ﻿using MovieManagement.DataModels;
+using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MovieManagement.Services.Contracts
 {
     public interface INewsService
     {
-        News CreateNews(string title, IEnumerable<string> text);
+        Task<NewsViewModel> CreateNewsAsync(string title, string text, string imageUrl);
 
-        int DeleteNews(string title);
+        Task<NewsViewModel> DeleteNews(string title);
 
-        News EditNewsText(string title, IEnumerable<string> text);
+        Task<NewsViewModel> EditNewsTextAsync(string title, IEnumerable<string> text, string imageUrl);
+
+
     }
 }
