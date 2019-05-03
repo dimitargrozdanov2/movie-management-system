@@ -43,5 +43,13 @@ namespace MovieManagement.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Rate([FromBody] RateMovieViewModel rateMovieModel)
+        {
+            var movie = await this.movieService.RateMovie(rateMovieModel.Name, rateMovieModel.Rating);
+
+            return Json(movie);
+        }
     }
 }

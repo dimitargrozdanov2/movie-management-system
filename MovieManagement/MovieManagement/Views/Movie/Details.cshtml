@@ -8,7 +8,21 @@
 <div class="container">
     <div class="form-row">
         <div class="p-3 mb-2 bg-light text-dark col-lg-8">
-            <h3>@Model.Name <span class="coloredStar">☆ @Model.Rating</span></h3>
+            <h3>
+                @Model.Name
+                <div class="dropdown rating-dropdown">
+                    ☆
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @Model.Rating
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @for (int i = 1; i < 4; i++)
+                        {
+                            <a data-name="@Model.Name" class="dropdown-item" href="#">@i</a>
+                        }
+                    </div>
+                </div>
+            </h3>
         </div>
     </div>
 
@@ -22,8 +36,7 @@
                 <a asp-area="Administration" asp-controller="MovieManagement" asp-action="ManageActors" asp-route-name="@Model.Name" class="btn btn-primary detailsMovieButton btn-block">Manage Actors</a>
                 <a asp-area="Administration" asp-controller="MovieManagement" asp-action="Edit" asp-route-oldName="@Model.Name" class="btn btn-primary detailsMovieButton btn-block">Edit Movie</a>
                 <a asp-area="Administration" asp-controller="MovieManagement" asp-action="Delete" asp-route-id="@Model.Name" class="btn btn-danger detailsMovieButton btn-block">Delete Movie</a>
-            }</div>
-        </div>
+            }</div>        </div>
         <div class="form-row">
             <div class="p-3 mb-2 bg-light text-dark col-lg-8">
                 <div class="form-group">

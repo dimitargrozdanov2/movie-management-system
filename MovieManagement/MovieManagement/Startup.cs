@@ -63,6 +63,8 @@ namespace MovieManagement
             services.AddScoped<IUserManagerWrapper, UserManagerWrapper>();
             services.AddScoped<IRoleManagerWrapper, RoleManagerWrapper>();
 
+            services.AddCors();
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddEntityFrameworkStores<MovieManagementContext>()
@@ -95,6 +97,8 @@ namespace MovieManagement
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            app.UseCors();
 
             app.UseMvc(routes =>
             {
