@@ -78,7 +78,8 @@ namespace MovieManagement.Data.Migrations
                     Id = table.Column<string>(nullable: false),
                     DatePosted = table.Column<DateTime>(nullable: false),
                     Title = table.Column<string>(maxLength: 50, nullable: false),
-                    Text = table.Column<string>(nullable: false)
+                    Text = table.Column<string>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -303,13 +304,13 @@ namespace MovieManagement.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "News",
-                columns: new[] { "Id", "DatePosted", "Text", "Title" },
+                columns: new[] { "Id", "DatePosted", "ImageUrl", "Text", "Title" },
                 values: new object[,]
                 {
-                    { "3848d835-fdc3-497c-a3dd-6cea088dfdf4", new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc), "This year will mark the last Avengers movie", "Avengers" },
-                    { "4e75e75e-dfdb-4da7-a516-f82ede490535", new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc), "According to Maya's people today will be the day the world ends. There will be no more movies", "WorldEnds" },
-                    { "3c758ab5-73d0-4e6e-87d4-69d60136a016", new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc), "Manchester lost to Barca on Old Trafford.", "ManchesterLost" },
-                    { "815149c8-8721-4046-9e67-1b80a964be39", new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc), "Tickets have been soldout for the premirer of Shazam", "TicketsSoldout" }
+                    { "3848d835-fdc3-497c-a3dd-6cea088dfdf4", new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc), "Endgame.jpg", "This year will mark the last Avengers movie", "Avengers" },
+                    { "4e75e75e-dfdb-4da7-a516-f82ede490535", new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc), "Worldends.jpg", "According to Maya's people today will be the day the world ends. There will be no more movies", "WorldEnds" },
+                    { "3c758ab5-73d0-4e6e-87d4-69d60136a016", new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc), "barcaman.jpg", "Manchester lost to Barca on Old Trafford.", "ManchesterLost" },
+                    { "815149c8-8721-4046-9e67-1b80a964be39", new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc), "shazam.jpg", "Tickets have been soldout for the premirer of Shazam", "TicketsSoldout" }
                 });
 
             migrationBuilder.InsertData(

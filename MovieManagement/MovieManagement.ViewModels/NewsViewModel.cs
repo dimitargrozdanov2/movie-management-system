@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MovieManagement.DataModels
+namespace MovieManagement.ViewModels
 {
-    public class News
+    public class NewsViewModel
     {
         public string Id { get; set; }
 
@@ -15,6 +15,5 @@ namespace MovieManagement.DataModels
         public string Text { get; set; }
 
         public string ImageUrl { get; set; }
-
     }
 }

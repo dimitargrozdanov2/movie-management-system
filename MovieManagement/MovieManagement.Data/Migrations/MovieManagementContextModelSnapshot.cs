@@ -414,6 +414,8 @@ namespace MovieManagement.Data.Migrations
 
                     b.Property<DateTime>("DatePosted");
 
+                    b.Property<string>("ImageUrl");
+
                     b.Property<string>("Text")
                         .IsRequired();
 
@@ -430,6 +432,7 @@ namespace MovieManagement.Data.Migrations
                         {
                             Id = "3848d835-fdc3-497c-a3dd-6cea088dfdf4",
                             DatePosted = new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc),
+                            ImageUrl = "Endgame.jpg",
                             Text = "This year will mark the last Avengers movie",
                             Title = "Avengers"
                         },
@@ -437,6 +440,7 @@ namespace MovieManagement.Data.Migrations
                         {
                             Id = "4e75e75e-dfdb-4da7-a516-f82ede490535",
                             DatePosted = new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc),
+                            ImageUrl = "Worldends.jpg",
                             Text = "According to Maya's people today will be the day the world ends. There will be no more movies",
                             Title = "WorldEnds"
                         },
@@ -444,6 +448,7 @@ namespace MovieManagement.Data.Migrations
                         {
                             Id = "3c758ab5-73d0-4e6e-87d4-69d60136a016",
                             DatePosted = new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc),
+                            ImageUrl = "barcaman.jpg",
                             Text = "Manchester lost to Barca on Old Trafford.",
                             Title = "ManchesterLost"
                         },
@@ -451,6 +456,7 @@ namespace MovieManagement.Data.Migrations
                         {
                             Id = "815149c8-8721-4046-9e67-1b80a964be39",
                             DatePosted = new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc),
+                            ImageUrl = "shazam.jpg",
                             Text = "Tickets have been soldout for the premirer of Shazam",
                             Title = "TicketsSoldout"
                         });
