@@ -4,6 +4,15 @@
 }
 
 <tr>
-    <td><a asp-area="" asp-controller="Movie" asp-action="Details" asp-route-id="@Model.Name" class="text-dark">@Model.Name</a></td>
-    <td>@Model.Rating</td>
+    <td>
+        <div class="col-8">
+            <a asp-area="" asp-controller="Movie" asp-action="Details" asp-route-id="@Model.Name" class="text-dark">
+                <img src="~/images/@Model.ImageUrl" alt="Movie Image" class="img-fluid" style="width: 25%; height:50px;" />
+                @Model.Name
+            </a>
+        </div>
+    </td>
+    <td><p class="topratedMovieGenre">@Model.Genre</p></td>
+    <td><p class="topratedMovieGenre">@Model.Director</p></td>
+    <td><p class="topratedMovieGenre">@Model.Duration</p></td>
 </tr>
