@@ -15,6 +15,7 @@ namespace MovieManagement.Services.Contracts
 
         Task<NewsViewModel> EditNewsTextAsync(string title, IEnumerable<string> text, string imageUrl);
 
+        Task<ICollection<NewsViewModel>> GetAllNews();
 
     }
 }

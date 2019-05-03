@@ -40,6 +40,15 @@ namespace MovieManagement.Services
 
             return returnNews;
         }
+        public async Task<ICollection<NewsViewModel>> GetAllNews()
+        {
+            var news = await this.context.News.ToListAsync();
+
+            var returnNews = this.mappingProvider.MapTo<ICollection<NewsViewModel>>(news);
+
+            return returnNews;
+
+        }
 
         public async Task<NewsViewModel> DeleteNews(string title)
         {
