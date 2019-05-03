@@ -11,8 +11,6 @@ namespace MovieManagement.Services.Contracts
     {
         Task<MovieViewModel> CreateMovieAsync(string name, int duration, string storyLine, string director, string imageUrl, string genreName);
 
-        //Task<Movie> UnassignActorAsync(string movieName, string actorName);
-
         Task<ICollection<MovieViewModel>> GetTopRatedMovies();
 
         Task<MovieViewModel> GetMovieByNameAsync(string name);

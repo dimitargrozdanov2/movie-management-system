@@ -7,20 +7,27 @@
 <div class="container">
     <div class="row">
         <div class="col-md-11 text-md-center">
-            <h1 class="headerText">Administration Dashboard</h1>
+            <h1 class="display-4 headerText">Administration Dashboard</h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-10">
-            <h1 class="headerText">List of Users</h1>
-            <div>
+        <table class="table table-hover col-md-10">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Update</th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach (var user in Model.Users)
                 {
                     <partial name="_UserPartial" model="user" />
-                    <hr />
                 }
-            </div>
-        </div>
+
+            </tbody>
+        </table>
         <div class="col-md-2">
             <hr />
             <a asp-area="Administration" asp-controller="MovieManagement" asp-action="Create" class="btn btn-warning btn-block">Create Movie</a>

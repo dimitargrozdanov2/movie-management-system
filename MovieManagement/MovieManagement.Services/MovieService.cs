@@ -66,6 +66,8 @@ namespace MovieManagement.Services
         public async Task<MovieViewModel> GetMovieByNameAsync(string name)
         {
             var movie = await this.context.Movies
+                .Include(um => um.ApplicationUserMovie)
+                    .ThenInclude(u => u.User)
                 .Include(x => x.Genre)
                 .Include(m => m.MovieActor)
                     .ThenInclude(a => a.Actor)
@@ -84,6 +86,8 @@ namespace MovieManagement.Services
         public async Task<ICollection<MovieViewModel>> GetTopRatedMovies()
         {
             var movies = await this.context.Movies
+                .Include(um => um.ApplicationUserMovie)
+                    .ThenInclude(u => u.User)
                 .Include(x => x.Genre)
                 .Include(x => x.MovieActor)
                     .ThenInclude(x => x.Actor)

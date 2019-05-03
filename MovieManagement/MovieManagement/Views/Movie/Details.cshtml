@@ -44,8 +44,15 @@
                         <p class="font-weight-bold">Actors:</p> <br /><p class="pLeftPush">@string.Join(", ", @Model.Actors)</p>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-3">
-                            <a asp-area="" asp-controller="Movie" asp-action="Watchlist" asp-route-id="@Model.Name" class="btn btn-primary">+ Add to Watchlist</a>
+                        <div class="col-md-4">
+                            @if (!Model.Users.Contains(User.Identity.Name))
+                            {
+                                <a asp-area="" asp-controller="Watchlist" asp-action="Add" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class="btn btn-primary">+ Add to Watchlist</a>
+                            }
+                            else
+                            {
+                                <a asp-area="" asp-controller="Watchlist" asp-action="Remove" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class="btn btn-danger">- Remove from Watchlist</a>
+                            }
                         </div>
                         <div class="col-md-3">
                             @*<a asp-area="" asp-controller="Comment" asp-action="Edit" asp-route-id="@Model.Name" class="btn btn-outline-primary">+ Add Comment</a>*@

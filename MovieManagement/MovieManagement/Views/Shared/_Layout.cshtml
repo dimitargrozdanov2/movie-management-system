@@ -51,7 +51,7 @@
                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Watchlist" asp-action="Index">Watchlist</a></li>
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Watchlist" asp-action="Index" asp-route-username="@User.Identity.Name">Watchlist</a></li>
                         }
                         @if (User.IsInRole("Admin"))
                         {

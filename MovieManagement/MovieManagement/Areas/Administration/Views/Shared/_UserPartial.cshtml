@@ -3,8 +3,9 @@
     ViewData["Title"] = "_UserPartial";
 }
 
-<h4 class="userListingText">
-    Username: @Model.Username | Email: @Model.Email
-    <a asp-area="Administration" asp-controller="Admin" asp-action="EditUser" asp-route-id="@Model.Username" class="btn btn-danger">Edit User</a>
-    <a asp-area="Administration" asp-controller="Admin" asp-action="UpdateRole" asp-route-id="@Model.Username" class="btn btn-danger">UpdateRole</a>
-</h4>
+<tr>
+    <td>@Model.Username</td>
+    <td><p class="topratedMovieGenre">@Model.Email</p></td>
+    <td><a asp-area="Administration" asp-controller="Admin" asp-action="EditUser" asp-route-id="@Model.Username" class="btn btn-danger">Edit User</a></td>
+    <td><a asp-area="Administration" asp-controller="Admin" asp-action="UpdateRole" asp-route-id="@Model.Username" class="btn btn-danger ">UpdateRole</a></td>
+</tr>

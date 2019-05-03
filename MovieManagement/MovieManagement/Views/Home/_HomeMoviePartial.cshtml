@@ -9,11 +9,18 @@
         <a asp-area="" asp-controller="Movie" asp-action="Details" asp-route-id="@Model.Name" class="text-dark">
             <h4 class="homeTitleMovie">
                 @Model.Name
-                <span class="ratingInTitleToRight ">☆@Model.Rating</span>
+                <span class="ratingInTitleToRight">☆@Model.Rating</span>
             </h4>
         </a>
         <div class="genreTitleTag btn btn-dark">@Model.Genre</div>
         <div>@Model.Storyline</div>
-        <a asp-area="" asp-controller="Movie" asp-action="Watchlist" asp-route-id="@Model.Name" class="homeTitleMovie genreTitleTag btn btn-warning">+ Add to Watchlist</a>
+        @if (!Model.Users.Contains(User.Identity.Name))
+        {
+            <a asp-area="" asp-controller="Watchlist" asp-action="Add" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class=" homeMovieWatchlistButton btn btn-primary btn-block">+ Add to Watchlist</a>
+        }
+        else
+        {
+            <a asp-area="" asp-controller="Watchlist" asp-action="Remove" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class=" homeMovieWatchlistButton btn btn-danger btn-block">- Remove from Watchlist</a>
+        }
     </div>
 </div>

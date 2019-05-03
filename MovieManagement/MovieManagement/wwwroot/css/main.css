@@ -25,9 +25,10 @@
     padding-left: 5px;
 }
 
-.genreTitleTag{
+.genreTitleTag {
     font-size: 10px;
     color: darkgrey;
+    font-weight: 500;
 }
 
 .ratingInTitleToRight {
@@ -56,6 +57,11 @@
 
 .homeRowMoviesList{
     margin-top: 5%;
+}
+
+.homeMovieWatchlistButton{
+    font-size: 10px;
+    font-weight: 500;
 }
 
 

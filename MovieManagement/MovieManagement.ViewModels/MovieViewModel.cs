@@ -27,5 +27,7 @@ namespace MovieManagement.ViewModels
         public string ImageUrl { get; set; }
 
         public ICollection<string> Actors { get; set; }
+
+        public ICollection<string> Users { get; set; }
     }
 }
