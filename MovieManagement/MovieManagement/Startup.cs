@@ -38,7 +38,7 @@ namespace MovieManagement
             });
 
             services.AddDbContext<MovieManagementContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("DConnection")));
+                options.UseSqlServer(this.Configuration.GetConnectionString("TConnection")));
 
             if (this.Environment.IsDevelopment())
             {
@@ -58,7 +58,7 @@ namespace MovieManagement
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGenreService, GenreService>();
-            services.AddScoped<INewsService, NewsService>();
+            services.AddScoped<IWatchlistService, WatchlistService>();
             services.AddScoped<IMappingProvider, MappingProvider>();
             services.AddScoped<IUserManagerWrapper, UserManagerWrapper>();
             services.AddScoped<IRoleManagerWrapper, RoleManagerWrapper>();
@@ -67,6 +67,8 @@ namespace MovieManagement
                 .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddEntityFrameworkStores<MovieManagementContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddMemoryCache();
 
             services.AddAutoMapper();
 

@@ -280,7 +280,11 @@ namespace MovieManagement.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "0e78767e-b4d2-456f-b029-5ad4c454589a", "6e63ab39-a514-4e99-ba86-296cfe8d15b5", "Admin", "ADMIN" });
+                values: new object[,]
+                {
+                    { "0e78767e-b4d2-456f-b029-5ad4c454589a", "6e63ab39-a514-4e99-ba86-296cfe8d15b5", "Admin", "ADMIN" },
+                    { "a73fda7b-0ba7-4a28-a339-4f4b1aa36b99", "96b58363-85f1-4d20-a7a4-f2a2e4159676", "User", "USER" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
@@ -311,7 +315,11 @@ namespace MovieManagement.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "UserId", "RoleId" },
-                values: new object[] { "0b8ddcfb-ef03-487b-affb-766611dc9e17", "0e78767e-b4d2-456f-b029-5ad4c454589a" });
+                values: new object[,]
+                {
+                    { "0b8ddcfb-ef03-487b-affb-766611dc9e17", "0e78767e-b4d2-456f-b029-5ad4c454589a" },
+                    { "0b8ddcfb-ef03-487b-affb-766611dc9e17", "a73fda7b-0ba7-4a28-a339-4f4b1aa36b99" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Movies",

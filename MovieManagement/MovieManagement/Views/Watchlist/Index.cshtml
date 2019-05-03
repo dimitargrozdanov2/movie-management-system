@@ -1,7 +1,7 @@
 ﻿@model ListMovieViewModel
 
 @{
-    ViewData["Title"] = "Top Rated Movies";
+    ViewData["Title"] = "My Watchlist";
 
 }
 
@@ -12,12 +12,13 @@
             <th scope="col">Genre</th>
             <th scope="col">Director</th>
             <th scope="col">Duration</th>
+            <th scope="col">Watchlist</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var movie in Model.Movies)
         {
-            <partial name="_MoviePartial" model="movie" />
+            <partial name="_WatchlistMoviePartial" model="movie" />
         }
 
     </tbody>

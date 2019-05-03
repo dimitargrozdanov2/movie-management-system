@@ -1,6 +1,6 @@
 ﻿@model MovieViewModel
 @{
-    ViewData["Title"] = "_MoviePartial";
+    ViewData["Title"] = "_WatchlistMoviePartial";
 }
 
 <tr>
@@ -15,4 +15,5 @@
     <td><p class="topratedMovieGenre">@Model.Genre</p></td>
     <td><p class="topratedMovieGenre">@Model.Director</p></td>
     <td><p class="topratedMovieGenre">@Model.Duration</p></td>
+    <td><a asp-area="" asp-controller="Watchlist" asp-action="Remove" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class="btn btn-danger">X</a></td>
 </tr>

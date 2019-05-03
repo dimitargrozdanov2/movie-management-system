@@ -7,7 +7,6 @@ using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Services
@@ -23,7 +22,7 @@ namespace MovieManagement.Services
             this.mappingProvider = mappingProvider ?? throw new ArgumentNullException(nameof(mappingProvider));
         }
 
-        public async Task<MovieViewModel> CreateMovieAsync(string name, int duration, 
+        public async Task<MovieViewModel> CreateMovieAsync(string name, int duration,
             string storyLine, string director, string imageUrl, string genreName)
         {
             if (await this.context.Movies.AnyAsync(m => m.Name == name))
@@ -38,7 +37,7 @@ namespace MovieManagement.Services
                 throw new ArgumentException($"{genreName} genre has not been found!");
             }
 
-            var movie = new Movie() { Name = name, Genre = genre, Director = director, Duration = duration, ImageUrl = imageUrl};
+            var movie = new Movie() { Name = name, Genre = genre, Director = director, Duration = duration, ImageUrl = imageUrl };
 
             await this.context.Movies.AddAsync(movie);
             await this.context.SaveChangesAsync();
@@ -48,9 +47,27 @@ namespace MovieManagement.Services
             return returnMovie;
         }
 
+        public async Task<string> DeleteMovie(string name)
+        {
+            var movie = await this.context.Movies.FirstOrDefaultAsync(m => m.Name == name);
+
+            if (movie == null)
+            {
+                throw new ArgumentException($"Movie `{name}` does not exist.");
+            }
+
+            movie.IsDeleted = true;
+
+            await this.context.SaveChangesAsync();
+
+            return movie.Name;
+        }
+
         public async Task<MovieViewModel> GetMovieByNameAsync(string name)
         {
             var movie = await this.context.Movies
+                .Include(um => um.ApplicationUserMovie)
+                    .ThenInclude(u => u.User)
                 .Include(x => x.Genre)
                 .Include(m => m.MovieActor)
                     .ThenInclude(a => a.Actor)
@@ -69,6 +86,8 @@ namespace MovieManagement.Services
         public async Task<ICollection<MovieViewModel>> GetTopRatedMovies()
         {
             var movies = await this.context.Movies
+                .Include(um => um.ApplicationUserMovie)
+                    .ThenInclude(u => u.User)
                 .Include(x => x.Genre)
                 .Include(x => x.MovieActor)
                     .ThenInclude(x => x.Actor)
@@ -103,5 +122,73 @@ namespace MovieManagement.Services
 
             return returnMovie;
         }
+
+        public async Task<MovieViewModel> UpdateMovieAsync(string oldName, MovieViewModel model)
+        {
+            var movie = await this.context.Movies
+                .Include(x => x.Genre)
+                .Include(m => m.MovieActor)
+                    .ThenInclude(a => a.Actor)
+                .FirstOrDefaultAsync(m => m.Name == oldName);
+
+            if (movie == null)
+            {
+                throw new ArgumentException($"Movie `{oldName}` does not exist.");
+            }
+
+            movie.Name = model.Name;
+            movie.Duration = model.Duration;
+            movie.Storyline = model.Storyline;
+            movie.Director = model.Director;
+            movie.ImageUrl = model.ImageUrl;
+
+            await this.context.SaveChangesAsync();
+
+            var returnMovie = this.mappingProvider.MapTo<MovieViewModel>(movie);
+
+            return returnMovie;
+        }
+
+        public async Task<MovieViewModel> ManageActor(string movieName, string actorName)
+        {
+            var movie = await this.context.Movies
+               .Include(m => m.MovieActor)
+                   .ThenInclude(a => a.Actor)
+               .FirstOrDefaultAsync(m => m.Name == movieName);
+            if (movie == null)
+            {
+                throw new ArgumentException($"{movieName} has not been found!");
+            }
+
+            var actor = await this.context.Actors.FirstOrDefaultAsync(a => a.Name == actorName);
+            if (actor == null)
+            {
+                throw new ArgumentException($"{actorName} has not been found!");
+            }
+
+            // Checks whether this actor is already assigned to this movie or not.
+            var isActorAlreadyAssigned = movie.MovieActor.Any(x => x.Actor == actor && x.Movie == movie);
+
+            if (isActorAlreadyAssigned)
+            {
+                MovieActor actorToRemove = movie.MovieActor.FirstOrDefault(x => x.Actor?.Name == actorName);
+                movie.MovieActor.Remove(actorToRemove);
+            }
+            else
+            {
+                MovieActor movieActor = new MovieActor()
+                {
+                    ActorId = actor.Id,
+                };
+                movie.MovieActor.Add(movieActor);
+            }
+
+            await this.context.SaveChangesAsync();
+
+            var returnMovie = this.mappingProvider.MapTo<MovieViewModel>(movie);
+
+            return returnMovie;
+        }
+
     }
 }

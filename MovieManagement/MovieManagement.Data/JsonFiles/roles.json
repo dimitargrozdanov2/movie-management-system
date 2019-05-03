@@ -1,8 +1,14 @@
 [
-    {
-      "Name": "Admin",
-      "NormalizedName": "ADMIN",
-      "ConcurrencyStamp": "6e63ab39-a514-4e99-ba86-296cfe8d15b5",
-      "Id": "0e78767e-b4d2-456f-b029-5ad4c454589a"
-    }
-  ]
+  {
+    "Name": "Admin",
+    "NormalizedName": "ADMIN",
+    "ConcurrencyStamp": "6e63ab39-a514-4e99-ba86-296cfe8d15b5",
+    "Id": "0e78767e-b4d2-456f-b029-5ad4c454589a"
+  },
+  {
+    "Name": "User",
+    "NormalizedName": "USER",
+    "ConcurrencyStamp": "96b58363-85f1-4d20-a7a4-f2a2e4159676",
+    "Id": "a73fda7b-0ba7-4a28-a339-4f4b1aa36b99"
+  }
+]

@@ -25,9 +25,10 @@
     padding-left: 5px;
 }
 
-.genreTitleTag{
+.genreTitleTag {
     font-size: 10px;
-    color: darkgrey
+    color: darkgrey;
+    font-weight: 500;
 }
 
 .ratingInTitleToRight {
@@ -40,6 +41,29 @@
     margin-left: 8%;
     margin-bottom: 4%;
 }
+
+.detailsMovieButton{
+    margin-bottom: 5%;
+    margin-left: 7%;
+}
+
+.homeTitleMovie{
+    margin-top: 2%;
+}
+
+.topratedMovieGenre{
+    margin-right: 80px;
+}
+
+.homeRowMoviesList{
+    margin-top: 5%;
+}
+
+.homeMovieWatchlistButton{
+    font-size: 10px;
+    font-weight: 500;
+}
+
 
     
 
