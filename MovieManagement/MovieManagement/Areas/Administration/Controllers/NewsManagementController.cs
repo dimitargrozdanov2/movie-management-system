@@ -1,21 +1,28 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Areas.Administration.Models.News;
 using MovieManagement.Services.Contracts;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Areas.Administration.Controllers
 {
+
     public class NewsManagementController : Controller
     {
         private readonly INewsService newsService;
 
-        public NewsManagementController(INewsService newsService)
+        private readonly IHostingEnvironment hostingEnvironment;
+
+        public NewsManagementController(INewsService newsService, IHostingEnvironment hostingEnvironment)
         {
             this.newsService = newsService ?? throw new ArgumentNullException(nameof(newsService));
+            this.hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
         }
 
 
@@ -39,13 +46,31 @@ namespace MovieManagement.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateNewsViewModel model)
         {
-            var role = await this.newsService.CreateNewsAsync(model.Title, model.Text, model.ImageUrl);
+            var imageNameToSave = Guid.NewGuid() + ".jpg";
 
+            var role = await this.newsService.CreateNewsAsync(model.DatePosted, model.Title, model.Text, imageNameToSave);
+
+            using (var ms = new MemoryStream())
+            {
+                model.Image.CopyTo(ms);
+                var uploads = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                var filePath = Path.Combine(uploads, imageNameToSave);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.Image.CopyToAsync(fileStream);
+                }
+            }
 
             // TODO: RETURN DIRECTOYL TO THE DETAILS OF THIS ONE;
             return this.RedirectToAction("Index", "Home");
         }
 
+        //[Area("Administration")]
+        //[Authorize(Roles = "Admin")]
+        //public IActionResult ShowFields(string firstName)
+        //{
+        //    ViewData["fname"] = firstName;
+        //}
         //// GET: News/Edit/5
         //public async Task<IActionResult> Edit(string id)
         //{

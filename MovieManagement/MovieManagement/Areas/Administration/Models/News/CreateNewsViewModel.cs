@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +15,6 @@ namespace MovieManagement.Areas.Administration.Models.News
 
         public string Text { get; set; }
 
-        public string ImageUrl { get; set; }
+        public IFormFile Image { get; set; }
     }
 }

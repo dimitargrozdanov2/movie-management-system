@@ -9,7 +9,7 @@ namespace MovieManagement.Services.Contracts
 {
     public interface INewsService
     {
-        Task<NewsViewModel> CreateNewsAsync(string title, string text, string imageUrl);
+        Task<NewsViewModel> CreateNewsAsync(DateTime Date, string title, string text, string imageUrl);
 
         Task<NewsViewModel> DeleteNews(string title);
 

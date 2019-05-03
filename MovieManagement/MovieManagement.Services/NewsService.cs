@@ -23,7 +23,7 @@ namespace MovieManagement.Services
             this.mappingProvider = mappingProvider ?? throw new ArgumentNullException(nameof(mappingProvider));
         }
 
-        public async Task<NewsViewModel> CreateNewsAsync(string title, string text, string imageUrl)
+        public async Task<NewsViewModel> CreateNewsAsync(DateTime date, string title, string text, string imageUrl)
         {
             if (await this.context.News.AnyAsync(n => n.Title == title))
             {
