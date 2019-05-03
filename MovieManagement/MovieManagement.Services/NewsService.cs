@@ -42,7 +42,7 @@ namespace MovieManagement.Services
         }
         public async Task<ICollection<NewsViewModel>> GetAllNews()
         {
-            var news = await this.context.News.ToListAsync();
+            var news = await this.context.News.OrderByDescending(x => x.DatePosted).ToListAsync();
 
             var returnNews = this.mappingProvider.MapTo<ICollection<NewsViewModel>>(news);
 
