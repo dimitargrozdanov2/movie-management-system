@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 
 namespace MovieManagement.Areas.Administration.Controllers
 {
-
+    [Area("Administration")]
+    [Authorize(Roles = "Admin")]
     public class NewsManagementController : Controller
     {
         private readonly INewsService newsService;
@@ -28,8 +29,7 @@ namespace MovieManagement.Areas.Administration.Controllers
 
         // GET: News/Create
 
-        [Area("Administration")]
-        [Authorize(Roles = "Admin")]
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -40,8 +40,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         // POST: News/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Area("Administration")]
-        [Authorize(Roles = "Admin")]
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateNewsViewModel model)
