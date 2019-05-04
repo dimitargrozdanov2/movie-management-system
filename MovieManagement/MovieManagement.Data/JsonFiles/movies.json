@@ -7,7 +7,8 @@
     "Director": "Anna Boden",
     "ImageUrl": "marvel.png",
     "GenreID": "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
-    "IsDeleted": false
+    "IsDeleted": false,
+    "CreatedOn": "5/2/2019 2:36:05 PM"
   },
   {
     "ID": "79087c1f-07ee-4747-924a-ab6b6a2ede1d",
@@ -17,7 +18,8 @@
     "Director": "Guy Ritchie",
     "ImageUrl": "aladdin.png",
     "GenreID": "3f957cb7-339b-4efe-b38d-6e6d478ba76a",
-    "IsDeleted": false
+    "IsDeleted": false,
+    "CreatedOn": "4/1/2019 7:36:05 PM"
   },
   {
     "ID": "4f643260-3675-48ca-bd80-b461e8e6f7ea",
@@ -27,6 +29,7 @@
     "Director": "Travis Knight",
     "ImageUrl": "bumblebee.png",
     "GenreID": "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
-    "IsDeleted": false
+    "IsDeleted": false,
+    "CreatedOn": "3/10/2019 5:36:05 PM"
   }
 ]

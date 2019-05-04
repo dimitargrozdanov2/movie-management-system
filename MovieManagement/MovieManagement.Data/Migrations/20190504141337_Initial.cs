@@ -13,6 +13,9 @@ namespace MovieManagement.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: true),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -63,12 +66,15 @@ namespace MovieManagement.Data.Migrations
                 name: "Genres",
                 columns: table => new
                 {
-                    ID = table.Column<string>(nullable: false),
+                    Id = table.Column<string>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: true),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Genres", x => x.ID);
+                    table.PrimaryKey("PK_Genres", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -76,7 +82,9 @@ namespace MovieManagement.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    DatePosted = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: true),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
                     Title = table.Column<string>(maxLength: 50, nullable: false),
                     Text = table.Column<string>(nullable: false),
                     ImageUrl = table.Column<string>(nullable: true)
@@ -197,6 +205,9 @@ namespace MovieManagement.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: true),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     Duration = table.Column<int>(nullable: false),
                     Storyline = table.Column<string>(nullable: true),
@@ -204,7 +215,6 @@ namespace MovieManagement.Data.Migrations
                     GenreID = table.Column<string>(nullable: true),
                     Rating = table.Column<double>(nullable: false),
                     VotesCount = table.Column<int>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
                     ImageUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -214,7 +224,7 @@ namespace MovieManagement.Data.Migrations
                         name: "FK_Movies_Genres_GenreID",
                         column: x => x.GenreID,
                         principalTable: "Genres",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -268,14 +278,14 @@ namespace MovieManagement.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Actors",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Id", "CreatedOn", "IsDeleted", "ModifiedOn", "Name" },
                 values: new object[,]
                 {
-                    { "395ff6d8-1d31-4326-97d8-af0474ad9e2a", "JeffGoldblum" },
-                    { "b09e23ef-0974-4cb7-a073-3641cb152690", "ChrisEvans" },
-                    { "06e06210-f637-4c75-b775-a128ae9f6a28", "ScarlettJohansson" },
-                    { "fe75908b-30b6-4ad8-a1dc-076f8c9b1648", "SandraBullock" },
-                    { "142df8e1-a1d5-4ed2-958e-6185ec3a7b36", "JohnnyDepp" }
+                    { "395ff6d8-1d31-4326-97d8-af0474ad9e2a", new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified), false, null, "Jeff Goldblum" },
+                    { "b09e23ef-0974-4cb7-a073-3641cb152690", new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified), false, null, "Chris Evans" },
+                    { "06e06210-f637-4c75-b775-a128ae9f6a28", new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified), false, null, "Scarlett Johansson" },
+                    { "fe75908b-30b6-4ad8-a1dc-076f8c9b1648", new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified), false, null, "Sandra Bullock" },
+                    { "142df8e1-a1d5-4ed2-958e-6185ec3a7b36", new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified), false, null, "Johnny Depp" }
                 });
 
             migrationBuilder.InsertData(
@@ -294,23 +304,23 @@ namespace MovieManagement.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Genres",
-                columns: new[] { "ID", "Name" },
+                columns: new[] { "Id", "CreatedOn", "IsDeleted", "ModifiedOn", "Name" },
                 values: new object[,]
                 {
-                    { "3f957cb7-339b-4efe-b38d-6e6d478ba76a", "Horror" },
-                    { "6637840b-113b-4d9f-8448-2b320201d01f", "Psycho" },
-                    { "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", "Fantasy" }
+                    { "3f957cb7-339b-4efe-b38d-6e6d478ba76a", new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified), false, null, "Horror" },
+                    { "6637840b-113b-4d9f-8448-2b320201d01f", new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified), false, null, "Psycho" },
+                    { "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified), false, null, "Fantasy" }
                 });
 
             migrationBuilder.InsertData(
                 table: "News",
-                columns: new[] { "Id", "DatePosted", "ImageUrl", "Text", "Title" },
+                columns: new[] { "Id", "CreatedOn", "ImageUrl", "IsDeleted", "ModifiedOn", "Text", "Title" },
                 values: new object[,]
                 {
-                    { "3848d835-fdc3-497c-a3dd-6cea088dfdf4", new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc), "Endgame.jpg", "This year will mark the last Avengers movie", "Avengers" },
-                    { "4e75e75e-dfdb-4da7-a516-f82ede490535", new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc), "Worldends.jpg", "According to Maya's people today will be the day the world ends. There will be no more movies", "WorldEnds" },
-                    { "3c758ab5-73d0-4e6e-87d4-69d60136a016", new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc), "barcaman.jpg", "Manchester lost to Barca on Old Trafford.", "ManchesterLost" },
-                    { "815149c8-8721-4046-9e67-1b80a964be39", new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc), "shazam.jpg", "Tickets have been soldout for the premirer of Shazam", "TicketsSoldout" }
+                    { "3848d835-fdc3-497c-a3dd-6cea088dfdf4", new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc), "Endgame.jpg", false, null, "This year will mark the last Avengers movie", "Avengers" },
+                    { "4e75e75e-dfdb-4da7-a516-f82ede490535", new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc), "Worldends.jpg", false, null, "According to Maya's people today will be the day the world ends. There will be no more movies", "WorldEnds" },
+                    { "3c758ab5-73d0-4e6e-87d4-69d60136a016", new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc), "barcaman.jpg", false, null, "Manchester lost to Barca on Old Trafford.", "ManchesterLost" },
+                    { "815149c8-8721-4046-9e67-1b80a964be39", new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc), "shazam.jpg", false, null, "Tickets have been soldout for the premirer of Shazam", "TicketsSoldout" }
                 });
 
             migrationBuilder.InsertData(
@@ -324,12 +334,12 @@ namespace MovieManagement.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Movies",
-                columns: new[] { "Id", "Director", "Duration", "GenreID", "ImageUrl", "IsDeleted", "Name", "Rating", "Storyline", "VotesCount" },
+                columns: new[] { "Id", "CreatedOn", "Director", "Duration", "GenreID", "ImageUrl", "IsDeleted", "ModifiedOn", "Name", "Rating", "Storyline", "VotesCount" },
                 values: new object[,]
                 {
-                    { "79087c1f-07ee-4747-924a-ab6b6a2ede1d", "Guy Ritchie", 120, "3f957cb7-339b-4efe-b38d-6e6d478ba76a", "aladdin.png", false, "Aladdin", 0.0, "A kindhearted Arabian street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make the deepest wishes come true.", 0 },
-                    { "42af373f-8aba-45a5-932b-9e20cc46c0c5", "Anna Boden", 90, "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", "marvel.png", false, "Marvel", 0.0, "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.", 0 },
-                    { "4f643260-3675-48ca-bd80-b461e8e6f7ea", "Travis Knight", 90, "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", "bumblebee.png", false, "Bumblebee", 0.0, "On the run in the year of 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken.", 0 }
+                    { "79087c1f-07ee-4747-924a-ab6b6a2ede1d", new DateTime(2019, 4, 1, 19, 36, 5, 0, DateTimeKind.Unspecified), "Guy Ritchie", 120, "3f957cb7-339b-4efe-b38d-6e6d478ba76a", "aladdin.png", false, null, "Aladdin", 0.0, "A kindhearted Arabian street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make the deepest wishes come true.", 0 },
+                    { "42af373f-8aba-45a5-932b-9e20cc46c0c5", new DateTime(2019, 5, 2, 14, 36, 5, 0, DateTimeKind.Unspecified), "Anna Boden", 90, "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", "marvel.png", false, null, "Marvel", 0.0, "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.", 0 },
+                    { "4f643260-3675-48ca-bd80-b461e8e6f7ea", new DateTime(2019, 3, 10, 17, 36, 5, 0, DateTimeKind.Unspecified), "Travis Knight", 90, "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4", "bumblebee.png", false, null, "Bumblebee", 0.0, "On the run in the year of 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken.", 0 }
                 });
 
             migrationBuilder.InsertData(

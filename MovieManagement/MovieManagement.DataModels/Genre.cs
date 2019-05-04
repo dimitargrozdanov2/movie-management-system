@@ -1,13 +1,12 @@
-﻿using System;
+﻿using MovieManagement.DataModels.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MovieManagement.DataModels
 {
-    public class Genre
+    public class Genre : Entity
     {
-        public string ID { get; set; }
-
         public string Name { get; set; }
     }
 }

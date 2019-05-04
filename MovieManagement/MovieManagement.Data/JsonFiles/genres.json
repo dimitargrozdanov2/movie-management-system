@@ -1,14 +1,17 @@
 [
   {
     "ID": "3f957cb7-339b-4efe-b38d-6e6d478ba76a",
-    "Name": "Horror"
+    "Name": "Horror",
+    "CreatedOn": "5/4/2019 4:36:05 PM"
   },
   {
     "ID": "6637840b-113b-4d9f-8448-2b320201d01f",
-    "Name": "Psycho"
+    "Name": "Psycho",
+    "CreatedOn": "5/4/2019 4:36:05 PM"
   },
   {
     "ID": "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
-    "Name": "Fantasy"
+    "Name": "Fantasy",
+    "CreatedOn": "5/4/2019 4:36:05 PM"
   }
 ]

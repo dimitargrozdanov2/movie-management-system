@@ -33,7 +33,7 @@ namespace MovieManagement.Services
                 throw new ArgumentException($"Genre with '{name}' name already exist!");
             }
 
-            var genre = new Genre() { Name = name };
+            var genre = new Genre() { Name = name, CreatedOn = DateTime.Now };
 
             await this.context.Genres.AddAsync(genre);
             await this.context.SaveChangesAsync();

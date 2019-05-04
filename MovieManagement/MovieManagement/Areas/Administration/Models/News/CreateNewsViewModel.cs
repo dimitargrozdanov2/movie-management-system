@@ -11,7 +11,7 @@ namespace MovieManagement.Areas.Administration.Models.News
     public class CreateNewsViewModel
     {
         [Required]
-        public DateTime DatePosted { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         [Required]
         public string Title { get; set; }

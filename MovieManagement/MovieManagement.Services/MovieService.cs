@@ -37,7 +37,7 @@ namespace MovieManagement.Services
                 throw new ArgumentException($"{genreName} genre has not been found!");
             }
 
-            var movie = new Movie() { Name = name, Genre = genre, Director = director, Duration = duration, ImageUrl = imageUrl };
+            var movie = new Movie() { Name = name, Genre = genre, Director = director, Duration = duration, ImageUrl = imageUrl, CreatedOn = DateTime.Now };
 
             await this.context.Movies.AddAsync(movie);
             await this.context.SaveChangesAsync();
@@ -143,6 +143,8 @@ namespace MovieManagement.Services
             movie.Storyline = model.Storyline;
             movie.Director = model.Director;
             movie.ImageUrl = model.ImageUrl;
+
+            movie.ModifiedOn = DateTime.Now;
 
             await this.context.SaveChangesAsync();
 

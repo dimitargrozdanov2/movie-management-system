@@ -10,7 +10,7 @@ using MovieManagement.Data;
 namespace MovieManagement.Data.Migrations
 {
     [DbContext(typeof(MovieManagementContext))]
-    [Migration("20190504130532_Initial")]
+    [Migration("20190504141337_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -164,6 +164,12 @@ namespace MovieManagement.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime?>("CreatedOn");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
@@ -176,27 +182,37 @@ namespace MovieManagement.Data.Migrations
                         new
                         {
                             Id = "395ff6d8-1d31-4326-97d8-af0474ad9e2a",
-                            Name = "JeffGoldblum"
+                            CreatedOn = new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Jeff Goldblum"
                         },
                         new
                         {
                             Id = "b09e23ef-0974-4cb7-a073-3641cb152690",
-                            Name = "ChrisEvans"
+                            CreatedOn = new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Chris Evans"
                         },
                         new
                         {
                             Id = "06e06210-f637-4c75-b775-a128ae9f6a28",
-                            Name = "ScarlettJohansson"
+                            CreatedOn = new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Scarlett Johansson"
                         },
                         new
                         {
                             Id = "fe75908b-30b6-4ad8-a1dc-076f8c9b1648",
-                            Name = "SandraBullock"
+                            CreatedOn = new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Sandra Bullock"
                         },
                         new
                         {
                             Id = "142df8e1-a1d5-4ed2-958e-6185ec3a7b36",
-                            Name = "JohnnyDepp"
+                            CreatedOn = new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Johnny Depp"
                         });
                 });
 
@@ -285,31 +301,43 @@ namespace MovieManagement.Data.Migrations
 
             modelBuilder.Entity("MovieManagement.DataModels.Genre", b =>
                 {
-                    b.Property<string>("ID")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("CreatedOn");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Genres");
 
                     b.HasData(
                         new
                         {
-                            ID = "3f957cb7-339b-4efe-b38d-6e6d478ba76a",
+                            Id = "3f957cb7-339b-4efe-b38d-6e6d478ba76a",
+                            CreatedOn = new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "Horror"
                         },
                         new
                         {
-                            ID = "6637840b-113b-4d9f-8448-2b320201d01f",
+                            Id = "6637840b-113b-4d9f-8448-2b320201d01f",
+                            CreatedOn = new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "Psycho"
                         },
                         new
                         {
-                            ID = "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
+                            Id = "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
+                            CreatedOn = new DateTime(2019, 5, 4, 16, 36, 5, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "Fantasy"
                         });
                 });
@@ -318,6 +346,8 @@ namespace MovieManagement.Data.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -330,6 +360,8 @@ namespace MovieManagement.Data.Migrations
                     b.Property<string>("ImageUrl");
 
                     b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -351,6 +383,7 @@ namespace MovieManagement.Data.Migrations
                         new
                         {
                             Id = "42af373f-8aba-45a5-932b-9e20cc46c0c5",
+                            CreatedOn = new DateTime(2019, 5, 2, 14, 36, 5, 0, DateTimeKind.Unspecified),
                             Director = "Anna Boden",
                             Duration = 90,
                             GenreID = "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
@@ -364,6 +397,7 @@ namespace MovieManagement.Data.Migrations
                         new
                         {
                             Id = "79087c1f-07ee-4747-924a-ab6b6a2ede1d",
+                            CreatedOn = new DateTime(2019, 4, 1, 19, 36, 5, 0, DateTimeKind.Unspecified),
                             Director = "Guy Ritchie",
                             Duration = 120,
                             GenreID = "3f957cb7-339b-4efe-b38d-6e6d478ba76a",
@@ -377,6 +411,7 @@ namespace MovieManagement.Data.Migrations
                         new
                         {
                             Id = "4f643260-3675-48ca-bd80-b461e8e6f7ea",
+                            CreatedOn = new DateTime(2019, 3, 10, 17, 36, 5, 0, DateTimeKind.Unspecified),
                             Director = "Travis Knight",
                             Duration = 90,
                             GenreID = "b9d2ef8e-662a-4c7c-b903-d3d8cd2a95a4",
@@ -414,9 +449,13 @@ namespace MovieManagement.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DatePosted");
+                    b.Property<DateTime?>("CreatedOn");
 
                     b.Property<string>("ImageUrl");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Text")
                         .IsRequired();
@@ -433,32 +472,36 @@ namespace MovieManagement.Data.Migrations
                         new
                         {
                             Id = "3848d835-fdc3-497c-a3dd-6cea088dfdf4",
-                            DatePosted = new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc),
+                            CreatedOn = new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc),
                             ImageUrl = "Endgame.jpg",
+                            IsDeleted = false,
                             Text = "This year will mark the last Avengers movie",
                             Title = "Avengers"
                         },
                         new
                         {
                             Id = "4e75e75e-dfdb-4da7-a516-f82ede490535",
-                            DatePosted = new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc),
+                            CreatedOn = new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc),
                             ImageUrl = "Worldends.jpg",
+                            IsDeleted = false,
                             Text = "According to Maya's people today will be the day the world ends. There will be no more movies",
                             Title = "WorldEnds"
                         },
                         new
                         {
                             Id = "3c758ab5-73d0-4e6e-87d4-69d60136a016",
-                            DatePosted = new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc),
+                            CreatedOn = new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc),
                             ImageUrl = "barcaman.jpg",
+                            IsDeleted = false,
                             Text = "Manchester lost to Barca on Old Trafford.",
                             Title = "ManchesterLost"
                         },
                         new
                         {
                             Id = "815149c8-8721-4046-9e67-1b80a964be39",
-                            DatePosted = new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc),
+                            CreatedOn = new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc),
                             ImageUrl = "shazam.jpg",
+                            IsDeleted = false,
                             Text = "Tickets have been soldout for the premirer of Shazam",
                             Title = "TicketsSoldout"
                         });

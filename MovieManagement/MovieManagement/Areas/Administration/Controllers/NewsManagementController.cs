@@ -47,7 +47,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         {
             var imageNameToSave = Guid.NewGuid() + ".jpg";
 
-            var role = await this.newsService.CreateNewsAsync(model.DatePosted, model.Title, model.Text, imageNameToSave);
+            var role = await this.newsService.CreateNewsAsync(model.CreatedOn, model.Title, model.Text, imageNameToSave);
 
             using (var ms = new MemoryStream())
             {

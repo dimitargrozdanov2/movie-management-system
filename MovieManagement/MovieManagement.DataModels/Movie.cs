@@ -1,13 +1,12 @@
-﻿using System;
+﻿using MovieManagement.DataModels.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MovieManagement.DataModels
 {
-    public class Movie
+    public class Movie : Entity
     {
-        public string Id { get; set; }
-
         public string Name { get; set; }
 
         public int Duration { get; set; }
@@ -23,8 +22,6 @@ namespace MovieManagement.DataModels
         public double Rating { get; set; }
 
         public int VotesCount { get; set; }
-
-        public bool IsDeleted { get; set; }
 
         public string ImageUrl { get; set; }
 

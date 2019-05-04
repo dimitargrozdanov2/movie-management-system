@@ -30,7 +30,7 @@ namespace MovieManagement.Services
                 throw new ArgumentException($"News with title '{title}' already exists in the database.");
             }
             //var newstext = String.Join(" ", text);
-            var news = new News { DatePosted = DateTime.Now, Title = title, Text = text, ImageUrl = imageUrl };
+            var news = new News { CreatedOn = DateTime.Now, Title = title, Text = text, ImageUrl = imageUrl };
 
             await this.context.News.AddAsync(news);
 
@@ -42,7 +42,7 @@ namespace MovieManagement.Services
         }
         public async Task<ICollection<NewsViewModel>> GetAllNews()
         {
-            var news = await this.context.News.OrderByDescending(x => x.DatePosted).ToListAsync();
+            var news = await this.context.News.OrderByDescending(x => x.CreatedOn).ToListAsync();
 
             var returnNews = this.mappingProvider.MapTo<ICollection<NewsViewModel>>(news);
 
