@@ -333,7 +333,7 @@ namespace MovieManagement.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<double>("Rating");
+                    b.Property<int>("Rating");
 
                     b.Property<string>("Storyline");
 
@@ -355,7 +355,7 @@ namespace MovieManagement.Data.Migrations
                             ImageUrl = "marvel.png",
                             IsDeleted = false,
                             Name = "Marvel",
-                            Rating = 0.0,
+                            Rating = 0,
                             Storyline = "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.",
                             VotesCount = 0
                         },
@@ -368,7 +368,7 @@ namespace MovieManagement.Data.Migrations
                             ImageUrl = "aladdin.png",
                             IsDeleted = false,
                             Name = "Aladdin",
-                            Rating = 0.0,
+                            Rating = 0,
                             Storyline = "A kindhearted Arabian street urchin and a power-hungry Grand Vizier vie for a magic lamp that has the power to make the deepest wishes come true.",
                             VotesCount = 0
                         },
@@ -381,7 +381,7 @@ namespace MovieManagement.Data.Migrations
                             ImageUrl = "bumblebee.png",
                             IsDeleted = false,
                             Name = "Bumblebee",
-                            Rating = 0.0,
+                            Rating = 0,
                             Storyline = "On the run in the year of 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken.",
                             VotesCount = 0
                         });

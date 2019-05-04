@@ -1,28 +1,29 @@
 ﻿@model MovieViewModel
 
 @{
-    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Title"] = Model.Name;
 
 }
 
 <div class="container">
     <div class="form-row">
         <div class="p-3 mb-2 bg-light text-dark col-lg-8">
-            <h3>
-                @Model.Name
-                <div class="dropdown rating-dropdown">
-                    ☆
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown rating-dropdown">
+                <div class="form-row">
+                    <div class="col-lg-3">
+                        <h3>@Model.Name</h3>
+                    </div>
+                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @Model.Rating
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        @for (int i = 1; i < 4; i++)
+                        @for (int i = 1; i < 10; i++)
                         {
-                            <a data-name="@Model.Name" class="dropdown-item" href="#">@i</a>
+                            <a data-name="@Model.Name" class="dropdown-item " href="#">@i</a>
                         }
                     </div>
                 </div>
-            </h3>
+            </div>
         </div>
     </div>
 
@@ -36,43 +37,45 @@
                 <a asp-area="Administration" asp-controller="MovieManagement" asp-action="ManageActors" asp-route-name="@Model.Name" class="btn btn-primary detailsMovieButton btn-block">Manage Actors</a>
                 <a asp-area="Administration" asp-controller="MovieManagement" asp-action="Edit" asp-route-oldName="@Model.Name" class="btn btn-primary detailsMovieButton btn-block">Edit Movie</a>
                 <a asp-area="Administration" asp-controller="MovieManagement" asp-action="Delete" asp-route-id="@Model.Name" class="btn btn-danger detailsMovieButton btn-block">Delete Movie</a>
-            }</div>        </div>
-        <div class="form-row">
-            <div class="p-3 mb-2 bg-light text-dark col-lg-8">
-                <div class="form-group">
-                    <div class="form-row">
-                        <p>@Model.Storyline</p>
-                    </div>
-                    <div class="form-row">
-                        <p class="font-weight-bold">Director:</p> <br /><p class="pLeftPush">@Model.Director</p>
+            }
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="p-3 mb-2 bg-light text-dark col-lg-8">
+            <div class="form-group">
+                <div class="form-row">
+                    <p>@Model.Storyline</p>
+                </div>
+                <div class="form-row">
+                    <p class="font-weight-bold">Director:</p> <br /><p class="pLeftPush">@Model.Director</p>
 
+                </div>
+                <div class="form-row">
+                    <p class="font-weight-bold">Duration:</p> <br /><p class="pLeftPush">@Model.Duration</p>
+                </div>
+                <div class="form-row">
+                    <p class="font-weight-bold">Genre:</p> <br /><p class="pLeftPush">@string.Join(" ", @Model.Genre)</p>
+                </div>
+                <div class="form-row">
+                    <p class="font-weight-bold">Actors:</p> <br /><p class="pLeftPush">@string.Join(", ", @Model.Actors)</p>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        @if (!Model.Users.Contains(User.Identity.Name))
+                        {
+                            <a asp-area="" asp-controller="Watchlist" asp-action="Add" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class="btn btn-primary">+ Add to Watchlist</a>
+                        }
+                        else
+                        {
+                            <a asp-area="" asp-controller="Watchlist" asp-action="Remove" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class="btn btn-danger">- Remove from Watchlist</a>
+                        }
                     </div>
-                    <div class="form-row">
-                        <p class="font-weight-bold">Duration:</p> <br /><p class="pLeftPush">@Model.Duration</p>
-                    </div>
-                    <div class="form-row">
-                        <p class="font-weight-bold">Genre:</p> <br /><p class="pLeftPush">@string.Join(" ", @Model.Genre)</p>
-                    </div>
-                    <div class="form-row">
-                        <p class="font-weight-bold">Actors:</p> <br /><p class="pLeftPush">@string.Join(", ", @Model.Actors)</p>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-4">
-                            @if (!Model.Users.Contains(User.Identity.Name))
-                            {
-                                <a asp-area="" asp-controller="Watchlist" asp-action="Add" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class="btn btn-primary">+ Add to Watchlist</a>
-                            }
-                            else
-                            {
-                                <a asp-area="" asp-controller="Watchlist" asp-action="Remove" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class="btn btn-danger">- Remove from Watchlist</a>
-                            }
-                        </div>
-                        <div class="col-md-3">
-                            @*<a asp-area="" asp-controller="Comment" asp-action="Edit" asp-route-id="@Model.Name" class="btn btn-outline-primary">+ Add Comment</a>*@
-                        </div>
+                    <div class="col-md-3">
+                        @*<a asp-area="" asp-controller="Comment" asp-action="Edit" asp-route-id="@Model.Name" class="btn btn-outline-primary">+ Add Comment</a>*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 

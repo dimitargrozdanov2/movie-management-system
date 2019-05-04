@@ -38,7 +38,7 @@ namespace MovieManagement
             });
 
             services.AddDbContext<MovieManagementContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("DConnection")));
+                options.UseSqlServer(this.Configuration.GetConnectionString("TConnection")));
 
             if (this.Environment.IsDevelopment())
             {

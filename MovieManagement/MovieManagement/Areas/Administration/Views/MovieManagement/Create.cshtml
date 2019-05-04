@@ -11,31 +11,31 @@
         <div class="form-group">
             <label asp-for="Name">Name</label>
             <input class="form-control" asp-for="Name" placeholder="Name" />
-            <span asp-validation-for="Name"></span>
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="Duration">Duration</label>
             <input class="form-control" asp-for="Duration" />
-            <span asp-validation-for="Duration"></span>
+            <span asp-validation-for="Duration" class="text-danger"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="Storyline">Storyline</label>
             <input class="form-control" asp-for="Storyline" placeholder="Storyline" />
-            <span asp-validation-for="Storyline"></span>
+            <span asp-validation-for="Storyline" class="text-danger"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="Director">Director</label>
             <input class="form-control" asp-for="Director" placeholder="Director Name" />
-            <span asp-validation-for="Director"></span>
+            <span asp-validation-for="Director" class="text-danger"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="ImageUrl">ImageUrl</label>
             <input class="form-control" asp-for="ImageUrl" placeholder="Name of the image with extension" />
-            <span asp-validation-for="ImageUrl"></span>
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
         </div>
 
         <div class="form-group">
@@ -48,5 +48,9 @@
             <button class="btn btn-warning" type="submit">Create</button>
         </div>
     </form>
+</div>
+
+<div>
+    <a asp-action="Index">Reset</a>
 </div>
 

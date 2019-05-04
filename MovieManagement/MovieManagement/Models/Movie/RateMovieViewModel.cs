@@ -9,6 +9,6 @@ namespace MovieManagement.Models.Movie
     {
         public string Name { get; set; }
 
-        public double Rating { get; set; }
+        public int Rating { get; set; }
     }
 }

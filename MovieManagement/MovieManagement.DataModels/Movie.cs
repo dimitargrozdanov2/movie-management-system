@@ -20,7 +20,7 @@ namespace MovieManagement.DataModels
 
         public Genre Genre { get; set; }
 
-        public double Rating { get; set; }
+        public int Rating { get; set; }
 
         public int VotesCount { get; set; }
 

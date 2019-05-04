@@ -98,7 +98,7 @@ namespace MovieManagement.Services
             return returnMovies;
         }
 
-        public async Task<MovieViewModel> RateMovie(string name, double rating)
+        public async Task<MovieViewModel> RateMovie(string name, int rating)
         {
             var movie = await this.context.Movies.FirstOrDefaultAsync(x => x.Name == name);
 
@@ -109,8 +109,8 @@ namespace MovieManagement.Services
 
             movie.VotesCount++;
 
-            double currentRating = movie.Rating;
-            double totalRating = currentRating * (movie.VotesCount - 1);
+            int currentRating = movie.Rating;
+            int totalRating = currentRating * (movie.VotesCount - 1);
 
             totalRating += rating;
 
