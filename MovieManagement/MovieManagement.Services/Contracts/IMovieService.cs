@@ -13,6 +13,8 @@ namespace MovieManagement.Services.Contracts
 
         Task<ICollection<MovieViewModel>> GetTopRatedMovies();
 
+        Task<ICollection<MovieViewModel>> GetLatestMovies();
+
         Task<MovieViewModel> GetMovieByNameAsync(string name);
 
         Task<MovieViewModel> RateMovie(string name, double rating);

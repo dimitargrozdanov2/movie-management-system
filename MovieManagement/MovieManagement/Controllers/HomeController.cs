@@ -27,21 +27,16 @@ namespace MovieManagement.Controllers
             var model = new HomeIndexViewModel();
 
 
-            var cachedMovies = await this.cacheService.GetOrCreateAsync("Movies", async entry =>
-            {
-                entry.AbsoluteExpiration = DateTime.UtcNow.AddSeconds(20);
-                var movies = await this.movieService.GetTopRatedMovies();
-                return movies;
-            });
+            //var cachedMovies = await this.cacheService.GetOrCreateAsync("Movies", async entry =>
+            //{
+            //    entry.AbsoluteExpiration = DateTime.UtcNow.AddSeconds(20);
+            //    var movies = await this.movieService.GetTopRatedMovies();
+            //    return movies;
+            //});
 
-            model.Movies = cachedMovies;
+            model.Movies = await this.movieService.GetLatestMovies();
 
             return this.View(model);
-        }
-
-        public IActionResult Privacy()
-        {
-            return this.View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

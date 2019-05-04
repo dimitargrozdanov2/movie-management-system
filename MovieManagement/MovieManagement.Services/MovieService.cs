@@ -194,5 +194,19 @@ namespace MovieManagement.Services
             return returnMovie;
         }
 
+        public async Task<ICollection<MovieViewModel>> GetLatestMovies()
+        {
+            var movies = await this.context.Movies
+                .Include(um => um.ApplicationUserMovie)
+                    .ThenInclude(u => u.User)
+                .Include(x => x.Genre)
+                .Include(x => x.MovieActor)
+                    .ThenInclude(x => x.Actor)
+                .OrderByDescending(x => x.CreatedOn).ToListAsync();
+
+            var returnMovies = this.mappingProvider.MapTo<ICollection<MovieViewModel>>(movies);
+
+            return returnMovies;
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Caching.Memory;
 using MovieManagement.Areas.Administration.Models.Movie;
 using MovieManagement.Services.Contracts;
 using MovieManagement.ViewModels;
@@ -17,11 +18,14 @@ namespace MovieManagement.Areas.Administration.Controllers
     {
         private readonly IMovieService movieService;
         private readonly IGenreService genreService;
+        private readonly IMemoryCache cacheService;
 
-        public MovieManagementController(IMovieService movieService, IGenreService genreService)
+
+        public MovieManagementController(IMovieService movieService, IGenreService genreService, IMemoryCache cacheService)
         {
             this.movieService = movieService ?? throw new ArgumentNullException(nameof(movieService));
             this.genreService = genreService ?? throw new ArgumentNullException(nameof(genreService));
+            this.cacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
         }
 
         [HttpGet]
@@ -39,6 +43,8 @@ namespace MovieManagement.Areas.Administration.Controllers
         {
             var role = await this.movieService.CreateMovieAsync(model.Name, model.Duration, model.Storyline, model.Director, model.ImageUrl, model.GenreName);
 
+            //UpdateCachedMovies();
+
             return this.RedirectToAction("TopRated", "Movie");
         }
 
@@ -55,6 +61,8 @@ namespace MovieManagement.Areas.Administration.Controllers
 
             await this.movieService.DeleteMovie(id);
 
+            //UpdateCachedMovies();
+
             return this.RedirectToAction("TopRated", "Movie");
         }
 
@@ -68,8 +76,6 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(string oldName, MovieViewModel model)
         {
-            //var movie = await this.movieService.GetMovieByNameAsync(oldName);
-
             await this.movieService.UpdateMovieAsync(oldName, model);
 
             return this.RedirectToAction("TopRated", "Movie");
@@ -91,5 +97,19 @@ namespace MovieManagement.Areas.Administration.Controllers
 
             return this.RedirectToAction("TopRated", "Movie");
         }
+
+        //private async void UpdateCachedMovies()
+        //{
+        //    this.cacheService.Remove("Movies");
+        //    //this.cacheService.Set("Movies", this.movieService.GetTopRatedMovies(), DateTime.UtcNow.AddMinutes(30));
+
+        //    var cachedMovies = await this.cacheService.GetOrCreateAsync("Movies", async entry =>
+        //    {
+        //        entry.AbsoluteExpiration = DateTime.UtcNow.AddSeconds(10);
+        //        var movies = await this.movieService.GetTopRatedMovies();
+        //        return movies;
+        //    });
+
+        //}
     }
 }

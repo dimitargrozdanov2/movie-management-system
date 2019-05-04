@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using MovieManagement.Models.Movie;
 using MovieManagement.Services.Contracts;
 
@@ -11,18 +12,27 @@ namespace MovieManagement.Controllers
     public class WatchlistController : Controller
     {
         private readonly IWatchlistService watchlistService;
+        private readonly IMemoryCache cacheService;
 
-        public WatchlistController(IWatchlistService watchlistService)
+        public WatchlistController(IWatchlistService watchlistService, IMemoryCache cacheService)
         {
             this.watchlistService = watchlistService ?? throw new ArgumentNullException(nameof(watchlistService));
+            this.cacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
         }
 
         public async Task<IActionResult> Index(string username)
         {
             var model = new ListMovieViewModel();
-            var movies = await this.watchlistService.GetAllMovies(username);
 
-            model.Movies = movies;
+            var cachedMovies = await this.cacheService.GetOrCreateAsync("Movies", async entry =>
+            {
+                entry.AbsoluteExpiration = DateTime.UtcNow.AddSeconds(10);
+                var movies = await this.watchlistService.GetAllMovies(username);
+                return movies;
+            });
+
+            model.Movies = cachedMovies;
+
             return this.View(model);
         }
 

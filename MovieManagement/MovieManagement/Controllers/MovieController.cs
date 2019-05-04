@@ -44,6 +44,16 @@ namespace MovieManagement.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> LatestMovies()
+        {
+            var model = new ListMovieViewModel();
+            var movies = await this.movieService.GetLatestMovies();
+
+            model.Movies = movies;
+            return this.View(model);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Rate([FromBody] RateMovieViewModel rateMovieModel)
         {

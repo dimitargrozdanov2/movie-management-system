@@ -13,15 +13,18 @@
                     <div class="col-lg-3">
                         <h3>@Model.Name</h3>
                     </div>
-                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @Model.Rating
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        @for (int i = 1; i < 10; i++)
-                        {
-                            <a data-name="@Model.Name" class="dropdown-item " href="#">@i</a>
-                        }
-                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Model.Rating
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            @for (int i = 1; i < 10; i++)
+                            {
+                                <a data-name="@Model.Name" class="dropdown-item " href="#">@i</a>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -64,13 +67,16 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-4">
-                        @if (!Model.Users.Contains(User.Identity.Name))
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <a asp-area="" asp-controller="Watchlist" asp-action="Add" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class="btn btn-primary">+ Add to Watchlist</a>
-                        }
-                        else
-                        {
-                            <a asp-area="" asp-controller="Watchlist" asp-action="Remove" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class="btn btn-danger">- Remove from Watchlist</a>
+                            @if (!Model.Users.Contains(User.Identity.Name))
+                            {
+                                <a asp-area="" asp-controller="Watchlist" asp-action="Add" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class="btn btn-primary">+ Add to Watchlist</a>
+                            }
+                            else
+                            {
+                                <a asp-area="" asp-controller="Watchlist" asp-action="Remove" asp-route-username="@User.Identity.Name" asp-route-movieName="@Model.Name" class="btn btn-danger">- Remove from Watchlist</a>
+                            }
                         }
                     </div>
                     <div class="col-md-3">
