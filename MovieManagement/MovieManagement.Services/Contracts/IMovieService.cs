@@ -15,7 +15,7 @@ namespace MovieManagement.Services.Contracts
 
         Task<MovieViewModel> GetMovieByNameAsync(string name);
 
-        Task<MovieViewModel> RateMovie(string name, int rating);
+        Task<MovieViewModel> RateMovie(string name, double rating);
 
         Task<string> DeleteMovie(string name);
 
