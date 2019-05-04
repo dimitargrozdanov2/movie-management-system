@@ -17,5 +17,7 @@ namespace MovieManagement.Services.Contracts
 
         Task<ICollection<NewsViewModel>> GetAllNews();
 
+        Task<NewsViewModel> GetNewsByNameAsync(string title);
+
     }
 }

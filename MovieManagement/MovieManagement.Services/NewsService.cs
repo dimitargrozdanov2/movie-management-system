@@ -87,6 +87,18 @@ namespace MovieManagement.Services
 
             return returnNews;
         }
+        public async Task<NewsViewModel> GetNewsByNameAsync(string title)
+        {
+            var news = await this.context.News.FirstOrDefaultAsync(m => m.Title == title);
 
+            if (news == null)
+            {
+                throw new ArgumentException($"News with title `{title}` does not exist.");
+            }
+
+            var returnNews = this.mappingProvider.MapTo<NewsViewModel>(news);
+
+            return returnNews;
+        }
     }
 }
