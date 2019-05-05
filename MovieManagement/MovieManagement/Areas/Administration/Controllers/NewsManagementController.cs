@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Areas.Administration.Models.News;
 using MovieManagement.Services.Contracts;
+using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,28 +65,25 @@ namespace MovieManagement.Areas.Administration.Controllers
             return this.RedirectToAction("Index", "Home");
         }
 
-        //[Area("Administration")]
-        //[Authorize(Roles = "Admin")]
-        //public IActionResult ShowFields(string firstName)
-        //{
-        //    ViewData["fname"] = firstName;
-        //}
-        //// GET: News/Edit/5
-        //public async Task<IActionResult> Edit(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpGet]
+        public async Task<IActionResult> Edit(string oldName)
+        {
+            var model = await this.newsService.GetNewsByNameAsync(oldName);
 
-        //    var news = await _context.News.FindAsync(id);
-        //    if (news == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(news);
-        //}
+            return View(model);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string oldName, NewsViewModel model)
+        {
+            //var movie = await this.movieService.GetMovieByNameAsync(oldName);
+
+            await this.newsService.EditNewsTextAsync(oldName, model);
+
+
+            return this.RedirectToAction("Index", "News"); 
+        }
         //// POST: News/Edit/5
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
