@@ -29,5 +29,13 @@ namespace MovieManagement.Controllers
             model.News = news;
             return this.View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            var model = await this.newsService.GetNewsByNameAsync(id);
+
+            return View(model);
+        }
     }
 }
