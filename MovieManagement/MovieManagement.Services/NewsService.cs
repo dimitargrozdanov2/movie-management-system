@@ -71,7 +71,7 @@ namespace MovieManagement.Services
 
         }
 
-        public async Task<NewsViewModel> EditNewsTextAsync(string title, NewsViewModel model, string newImageName)
+        public async Task<NewsViewModel> EditNewsTextAsync(string title, NewsViewModel model)
         {
             bool titleExists = await this.context.News.AnyAsync(n => n.Title == title);
             if (titleExists == false)
@@ -84,7 +84,7 @@ namespace MovieManagement.Services
             news.ModifiedOn = DateTime.Now;
             news.Text = newstext;
             news.Title = model.Title;
-            news.ImageUrl = newImageName;
+
             await this.context.SaveChangesAsync();
 
             var returnNews = this.mappingProvider.MapTo<NewsViewModel>(news);
