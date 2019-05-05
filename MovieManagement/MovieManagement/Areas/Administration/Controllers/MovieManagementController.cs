@@ -41,11 +41,16 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(MovieCreateViewModel model)
         {
-            var role = await this.movieService.CreateMovieAsync(model.Name, model.Duration, model.Storyline, model.Director, model.ImageUrl, model.GenreName);
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            var movie = await this.movieService.CreateMovieAsync(model.Name, model.Duration, model.Storyline, model.Director, model.ImageUrl, model.GenreName);
 
             //UpdateCachedMovies();
 
-            return this.RedirectToAction("TopRated", "Movie");
+            return this.RedirectToAction("Details", "Movie", new { id = movie.Name });
         }
 
         [HttpGet]
@@ -59,7 +64,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         {
             var movie = await this.movieService.GetMovieByNameAsync(id);
 
-            await this.movieService.DeleteMovie(id);
+            await this.movieService.DeleteMovieAsync(id);
 
             //UpdateCachedMovies();
 
@@ -93,7 +98,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> ManageActors(MovieManageActorsViewModel model)
         {
-            await this.movieService.ManageActor(model.MovieName, model.ActorName);
+            await this.movieService.ManageActorAsync(model.MovieName, model.ActorName);
 
             return this.RedirectToAction("TopRated", "Movie");
         }

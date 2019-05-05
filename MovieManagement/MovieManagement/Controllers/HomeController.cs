@@ -34,7 +34,7 @@ namespace MovieManagement.Controllers
             //    return movies;
             //});
 
-            model.Movies = await this.movieService.GetLatestMovies();
+            model.Movies = await this.movieService.GetLatestMoviesAsync();
 
             return this.View(model);
         }

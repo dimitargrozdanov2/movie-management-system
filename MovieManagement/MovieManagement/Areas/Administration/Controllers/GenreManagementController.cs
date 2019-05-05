@@ -31,7 +31,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateGenreViewModel model)
         {
-            var role = await this.genreService.CreateGenreAsync(model.Name);
+            await this.genreService.CreateGenreAsync(model.Name);
 
             // TODO: RETURN DIRECTOYL TO THE DETAILS OF THIS ONE;
             return this.RedirectToAction("Index", "Home");

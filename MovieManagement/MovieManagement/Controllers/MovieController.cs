@@ -30,7 +30,7 @@ namespace MovieManagement.Controllers
         public async Task<IActionResult> TopRated()
         {
             var model = new ListMovieViewModel();
-            var movies = await this.movieService.GetTopRatedMovies();
+            var movies = await this.movieService.GetTopRatedMoviesAsync();
 
             model.Movies = movies;
             return this.View(model);
@@ -48,7 +48,7 @@ namespace MovieManagement.Controllers
         public async Task<IActionResult> LatestMovies()
         {
             var model = new ListMovieViewModel();
-            var movies = await this.movieService.GetLatestMovies();
+            var movies = await this.movieService.GetLatestMoviesAsync();
 
             model.Movies = movies;
             return this.View(model);
@@ -57,9 +57,23 @@ namespace MovieManagement.Controllers
         [HttpPost]
         public async Task<IActionResult> Rate([FromBody] RateMovieViewModel rateMovieModel)
         {
-            var movie = await this.movieService.RateMovie(rateMovieModel.Name, rateMovieModel.Rating);
+            var movie = await this.movieService.RateMovieAsync(rateMovieModel.Name, rateMovieModel.Rating);
 
             return Json(movie);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Search(SearchMovieViewModel model)
+        {
+            if (string.IsNullOrEmpty(model.SearchName))
+            {
+                return View();
+            }
+
+            var movies = await this.movieService.SearchAsync(model.SearchName);
+
+            model.Movies = movies;
+            return View(model);
         }
     }
 }

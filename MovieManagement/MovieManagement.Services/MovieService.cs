@@ -47,7 +47,7 @@ namespace MovieManagement.Services
             return returnMovie;
         }
 
-        public async Task<string> DeleteMovie(string name)
+        public async Task<string> DeleteMovieAsync(string name)
         {
             var movie = await this.context.Movies.FirstOrDefaultAsync(m => m.Name == name);
 
@@ -83,7 +83,7 @@ namespace MovieManagement.Services
             return returnMovie;
         }
 
-        public async Task<ICollection<MovieViewModel>> GetTopRatedMovies()
+        public async Task<ICollection<MovieViewModel>> GetTopRatedMoviesAsync()
         {
             var movies = await this.context.Movies
                 .Include(um => um.ApplicationUserMovie)
@@ -98,7 +98,7 @@ namespace MovieManagement.Services
             return returnMovies;
         }
 
-        public async Task<MovieViewModel> RateMovie(string name, double rating)
+        public async Task<MovieViewModel> RateMovieAsync(string name, double rating)
         {
             var movie = await this.context.Movies.FirstOrDefaultAsync(x => x.Name == name);
 
@@ -153,7 +153,7 @@ namespace MovieManagement.Services
             return returnMovie;
         }
 
-        public async Task<MovieViewModel> ManageActor(string movieName, string actorName)
+        public async Task<MovieViewModel> ManageActorAsync(string movieName, string actorName)
         {
             var movie = await this.context.Movies
                .Include(m => m.MovieActor)
@@ -194,7 +194,7 @@ namespace MovieManagement.Services
             return returnMovie;
         }
 
-        public async Task<ICollection<MovieViewModel>> GetLatestMovies()
+        public async Task<ICollection<MovieViewModel>> GetLatestMoviesAsync()
         {
             var movies = await this.context.Movies
                 .Include(um => um.ApplicationUserMovie)
@@ -203,6 +203,21 @@ namespace MovieManagement.Services
                 .Include(x => x.MovieActor)
                     .ThenInclude(x => x.Actor)
                 .OrderByDescending(x => x.CreatedOn).ToListAsync();
+
+            var returnMovies = this.mappingProvider.MapTo<ICollection<MovieViewModel>>(movies);
+
+            return returnMovies;
+        }
+
+        public async Task<ICollection<MovieViewModel>> SearchAsync(string movieName)
+        {
+            var movies = await this.context.Movies
+                .Include(um => um.ApplicationUserMovie)
+                    .ThenInclude(u => u.User)
+                .Include(x => x.Genre)
+                .Include(x => x.MovieActor)
+                    .ThenInclude(x => x.Actor)
+                .Where(m => m.Name.Contains(movieName)).ToListAsync();
 
             var returnMovies = this.mappingProvider.MapTo<ICollection<MovieViewModel>>(movies);
 

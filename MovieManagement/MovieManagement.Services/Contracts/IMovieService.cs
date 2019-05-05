@@ -11,18 +11,20 @@ namespace MovieManagement.Services.Contracts
     {
         Task<MovieViewModel> CreateMovieAsync(string name, int duration, string storyLine, string director, string imageUrl, string genreName);
 
-        Task<ICollection<MovieViewModel>> GetTopRatedMovies();
+        Task<ICollection<MovieViewModel>> GetTopRatedMoviesAsync();
 
-        Task<ICollection<MovieViewModel>> GetLatestMovies();
+        Task<ICollection<MovieViewModel>> GetLatestMoviesAsync();
 
         Task<MovieViewModel> GetMovieByNameAsync(string name);
 
-        Task<MovieViewModel> RateMovie(string name, double rating);
+        Task<MovieViewModel> RateMovieAsync(string name, double rating);
 
-        Task<string> DeleteMovie(string name);
+        Task<string> DeleteMovieAsync(string name);
 
         Task<MovieViewModel> UpdateMovieAsync(string oldName, MovieViewModel model);
 
-        Task<MovieViewModel> ManageActor(string movieName, string actorName);
+        Task<MovieViewModel> ManageActorAsync(string movieName, string actorName);
+
+        Task<ICollection<MovieViewModel>> SearchAsync(string movieName);
     }
 }

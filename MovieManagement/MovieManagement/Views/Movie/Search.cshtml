@@ -1,0 +1,43 @@
+﻿@model SearchMovieViewModel
+
+@{
+    ViewBag.Title = "Search Movie";
+}
+
+<h4 class="display-4">Movie search!</h4>
+
+<div class="form-row">
+    <form class="col-lg-7" asp-controller="Movie" asp-action="Search" method="get">
+        <div class="form-group">
+            <input asp-for="@Model.SearchName" placeholder="Search term..." class="form-control" />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-warning" type="submit">Search!</button>
+        </div>
+    </form>
+</div>
+<div class="row-md-5">
+    <div class="col-lg-6">
+        @if (Model != null)
+        {
+            if (!string.IsNullOrWhiteSpace(Model.SearchName) && !Model.Movies.Any())
+            {
+                <p class="alert alert-info">There are no movies found!</p>
+            }
+            else
+            {
+                <p class="alert alert-success">Items Found, find them below!</p>
+                foreach (var movie in Model.Movies)
+                {
+                    <div class="col-8">
+                        <a asp-area="" asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Name" class="text-dark">
+                            <img src="~/images/@movie.ImageUrl" alt="Movie Image" class="img-fluid" style="width: 25%; height:50px;" />
+                            @movie.Name
+                        </a>
+                    </div>
+                    <hr />
+                }
+            }
+        }
+    </div>
+</div>
