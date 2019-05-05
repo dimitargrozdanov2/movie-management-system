@@ -26,7 +26,7 @@
             }
             else
             {
-                <p class="alert alert-success">Items Found, find them below!</p>
+                <p class="alert alert-success">@Model.Movies.Count() items found!</p>
                 foreach (var movie in Model.Movies)
                 {
                     <div class="col-8">
