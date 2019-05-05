@@ -40,7 +40,7 @@ namespace MovieManagement.Services
 
             return returnNews;
         }
-        public async Task<ICollection<NewsViewModel>> GetAllNews()
+        public async Task<ICollection<NewsViewModel>> GetAllNewsAsync()
         {
             var news = await this.context.News.OrderByDescending(x => x.CreatedOn).ToListAsync();
 

@@ -474,7 +474,7 @@ namespace MovieManagement.Data.Migrations
                             ImageUrl = "Endgame.jpg",
                             IsDeleted = false,
                             Text = "This year will mark the last Avengers movie",
-                            Title = "Avengers"
+                            Title = "Avengers EndGame is comming!"
                         },
                         new
                         {
@@ -483,7 +483,7 @@ namespace MovieManagement.Data.Migrations
                             ImageUrl = "Worldends.jpg",
                             IsDeleted = false,
                             Text = "According to Maya's people today will be the day the world ends. There will be no more movies",
-                            Title = "WorldEnds"
+                            Title = "World's End is going to be released in 2013"
                         },
                         new
                         {
@@ -492,7 +492,7 @@ namespace MovieManagement.Data.Migrations
                             ImageUrl = "barcaman.jpg",
                             IsDeleted = false,
                             Text = "Manchester lost to Barca on Old Trafford.",
-                            Title = "ManchesterLost"
+                            Title = "Manchester lost again..."
                         },
                         new
                         {
@@ -500,8 +500,8 @@ namespace MovieManagement.Data.Migrations
                             CreatedOn = new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc),
                             ImageUrl = "shazam.jpg",
                             IsDeleted = false,
-                            Text = "Tickets have been soldout for the premirer of Shazam",
-                            Title = "TicketsSoldout"
+                            Text = "Tickets have been sold out for the premirer of Shazam",
+                            Title = "There are no more tickets!"
                         });
                 });
 

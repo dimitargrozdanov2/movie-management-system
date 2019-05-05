@@ -10,5 +10,7 @@ namespace MovieManagement.Models.Home
     {
         public IEnumerable<MovieViewModel> Movies { get; set; }
 
+        public IEnumerable<NewsViewModel> News { get; set; }
+
     }
 }

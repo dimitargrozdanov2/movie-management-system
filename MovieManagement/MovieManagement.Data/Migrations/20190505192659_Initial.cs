@@ -317,10 +317,10 @@ namespace MovieManagement.Data.Migrations
                 columns: new[] { "Id", "CreatedOn", "ImageUrl", "IsDeleted", "ModifiedOn", "Text", "Title" },
                 values: new object[,]
                 {
-                    { "3848d835-fdc3-497c-a3dd-6cea088dfdf4", new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc), "Endgame.jpg", false, null, "This year will mark the last Avengers movie", "Avengers" },
-                    { "4e75e75e-dfdb-4da7-a516-f82ede490535", new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc), "Worldends.jpg", false, null, "According to Maya's people today will be the day the world ends. There will be no more movies", "WorldEnds" },
-                    { "3c758ab5-73d0-4e6e-87d4-69d60136a016", new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc), "barcaman.jpg", false, null, "Manchester lost to Barca on Old Trafford.", "ManchesterLost" },
-                    { "815149c8-8721-4046-9e67-1b80a964be39", new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc), "shazam.jpg", false, null, "Tickets have been soldout for the premirer of Shazam", "TicketsSoldout" }
+                    { "3848d835-fdc3-497c-a3dd-6cea088dfdf4", new DateTime(2019, 4, 8, 5, 12, 56, 511, DateTimeKind.Utc), "Endgame.jpg", false, null, "This year will mark the last Avengers movie", "Avengers EndGame is comming!" },
+                    { "4e75e75e-dfdb-4da7-a516-f82ede490535", new DateTime(2012, 12, 21, 12, 0, 56, 511, DateTimeKind.Utc), "Worldends.jpg", false, null, "According to Maya's people today will be the day the world ends. There will be no more movies", "World's End is going to be released in 2013" },
+                    { "3c758ab5-73d0-4e6e-87d4-69d60136a016", new DateTime(2018, 11, 12, 4, 13, 56, 511, DateTimeKind.Utc), "barcaman.jpg", false, null, "Manchester lost to Barca on Old Trafford.", "Manchester lost again..." },
+                    { "815149c8-8721-4046-9e67-1b80a964be39", new DateTime(2019, 4, 10, 23, 52, 56, 511, DateTimeKind.Utc), "shazam.jpg", false, null, "Tickets have been sold out for the premirer of Shazam", "There are no more tickets!" }
                 });
 
             migrationBuilder.InsertData(
