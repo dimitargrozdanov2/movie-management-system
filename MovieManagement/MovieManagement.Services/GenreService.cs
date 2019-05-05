@@ -6,6 +6,7 @@ using MovieManagement.Data;
 using MovieManagement.DataModels;
 using MovieManagement.Infrastructure;
 using MovieManagement.Services.Contracts;
+using MovieManagement.Services.Exceptions;
 using MovieManagement.ViewModels;
 
 namespace MovieManagement.Services
@@ -30,7 +31,7 @@ namespace MovieManagement.Services
         {
             if (await this.context.Genres.AnyAsync(m => m.Name == name))
             {
-                throw new ArgumentException($"Genre with '{name}' name already exist!");
+                throw new EntityAlreadyExistsException($"Genre with '{name}' name already exist!");
             }
 
             var genre = new Genre() { Name = name, CreatedOn = DateTime.Now };

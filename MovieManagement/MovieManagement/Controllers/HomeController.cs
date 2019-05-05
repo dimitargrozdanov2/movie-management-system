@@ -44,5 +44,20 @@ namespace MovieManagement.Controllers
         {
             return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
+
+        public IActionResult AlreadyExistsError()
+        {
+            return View();
+        }
+
+        public IActionResult Invalid()
+        {
+            return View();
+        }
+
+        public IActionResult ServerError()
+        {
+            return View();
+        }
     }
 }

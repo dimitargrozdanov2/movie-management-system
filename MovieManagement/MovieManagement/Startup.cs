@@ -87,8 +87,6 @@ namespace MovieManagement
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-
-                //app.UseExceptionHandler("/Home/Error");
             }
             else
             {
@@ -110,12 +108,19 @@ namespace MovieManagement
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "areas",
+                    name: "admin",
                     template: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+
+               
 
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                   name: "notfound",
+                   template: "{*url}",
+                   defaults: new { controller = "Home", action = "ServerError" });
             });
         }
     }

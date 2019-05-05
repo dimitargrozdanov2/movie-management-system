@@ -26,10 +26,13 @@ namespace MovieManagement.Utilities.Middlewares
             {
                 context.Response.Redirect("/home/alreadyexistserror");
             }
+            catch (EntityInvalidException ex)
+            {
+                context.Response.Redirect("/home/invalid");
+            }
             catch (Exception)
             {
-
-                throw;
+                context.Response.Redirect("/home/servererror");
             }
         }
     }

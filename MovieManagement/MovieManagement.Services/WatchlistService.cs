@@ -3,6 +3,7 @@ using MovieManagement.Data;
 using MovieManagement.DataModels;
 using MovieManagement.Infrastructure;
 using MovieManagement.Services.Contracts;
+using MovieManagement.Services.Exceptions;
 using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -47,14 +48,14 @@ namespace MovieManagement.Services
 
             if (user == null)
             {
-                throw new ArgumentException($"Username '{username}' does not exist");
+                throw new EntityInvalidException($"Username '{username}' does not exist");
             }
 
             var movie = await this.context.Movies.FirstOrDefaultAsync(m => m.Name == movieName);
 
             if (movie == null)
             {
-                throw new ArgumentException($"Movie '{movieName}' does not exist");
+                throw new EntityInvalidException($"Movie '{movieName}' does not exist");
             }
 
             ApplicationUserMovie userMovie = new ApplicationUserMovie()
@@ -66,7 +67,7 @@ namespace MovieManagement.Services
 
             if (movieAlreadyInUserWL)
             {
-                throw new ArgumentException($"Movie '{movieName} is already your watchlist!");
+                throw new EntityInvalidException($"Movie '{movieName} is already your watchlist!");
             }
 
             user.ApplicationUserMovie.Add(userMovie);
@@ -84,14 +85,14 @@ namespace MovieManagement.Services
 
             if (user == null)
             {
-                throw new ArgumentException($"Username '{username}' does not exist");
+                throw new EntityInvalidException($"Username '{username}' does not exist");
             }
 
             var movie = await this.context.Movies.FirstOrDefaultAsync(m => m.Name == movieName);
 
             if (movie == null)
             {
-                throw new ArgumentException($"Movie '{movieName}' does not exist");
+                throw new EntityInvalidException($"Movie '{movieName}' does not exist");
             }
 
             ApplicationUserMovie userMovie = movie.ApplicationUserMovie.FirstOrDefault(m => m.Movie?.Name == movieName);
@@ -100,7 +101,7 @@ namespace MovieManagement.Services
 
             if (!movieAlreadyInUserWL)
             {
-                throw new ArgumentException($"Movie '{movieName} is not part of your watchlist!");
+                throw new EntityInvalidException($"Movie '{movieName} is not part of your watchlist!");
             }
 
             user.ApplicationUserMovie.Remove(userMovie);
