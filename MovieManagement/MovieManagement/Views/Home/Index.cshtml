@@ -15,13 +15,14 @@
                 }
             </div>
         </div>
-        <div class="col-lg-2">
-            <div class="well">
-                <p>Place FOR NEWS</p>
-            </div>
-            <div class="well">
-                <p>Place FOR NEWS</p>
+        <div class="col-lg-2"> News
+        <hr />
+
+                @foreach (var news in Model.News)
+                {
+                    <partial name="_NewsPartial" model="news" />
+                }
+
             </div>
         </div>
     </div>
-</div>

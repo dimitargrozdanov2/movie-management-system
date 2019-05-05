@@ -14,11 +14,13 @@ namespace MovieManagement.Controllers
     public class HomeController : Controller
     {
         private readonly IMovieService movieService;
+        private readonly INewsService newsService;
         private readonly IMemoryCache cacheService;
 
-        public HomeController(IMovieService movieService, IMemoryCache cache)
+        public HomeController(IMovieService movieService, INewsService newsService, IMemoryCache cache)
         {
             this.movieService = movieService ?? throw new ArgumentNullException(nameof(movieService));
+            this.newsService = newsService ?? throw new ArgumentNullException(nameof(newsService));
             this.cacheService = cache ?? throw new ArgumentNullException(nameof(cache));
         }
 
@@ -35,6 +37,8 @@ namespace MovieManagement.Controllers
             //});
 
             model.Movies = await this.movieService.GetLatestMoviesAsync();
+
+            model.News = await this.newsService.GetAllNewsAsync();
 
             return this.View(model);
         }

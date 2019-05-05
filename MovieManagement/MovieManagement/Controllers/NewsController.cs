@@ -24,7 +24,7 @@ namespace MovieManagement.Controllers
         public async Task<IActionResult> Index()
         {
             var model = new ListNewsViewModel();
-            var news = await this.newsService.GetAllNews();
+            var news = await this.newsService.GetAllNewsAsync();
 
             model.News = news;
             return this.View(model);
