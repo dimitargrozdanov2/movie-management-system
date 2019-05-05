@@ -13,7 +13,7 @@ namespace MovieManagement.Services.Contracts
 
         Task<NewsViewModel> DeleteNews(string title);
 
-        Task<NewsViewModel> EditNewsTextAsync(string title, NewsViewModel model);
+        Task<NewsViewModel> EditNewsTextAsync(string title, NewsViewModel model, string newImageName);
 
         Task<ICollection<NewsViewModel>> GetAllNewsAsync();
 

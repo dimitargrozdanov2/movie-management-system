@@ -75,11 +75,25 @@ namespace MovieManagement.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string oldName, NewsViewModel model)
+        public async Task<IActionResult> Edit(string oldName, NewsViewModel model, CreateNewsViewModel edittedImage)
         {
             //var movie = await this.movieService.GetMovieByNameAsync(oldName);
 
-            await this.newsService.EditNewsTextAsync(oldName, model);
+            var imageNameToSave = Guid.NewGuid() + ".jpg";
+
+            await this.newsService.EditNewsTextAsync(oldName, model, imageNameToSave);
+
+            using (var ms = new MemoryStream())
+            {
+                edittedImage.Image.CopyTo(ms);
+                var uploads = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                var filePath = Path.Combine(uploads, imageNameToSave);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await edittedImage.Image.CopyToAsync(fileStream);
+                }
+            }
+
 
 
             return this.RedirectToAction("Index", "News"); 
