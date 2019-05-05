@@ -41,16 +41,17 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(MovieCreateViewModel model)
         {
-            if (!this.ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                return this.View();
+                var movie = await this.movieService.CreateMovieAsync(model.Name, model.Duration, model.Storyline, model.Director, model.ImageUrl, model.GenreName);
+                return this.RedirectToAction("Details", "Movie", new { id = movie.Name });
             }
 
-            var movie = await this.movieService.CreateMovieAsync(model.Name, model.Duration, model.Storyline, model.Director, model.ImageUrl, model.GenreName);
+            return this.View(model);
+
 
             //UpdateCachedMovies();
 
-            return this.RedirectToAction("Details", "Movie", new { id = movie.Name });
         }
 
         [HttpGet]

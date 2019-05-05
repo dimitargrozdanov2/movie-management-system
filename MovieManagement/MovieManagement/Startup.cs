@@ -13,6 +13,7 @@ using MovieManagement.Infrastructure;
 using MovieManagement.Services;
 using MovieManagement.Services.Contracts;
 using MovieManagement.Wrappers;
+using MovieManagement.Utilities;
 
 namespace MovieManagement
 {
@@ -85,6 +86,9 @@ namespace MovieManagement
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+
+                //app.UseExceptionHandler("/Home/Error");
             }
             else
             {
@@ -92,6 +96,8 @@ namespace MovieManagement
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.CustomExceptionHandling();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
