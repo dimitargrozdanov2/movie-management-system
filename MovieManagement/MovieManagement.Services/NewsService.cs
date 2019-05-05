@@ -70,16 +70,19 @@ namespace MovieManagement.Services
 
         }
 
-        public async Task<NewsViewModel> EditNewsTextAsync(string title, IEnumerable<string> text, string imageUrl)
+        public async Task<NewsViewModel> EditNewsTextAsync(string title, NewsViewModel model)
         {
             bool titleExists = await this.context.News.AnyAsync(n => n.Title == title);
             if (titleExists == false)
             {
-                throw new ArgumentException($"Title '{title}' does not exists, therefore we cannot add text to it.");
+                throw new ArgumentException($"Title '{title}' does not exists, therefore we cannot change the text.");
             }
             var news = await this.context.News.FirstOrDefaultAsync(n => n.Title == title);
-            var newstext = String.Join(" ", text);
+            var newstext = String.Join(" ", model.Text);
+
+            news.ModifiedOn = DateTime.Now;
             news.Text = newstext;
+            news.Title = model.Title;
 
             await this.context.SaveChangesAsync();
 
