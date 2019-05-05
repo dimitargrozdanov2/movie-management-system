@@ -3,6 +3,7 @@ using MovieManagement.Data;
 using MovieManagement.DataModels;
 using MovieManagement.Infrastructure;
 using MovieManagement.Services.Contracts;
+using MovieManagement.Services.Exceptions;
 using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace MovieManagement.Services
         {
             if (await this.context.News.AnyAsync(n => n.Title == title))
             {
-                throw new ArgumentException($"News with title '{title}' already exists in the database.");
+                throw new EntityAlreadyExistsException($"News with title '{title}' already exists in the database.");
             }
             //var newstext = String.Join(" ", text);
             var news = new News { CreatedOn = DateTime.Now, Title = title, Text = text, ImageUrl = imageUrl };
@@ -55,7 +56,7 @@ namespace MovieManagement.Services
             bool titleExists = await this.context.News.AnyAsync(n => n.Title == title);
             if (titleExists == false)
             {
-                throw new ArgumentException($"Title '{title}' does not exists, therefore we cannot remove the news");
+                throw new EntityInvalidException($"Title '{title}' does not exists, therefore we cannot remove the news");
             }
             var news = await this.context.News.FirstOrDefaultAsync(n => n.Title == title);
 
@@ -75,7 +76,7 @@ namespace MovieManagement.Services
             bool titleExists = await this.context.News.AnyAsync(n => n.Title == title);
             if (titleExists == false)
             {
-                throw new ArgumentException($"Title '{title}' does not exists, therefore we cannot change the text.");
+                throw new EntityInvalidException($"Title '{title}' does not exists, therefore we cannot change the text.");
             }
             var news = await this.context.News.FirstOrDefaultAsync(n => n.Title == title);
             var newstext = String.Join(" ", model.Text);
@@ -96,7 +97,7 @@ namespace MovieManagement.Services
 
             if (news == null)
             {
-                throw new ArgumentException($"News with title `{title}` does not exist.");
+                throw new EntityInvalidException($"News with title `{title}` does not exist.");
             }
 
             var returnNews = this.mappingProvider.MapTo<NewsViewModel>(news);

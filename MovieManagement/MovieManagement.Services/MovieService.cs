@@ -35,7 +35,7 @@ namespace MovieManagement.Services
 
             if (genre == null)
             {
-                throw new ArgumentException($"{genreName} genre has not been found!");
+                throw new EntityInvalidException($"{genreName} genre has not been found!");
             }
 
             var movie = new Movie() { Name = name, Genre = genre, Director = director, Duration = duration, ImageUrl = imageUrl, CreatedOn = DateTime.Now };
@@ -54,7 +54,7 @@ namespace MovieManagement.Services
 
             if (movie == null)
             {
-                throw new ArgumentException($"Movie `{name}` does not exist.");
+                throw new EntityInvalidException($"Movie `{name}` does not exist.");
             }
 
             movie.IsDeleted = true;
@@ -76,7 +76,7 @@ namespace MovieManagement.Services
 
             if (movie == null)
             {
-                throw new ArgumentException($"Movie `{name}` does not exist.");
+                throw new EntityInvalidException($"Movie `{name}` does not exist.");
             }
 
             var returnMovie = this.mappingProvider.MapTo<MovieViewModel>(movie);
@@ -105,7 +105,7 @@ namespace MovieManagement.Services
 
             if (movie == null)
             {
-                throw new ArgumentException($"Movie `{name}` does not exist.");
+                throw new EntityInvalidException($"Movie `{name}` does not exist.");
             }
 
             movie.VotesCount++;
@@ -136,7 +136,7 @@ namespace MovieManagement.Services
 
             if (movie == null)
             {
-                throw new ArgumentException($"Movie `{oldName}` does not exist.");
+                throw new EntityInvalidException($"Movie `{oldName}` does not exist.");
             }
 
             movie.Name = model.Name;
@@ -162,13 +162,13 @@ namespace MovieManagement.Services
                .FirstOrDefaultAsync(m => m.Name == movieName);
             if (movie == null)
             {
-                throw new ArgumentException($"{movieName} has not been found!");
+                throw new EntityInvalidException($"{movieName} has not been found!");
             }
 
             var actor = await this.context.Actors.FirstOrDefaultAsync(a => a.Name == actorName);
             if (actor == null)
             {
-                throw new ArgumentException($"{actorName} has not been found!");
+                throw new EntityInvalidException($"{actorName} has not been found!");
             }
 
             // Checks whether this actor is already assigned to this movie or not.
