@@ -61,6 +61,7 @@ namespace MovieManagement
             services.AddScoped<IGenreService, GenreService>();
             services.AddScoped<IWatchlistService, WatchlistService>();
             services.AddScoped<INewsService, NewsService>();
+            services.AddScoped<IActorService, ActorService>();
             services.AddScoped<IMappingProvider, MappingProvider>();
             services.AddScoped<IUserManagerWrapper, UserManagerWrapper>();
             services.AddScoped<IRoleManagerWrapper, RoleManagerWrapper>();

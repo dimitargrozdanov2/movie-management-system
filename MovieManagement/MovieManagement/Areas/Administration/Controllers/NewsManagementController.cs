@@ -27,20 +27,12 @@ namespace MovieManagement.Areas.Administration.Controllers
             this.hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
         }
 
-
-        // GET: News/Create
-
-
         [HttpGet]
         public IActionResult Create()
         {
             var model = new CreateNewsViewModel();
             return View(model);
         }
-
-        // POST: News/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -61,7 +53,6 @@ namespace MovieManagement.Areas.Administration.Controllers
                 }
             }
 
-            // TODO: RETURN DIRECTOYL TO THE DETAILS OF THIS ONE;
             return this.RedirectToAction("Index", "Home");
         }
 
@@ -77,8 +68,6 @@ namespace MovieManagement.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string oldName, NewsViewModel model)
         {
-            //var movie = await this.movieService.GetMovieByNameAsync(oldName);
-
             await this.newsService.EditNewsTextAsync(oldName, model);
 
             return this.RedirectToAction("Index", "News"); 
@@ -91,48 +80,12 @@ namespace MovieManagement.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
-            var movie = await this.newsService.GetNewsByNameAsync(id);
-
             await this.newsService.DeleteNews(id);
-
-            //UpdateCachedMovies();
 
             return this.RedirectToAction("Index", "News");
         }
-        //// GET: News/Delete/5
-        //public async Task<IActionResult> Delete(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var news = await _context.News
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (news == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(news);
-        //}
-
-        //// POST: News/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(string id)
-        //{
-        //    var news = await _context.News.FindAsync(id);
-        //    _context.News.Remove(news);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-        //private bool NewsExists(string id)
-        //{
-        //    return _context.News.Any(e => e.Id == id);
-        //}
     }
 }

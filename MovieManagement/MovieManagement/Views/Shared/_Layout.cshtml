@@ -45,10 +45,11 @@
                                 </div>
                             </div>
                         </li>
-                        <li> <a class="nav-link text-dark" asp-area="" asp-controller="Actor" asp-action="Create">Actors</a></li>
+                        <li> <a class="nav-link text-dark" asp-area="" asp-controller="Actor" asp-action="Index">Actors</a></li>
                         <li><a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Index">News</a></li>
                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a></li>
                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Movie" asp-action="Search">Search</a></li>
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li><a class="nav-link text-dark" asp-area="" asp-controller="Watchlist" asp-action="Index" asp-route-username="@User.Identity.Name">Watchlist</a></li>
