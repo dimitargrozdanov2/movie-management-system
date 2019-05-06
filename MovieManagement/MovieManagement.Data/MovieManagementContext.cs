@@ -13,6 +13,11 @@ namespace MovieManagement.Data
 {
     public class MovieManagementContext : IdentityDbContext<ApplicationUser>
     {
+        public MovieManagementContext()
+        {
+
+        }
+
         public MovieManagementContext(DbContextOptions<MovieManagementContext> options)
             :base (options)
         {

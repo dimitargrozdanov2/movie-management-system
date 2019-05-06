@@ -18,14 +18,11 @@ namespace MovieManagement.Areas.Administration.Controllers
     {
         private readonly IMovieService movieService;
         private readonly IGenreService genreService;
-        private readonly IMemoryCache cacheService;
 
-
-        public MovieManagementController(IMovieService movieService, IGenreService genreService, IMemoryCache cacheService)
+        public MovieManagementController(IMovieService movieService, IGenreService genreService)
         {
             this.movieService = movieService ?? throw new ArgumentNullException(nameof(movieService));
             this.genreService = genreService ?? throw new ArgumentNullException(nameof(genreService));
-            this.cacheService = cacheService ?? throw new ArgumentNullException(nameof(cacheService));
         }
 
         [HttpGet]

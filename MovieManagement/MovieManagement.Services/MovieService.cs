@@ -24,7 +24,7 @@ namespace MovieManagement.Services
         }
 
         public async Task<MovieViewModel> CreateMovieAsync(string name, int duration,
-            string storyLine, string director, string imageUrl, string genreName)
+            string storyline, string director, string imageUrl, string genreName)
         {
             if (await this.context.Movies.AnyAsync(m => m.Name == name))
             {
