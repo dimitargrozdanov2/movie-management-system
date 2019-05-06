@@ -45,7 +45,8 @@ namespace MovieManagement.Services
 
         public async Task<ActorViewModel> ChangeActorNameAsync(string currentName, ActorViewModel model)
         {
-            if (await this.context.Actors.AnyAsync(m => m.Name == currentName) == false)
+            bool nameExists = await this.context.Actors.AnyAsync(n => n.Name == currentName);
+            if (nameExists == false)
             {
                 throw new EntityInvalidException($"Actor with '{currentName}' name does not exist!");
             }
@@ -54,6 +55,25 @@ namespace MovieManagement.Services
 
             actor.Name = model.Name;
             actor.ModifiedOn = DateTime.Now;
+
+            await this.context.SaveChangesAsync();
+
+            var returnActor = this.mappingProvider.MapTo<ActorViewModel>(actor);
+
+            return returnActor;
+        }
+
+        public async Task<ActorViewModel> DeleteActor(string currentName)
+        {
+            bool nameExists = await this.context.Actors.AnyAsync(n => n.Name == currentName);
+            if (nameExists == false)
+            {
+                throw new EntityInvalidException($"Actor with '{currentName}' name does not exist!");
+            }
+
+            var actor = await this.context.Actors.FirstOrDefaultAsync(a => a.Name == currentName);
+
+            this.context.Actors.Remove(actor);
 
             await this.context.SaveChangesAsync();
 

@@ -17,5 +17,8 @@ namespace MovieManagement.Services.Contracts
 
         Task<ActorViewModel> GetActorByNameAsync(string name);
 
+        Task<ActorViewModel> DeleteActor(string currentName);
+
+
     }
 }
