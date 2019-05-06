@@ -1,14 +1,21 @@
 ﻿using MovieManagement.DataModels;
+using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MovieManagement.Services.Contracts
 {
     public interface IActorService
     {
-        Actor CreateActor(string name);
+        Task<ActorViewModel> ChangeActorNameAsync(string currentName, ActorViewModel model);
 
-        Actor ChangeActorName(string currentName, string newName);
+        Task<ActorViewModel> CreateActorAsync(string name);
+
+        Task<ICollection<ActorViewModel>> GetAllActorsAsync();
+
+        Task<ActorViewModel> GetActorByNameAsync(string name);
+
     }
 }

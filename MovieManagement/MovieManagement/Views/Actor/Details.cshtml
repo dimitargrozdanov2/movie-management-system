@@ -1,0 +1,54 @@
+﻿@model ActorViewModel
+
+@{
+    ViewData["Title"] = Model.Name;
+
+}
+
+<div class="container">
+    <div class="form-row">
+        <div class="p-3 mb-2 bg-light text-dark col-lg-8">
+                <div class="form-row">
+                    <div class="form-row">
+                        <h5>@Model.Name Filmography</h5>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+
+        <div class="col-lg-2">
+            @if (User.IsInRole("Admin"))
+            {
+                @*<a asp-area="Administration" asp-controller="NewsManagement" asp-action="Edit" asp-route-oldName="@Model.Title" class="btn btn-primary detailsMovieButton btn-block">Edit News</a>
+                <a asp-area="Administration" asp-controller="NewsManagement" asp-action="Delete" asp-route-id="@Model.Title" class="btn btn-danger detailsMovieButton btn-block">Delete News</a>*@
+            }
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="p-3 mb-2 bg-light text-dark col-lg-8">
+            <div class="form-group">
+
+                    @if (Model.Movies.Count == 0)
+                    {
+                        <p> @Model.Name has not starred in any films yet!</p>
+                    }
+                    else
+                    {
+
+                        foreach (var movie in @Model.MoviesImages)
+                        {
+                            <div class="form-group">
+
+                                <img src="~/images/@movie" alt="Movie Image" class="img-fluid" style="width: 100%; height:250px;" />
+                            </div>
+                        }
+                    }
+             </div>
+         </div>
+    </div>
+</div>
