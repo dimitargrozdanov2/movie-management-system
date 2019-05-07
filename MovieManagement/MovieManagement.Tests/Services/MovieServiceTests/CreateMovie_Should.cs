@@ -19,9 +19,9 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
     public class CreateMovie_Should
     {
         [TestMethod]
-        public async Task Throw_WhenMovieExists()
+        public async Task Throw_WhenMovie_DoesNotExists()
         {
-            var dabataseName = nameof(Throw_WhenMovieExists);
+            var dabataseName = nameof(Throw_WhenMovie_DoesNotExists);
 
             var options = TestUtils.GetOptions(dabataseName);
 
@@ -106,7 +106,7 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
         public async Task ReturnCorrectViewModel()
         {
             // Arrange
-            var dabataseName = nameof(AddNewMovie_WhenAllParametersAreValid);
+            var dabataseName = nameof(ReturnCorrectViewModel);
             var options = TestUtils.GetOptions(dabataseName);
 
             TestUtils.FillContextWithGenre(options);
