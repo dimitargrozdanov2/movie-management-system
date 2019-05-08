@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MovieManagement.ViewModels
@@ -8,12 +9,16 @@ namespace MovieManagement.ViewModels
     {
         public string Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public int Duration { get; set; }
 
+        [Required]
         public string Storyline { get; set; }
 
+        [Required]
         public string Director { get; set; }
 
         public string Genre { get; set; }
@@ -24,6 +29,7 @@ namespace MovieManagement.ViewModels
 
         public bool IsDeleted { get; set; }
 
+        [Required]
         public string ImageUrl { get; set; }
 
         public DateTime? CreatedOn { get; set; }

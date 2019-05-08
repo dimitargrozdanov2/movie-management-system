@@ -18,8 +18,8 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
     [TestClass]
     public class Create_Should
     {
-        [TestMethod]
-        public async Task CallGenreServiceOnce_OnGetRequest()
+        [TestMethod] 
+        public async Task CallGenreServiceOnce_OnGet()
         {
             // Arrange
             var movieServiceMock = new Mock<IMovieService>();
@@ -37,7 +37,7 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
             genreServiceMock.Verify(g => g.GetAllGenres(), Times.Once);
         }
 
-        [TestMethod]
+        [TestMethod] 
         public async Task ReturnCorrectViewModel_OnGet()
         {
             // Arrange
@@ -56,8 +56,9 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
             Assert.IsInstanceOfType(result.Model, typeof(MovieCreateViewModel));
         }
 
+
         [TestMethod]
-        public async Task CallMovieServiceWithCorrectParams()
+        public async Task Call_MovieServiceWithCorrectParams_OnPost()
         {
             // Arrange
             string movieName = "Titanic";
@@ -69,10 +70,6 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
 
             var movieServiceMock = new Mock<IMovieService>();
             var genreServiceMock = new Mock<IGenreService>();
-            //genreServiceMock
-            //    .Setup(g => g.GetAllGenres())
-            //    .ReturnsAsync(new List<Genre>());
-
 
             var model = new MovieViewModel()
             {
@@ -106,12 +103,12 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
 
             // Assert
             movieServiceMock.Verify(x => x.CreateMovieAsync(movieName, duration,
-                    storyline, director, imageUrl, genreName));
+                    storyline, director, imageUrl, genreName), Times.Once);
 
         }
 
         [TestMethod]
-        public async Task ReturnCorrectViewResult()
+        public async Task RedirectToCorrectAction_OnPost()
         {
             // Arrange
             var movieServiceMock = new Mock<IMovieService>();
@@ -121,28 +118,42 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
                     null, null, null, null))
                     .ReturnsAsync(new MovieViewModel());
 
-
-            var createModel = new MovieCreateViewModel()
-            {                Name = null,
-                Duration = 0,
-                Director = null,
-                Storyline = null,
-                ImageUrl = null,
-                GenreName = null
-            };
+            var createModel = new MovieCreateViewModel();
 
             var sut = new MovieManagementController(movieServiceMock.Object, genreServiceMock.Object);
 
             // Act
             var result = await sut.Create(createModel);
 
-
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
             var redirect = (RedirectToActionResult)result;
-            //redirect.ControllerName is true MovieManagController
-            // redirect.Actionname is true Create
 
+            // They are redirecting to the basic Movie Controller, not the MovieManagement one.
+            Assert.IsTrue(redirect.ControllerName == "Movie");
+            Assert.IsTrue(redirect.ActionName == "Details");
+        }
+
+        [TestMethod]
+        public async Task Redirect_ToViewResult_IfModelInvalid_OnPost()
+        {
+            // Arrange
+            var movieServiceMock = new Mock<IMovieService>();
+            var genreServiceMock = new Mock<IGenreService>();
+
+            var createModel = new MovieCreateViewModel();
+
+            var sut = new MovieManagementController(movieServiceMock.Object, genreServiceMock.Object);
+            sut.ModelState.AddModelError("error", "error");
+
+            // Act
+            var result = await sut.Create(createModel);
+
+            // Assert
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            var viewResultRedirect = (ViewResult)result;
+
+            Assert.IsInstanceOfType(viewResultRedirect.Model, typeof(MovieCreateViewModel));
         }
     }
 }

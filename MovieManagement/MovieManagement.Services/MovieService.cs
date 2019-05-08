@@ -162,13 +162,13 @@ namespace MovieManagement.Services
                .FirstOrDefaultAsync(m => m.Name == movieName);
             if (movie == null)
             {
-                throw new EntityInvalidException($"{movieName} has not been found!");
+                throw new EntityInvalidException($"Movie with title `{movieName}` has not been found!");
             }
 
             var actor = await this.context.Actors.FirstOrDefaultAsync(a => a.Name == actorName);
             if (actor == null)
             {
-                throw new EntityInvalidException($"{actorName} has not been found!");
+                throw new EntityInvalidException($"Actor with name `{actorName}` has not been found!");
             }
 
             // Checks whether this actor is already assigned to this movie or not.

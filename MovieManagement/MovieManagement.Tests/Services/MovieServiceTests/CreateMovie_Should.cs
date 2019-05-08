@@ -23,10 +23,10 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
         {
             var dabataseName = nameof(Throw_WhenMovie_DoesNotExists);
 
-            var options = TestUtils.GetOptions(dabataseName);
+            var options = MovieTestUtils.GetOptions(dabataseName);
 
             // We fill the context with data and save it.
-            TestUtils.FillContextWithActorsMoviesAndGenres(options);
+            MovieTestUtils.FillContextWithActorsMoviesAndGenres(options);
 
             var mappingProviderMock = new Mock<IMappingProvider>();
 
@@ -50,7 +50,7 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
         public async Task Throw_WhenGenreIsNotFound()
         {
             var dabataseName = nameof(Throw_WhenGenreIsNotFound);
-            var options = TestUtils.GetOptions(dabataseName);
+            var options = MovieTestUtils.GetOptions(dabataseName);
 
             var mappingProviderMock = new Mock<IMappingProvider>();
 
@@ -73,9 +73,9 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
         public async Task AddNewMovie_WhenAllParametersAreValid()
         {
             var dabataseName = nameof(AddNewMovie_WhenAllParametersAreValid);
-            var options = TestUtils.GetOptions(dabataseName);
+            var options = MovieTestUtils.GetOptions(dabataseName);
 
-            TestUtils.FillContextWithGenre(options);
+            MovieTestUtils.FillContextWithGenre(options);
 
             var mappingProviderMock = new Mock<IMappingProvider>();
 
@@ -107,9 +107,9 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
         {
             // Arrange
             var dabataseName = nameof(ReturnCorrectViewModel);
-            var options = TestUtils.GetOptions(dabataseName);
+            var options = MovieTestUtils.GetOptions(dabataseName);
 
-            TestUtils.FillContextWithGenre(options);
+            MovieTestUtils.FillContextWithGenre(options);
 
             // setting up the automapper to be able to map the object from Movie to MovieViewModel
             var mappingProviderMock = new Mock<IMappingProvider>();

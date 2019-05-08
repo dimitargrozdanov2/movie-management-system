@@ -20,10 +20,10 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
         {
             var dabataseName = nameof(Return_TwoMoviesInCorrectOrderByDateCrated);
 
-            var options = TestUtils.GetOptions(dabataseName);
+            var options = MovieTestUtils.GetOptions(dabataseName);
 
             // We fill the context with data and save it.
-            TestUtils.FillContextWithGenre(options);
+            MovieTestUtils.FillContextWithGenre(options);
 
             var collectionOfMovies = new List<Movie>();
 
@@ -76,10 +76,10 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
         {
             var dabataseName = nameof(Call_MapFunction_Once);
 
-            var options = TestUtils.GetOptions(dabataseName);
+            var options = MovieTestUtils.GetOptions(dabataseName);
 
             // We fill the context with data and save it.
-            TestUtils.FillContextWithGenre(options);
+            MovieTestUtils.FillContextWithGenre(options);
 
             var collectionOfMovies = new List<Movie>();
 
