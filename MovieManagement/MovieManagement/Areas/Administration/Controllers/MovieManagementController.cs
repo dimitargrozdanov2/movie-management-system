@@ -45,10 +45,6 @@ namespace MovieManagement.Areas.Administration.Controllers
             }
 
             return this.View(model);
-
-
-            //UpdateCachedMovies();
-
         }
 
         [HttpGet]
@@ -64,8 +60,6 @@ namespace MovieManagement.Areas.Administration.Controllers
 
             await this.movieService.DeleteMovieAsync(id);
 
-            //UpdateCachedMovies();
-
             return this.RedirectToAction("TopRated", "Movie");
         }
 
@@ -79,9 +73,9 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(string oldName, MovieViewModel model)
         {
-            await this.movieService.UpdateMovieAsync(oldName, model);
+            var movie = await this.movieService.UpdateMovieAsync(oldName, model);
 
-            return this.RedirectToAction("TopRated", "Movie");
+            return this.RedirectToAction("Details", "Movie", new { id = movie.Name });
         }
 
         [HttpGet]
@@ -96,23 +90,9 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> ManageActors(MovieManageActorsViewModel model)
         {
-            await this.movieService.ManageActorAsync(model.MovieName, model.ActorName);
+            var movie = await this.movieService.ManageActorAsync(model.MovieName, model.ActorName);
 
-            return this.RedirectToAction("TopRated", "Movie");
+            return this.RedirectToAction("Details", "Movie", new { id = movie.Name });
         }
-
-        //private async void UpdateCachedMovies()
-        //{
-        //    this.cacheService.Remove("Movies");
-        //    //this.cacheService.Set("Movies", this.movieService.GetTopRatedMovies(), DateTime.UtcNow.AddMinutes(30));
-
-        //    var cachedMovies = await this.cacheService.GetOrCreateAsync("Movies", async entry =>
-        //    {
-        //        entry.AbsoluteExpiration = DateTime.UtcNow.AddSeconds(10);
-        //        var movies = await this.movieService.GetTopRatedMovies();
-        //        return movies;
-        //    });
-
-        //}
     }
 }

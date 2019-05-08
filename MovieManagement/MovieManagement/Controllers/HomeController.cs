@@ -49,13 +49,15 @@ namespace MovieManagement.Controllers
             return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
 
-        public IActionResult AlreadyExistsError()
+        public IActionResult AlreadyExistsError(string error)
         {
+            ViewData["Error"] = error;
             return View();
         }
 
-        public IActionResult Invalid()
+        public IActionResult Invalid(string error)
         {
+            ViewData["Error"] = error;
             return View();
         }
 

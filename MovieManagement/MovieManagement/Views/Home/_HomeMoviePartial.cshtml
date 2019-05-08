@@ -1,6 +1,6 @@
 ﻿@model MovieViewModel
 @{
-    ViewData["Title"] = "_RolePartial";
+    ViewData["Title"] = "_HomeMoviePartial";
 }
 
 <div class="col-md-4 homeMovieListAlign">
@@ -13,7 +13,7 @@
             </h4>
         </a>
         <div class="genreTitleTag btn btn-dark">@Model.Genre</div>
-        <div>@Model.Storyline</div>
+        <div class="watchlistIndexButton">@Model.Storyline</div>
         @if (User.Identity.IsAuthenticated)
         {
             @if (!Model.Users.Contains(User.Identity.Name))

@@ -102,7 +102,7 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
             var sut = new MovieManagementController(movieServiceMock.Object, genreServiceMock.Object);
 
             // Act
-            var result = await sut.Create(createModel) as ViewResult;
+            var result = await sut.Create(createModel);
 
             // Assert
             movieServiceMock.Verify(x => x.CreateMovieAsync(movieName, duration,
@@ -123,8 +123,7 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
 
 
             var createModel = new MovieCreateViewModel()
-            {
-                Name = null,
+            {                Name = null,
                 Duration = 0,
                 Director = null,
                 Storyline = null,
@@ -137,8 +136,13 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
             // Act
             var result = await sut.Create(createModel);
 
+
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
+            var redirect = (RedirectToActionResult)result;
+            //redirect.ControllerName is true MovieManagController
+            // redirect.Actionname is true Create
+
         }
     }
 }

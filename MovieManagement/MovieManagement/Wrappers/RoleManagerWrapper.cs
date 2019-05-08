@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using MovieManagement.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,13 @@ namespace MovieManagement.Wrappers
 
         public async Task<IdentityResult> CreateRoleAsync(string name)
         {
+            var role = await this.roleManager.FindByNameAsync(name);
+
+            if (role != null)
+            {
+                throw new EntityInvalidException("Role already exists!");
+            }
+
             return await this.roleManager.CreateAsync(new IdentityRole(name));
         }
 
@@ -26,7 +34,7 @@ namespace MovieManagement.Wrappers
 
             if (role == null)
             {
-                throw new ArgumentException("Role not found!");
+                throw new EntityInvalidException("Role not found!");
             }
 
             return await this.roleManager.DeleteAsync(role);
@@ -34,7 +42,14 @@ namespace MovieManagement.Wrappers
 
         public async Task<IdentityRole> FindByNameAsync(string name)
         {
-            return await this.roleManager.FindByNameAsync(name);
+            var role = await this.roleManager.FindByNameAsync(name);
+
+            if (role == null)
+            {
+                throw new EntityInvalidException("Role not found!");
+            }
+
+            return role;
         }
 
         public IQueryable<IdentityRole> GetAllRoles()
@@ -44,9 +59,14 @@ namespace MovieManagement.Wrappers
             return roles;
         }
 
-        public async Task<IdentityResult> UpdateRoleAsync(IdentityRole role)
+        public async Task<IdentityResult> UpdateRoleAsync(IdentityRole roleModel)
         {
-            return await this.roleManager.UpdateAsync(role);
+            if (roleModel.NormalizedName == "ADMIN")
+            {
+                throw new EntityInvalidException("You are not allowed to edit the Admin role!");
+            }
+
+            return await this.roleManager.UpdateAsync(roleModel);
         }
     }
 }

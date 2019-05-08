@@ -59,7 +59,7 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
                 var sut = new MovieService(actAndAssertContext, mappingProviderMock.Object);
                 string movieName = "Spiderman";
                 double rating = 10;
-
+                
                 var movie = await actAndAssertContext.Movies.FirstOrDefaultAsync(m => m.Name == movieName);
 
                 Assert.IsTrue(movie.Rating == 0);

@@ -22,17 +22,17 @@ namespace MovieManagement.Utilities.Middlewares
             {
                 await this.next.Invoke(context);
             }
-            catch (EntityAlreadyExistsException)
+            catch (EntityAlreadyExistsException ex)
             {
-                context.Response.Redirect("/home/alreadyexistserror");
+                context.Response.Redirect($"/home/alreadyexistserror?error={ex.Message}");
             }
             catch (EntityInvalidException ex)
             {
-                context.Response.Redirect("/home/invalid");
+                context.Response.Redirect($"/home/invalid?error={ex.Message}");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                context.Response.Redirect("/home/servererror");
+                context.Response.Redirect($"/home/servererror={ex.Message}");
             }
         }
     }
