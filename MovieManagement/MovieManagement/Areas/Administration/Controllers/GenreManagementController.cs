@@ -31,10 +31,15 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateGenreViewModel model)
         {
-            await this.genreService.CreateGenreAsync(model.Name);
+            if (this.ModelState.IsValid)
+            {
+                await this.genreService.CreateGenreAsync(model.Name);
 
-            // TODO: RETURN DIRECTOYL TO THE DETAILS OF THIS ONE;
-            return this.RedirectToAction("Index", "Home");
+                // TODO: RETURN DIRECTOYL TO THE DETAILS OF THIS ONE;
+                return this.RedirectToAction("Index", "Admin");
+            }
+
+            return this.View(model);
         }
     }
 }
