@@ -42,7 +42,6 @@ namespace MovieManagement.Controllers
         public async Task<IActionResult> Add(string username, string movieName)
         {
             await this.watchlistService.Add(username, movieName);
-            cachedMovies = null;
             return View();
         }
 
@@ -50,7 +49,6 @@ namespace MovieManagement.Controllers
         public async Task<IActionResult> Remove(string username, string movieName)
         {
             await this.watchlistService.Remove(username, movieName);
-            cachedMovies = null;
             return View();
         }
     }
