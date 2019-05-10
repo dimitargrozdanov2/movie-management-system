@@ -19,9 +19,9 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
     public class CreateMovie_Should
     {
         [TestMethod]
-        public async Task Throw_WhenMovie_DoesNotExists()
+        public async Task Throw_WhenMovie_DoesExists()
         {
-            var dabataseName = nameof(Throw_WhenMovie_DoesNotExists);
+            var dabataseName = nameof(Throw_WhenMovie_DoesExists);
 
             var options = MovieTestUtils.GetOptions(dabataseName);
 
