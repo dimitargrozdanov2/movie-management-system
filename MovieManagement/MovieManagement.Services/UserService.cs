@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieManagement.Data;
-using MovieManagement.DataModels;
 using MovieManagement.Infrastructure;
 using MovieManagement.Services.Contracts;
 using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Services

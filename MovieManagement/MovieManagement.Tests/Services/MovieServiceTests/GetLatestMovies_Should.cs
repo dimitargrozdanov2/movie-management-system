@@ -125,6 +125,5 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
                 mappingProviderMock.Verify(m => m.MapTo<ICollection<MovieViewModel>>(collectionOfMovies), Times.Once);
             }
         }
-
     }
 }

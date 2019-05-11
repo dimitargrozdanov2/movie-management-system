@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using MovieManagement.DataModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Wrappers
@@ -18,7 +16,7 @@ namespace MovieManagement.Wrappers
 
         public async Task<ApplicationUser> FindByNameAsync(string username)
         {
-           return await userManager.FindByNameAsync(username);
+            return await this.userManager.FindByNameAsync(username);
         }
 
         public async Task<IdentityResult> AddToRoleAsync(ApplicationUser user, string role)

@@ -1,9 +1,4 @@
-﻿using MovieManagement.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MovieManagement.Models.Comment
 {
@@ -16,7 +11,6 @@ namespace MovieManagement.Models.Comment
         public string Title { get; set; }
 
         [Required]
-        public string User {get; set;}
-
+        public string User { get; set; }
     }
 }

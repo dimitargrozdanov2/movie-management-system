@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Models.Movie;
 using MovieManagement.Services.Contracts;
-using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using MovieManagement.ViewModels;
 using System;
+using System.Threading.Tasks;
 
 namespace MovieManagement.Controllers
 {
@@ -36,7 +32,7 @@ namespace MovieManagement.Controllers
         {
             var model = await this.movieService.GetMovieByNameAsync(id);
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpGet]
@@ -54,7 +50,7 @@ namespace MovieManagement.Controllers
         {
             var movie = await this.movieService.RateMovieAsync(rateMovieModel.Name, rateMovieModel.Rating);
 
-            return Json(movie);
+            return this.Json(movie);
         }
 
         [HttpGet]
@@ -62,13 +58,13 @@ namespace MovieManagement.Controllers
         {
             if (string.IsNullOrEmpty(model.SearchName))
             {
-                return View();
+                return this.View();
             }
 
             var movies = await this.movieService.SearchAsync(model.SearchName);
 
             model.Movies = movies;
-            return View(model);
+            return this.View(model);
         }
     }
 }

@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using MovieManagement.DataModels.Base;
-using System;
+﻿using MovieManagement.DataModels.Base;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MovieManagement.DataModels
 {
@@ -10,7 +7,7 @@ namespace MovieManagement.DataModels
     {
         public string Title { get; set; }
 
-        public string Text { get; set ; } 
+        public string Text { get; set; }
 
         public string ImageUrl { get; set; }
 

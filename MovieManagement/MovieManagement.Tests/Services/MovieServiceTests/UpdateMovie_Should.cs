@@ -7,7 +7,6 @@ using MovieManagement.Infrastructure;
 using MovieManagement.Services;
 using MovieManagement.Services.Exceptions;
 using MovieManagement.ViewModels;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Tests.Services.MovieServiceTests

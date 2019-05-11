@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MovieManagement.Models.Movie
+﻿namespace MovieManagement.Models.Movie
 {
     public class RateMovieViewModel
     {

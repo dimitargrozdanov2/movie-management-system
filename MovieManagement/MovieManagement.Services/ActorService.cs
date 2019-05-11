@@ -8,7 +8,6 @@ using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Services
@@ -17,7 +16,6 @@ namespace MovieManagement.Services
     {
         private readonly MovieManagementContext context;
         private readonly IMappingProvider mappingProvider;
-
 
         public ActorService(MovieManagementContext context, IMappingProvider mappingProvider)
         {

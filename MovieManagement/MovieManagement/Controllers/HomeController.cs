@@ -3,9 +3,7 @@ using Microsoft.Extensions.Caching.Memory;
 using MovieManagement.Models;
 using MovieManagement.Models.Home;
 using MovieManagement.Services.Contracts;
-using MovieManagement.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -27,7 +25,6 @@ namespace MovieManagement.Controllers
         public async Task<IActionResult> Index()
         {
             var model = new HomeIndexViewModel();
-
 
             //var cachedMovies = await this.cacheService.GetOrCreateAsync("Movies", async entry =>
             //{
@@ -51,19 +48,19 @@ namespace MovieManagement.Controllers
 
         public IActionResult AlreadyExistsError(string error)
         {
-            ViewData["Error"] = error;
-            return View();
+            this.ViewData["Error"] = error;
+            return this.View();
         }
 
         public IActionResult Invalid(string error)
         {
-            ViewData["Error"] = error;
-            return View();
+            this.ViewData["Error"] = error;
+            return this.View();
         }
 
         public IActionResult ServerError()
         {
-            return View();
+            return this.View();
         }
     }
 }

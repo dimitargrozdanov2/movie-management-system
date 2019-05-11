@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using MovieManagement.Services.Exceptions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 

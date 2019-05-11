@@ -1,15 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MovieManagement.Controllers;
-using MovieManagement.DataModels;
 using MovieManagement.Models.Movie;
 using MovieManagement.Services.Contracts;
 using MovieManagement.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Tests.Controllers.MovieControllerTests

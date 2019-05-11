@@ -1,8 +1,5 @@
 ﻿using MovieManagement.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MovieManagement.Models.Home
 {
@@ -11,6 +8,5 @@ namespace MovieManagement.Models.Home
         public IEnumerable<MovieViewModel> Movies { get; set; }
 
         public IEnumerable<NewsViewModel> News { get; set; }
-
     }
 }

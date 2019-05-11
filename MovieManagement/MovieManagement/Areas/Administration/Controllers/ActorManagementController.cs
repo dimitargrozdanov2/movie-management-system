@@ -4,8 +4,6 @@ using MovieManagement.Areas.Administration.Models.Actor;
 using MovieManagement.Services.Contracts;
 using MovieManagement.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Areas.Administration.Controllers
@@ -26,7 +24,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         {
             var model = new CreateActorViewModel();
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -43,7 +41,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         {
             var model = await this.actorService.GetActorByNameAsync(oldName);
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -58,7 +56,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Delete()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]

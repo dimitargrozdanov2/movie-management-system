@@ -1,16 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MovieManagement.Areas.Administration.Controllers;
 using MovieManagement.Areas.Administration.Models.Genre;
-using MovieManagement.Areas.Administration.Models.Movie;
-using MovieManagement.DataModels;
 using MovieManagement.Services.Contracts;
 using MovieManagement.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Tests.Areas.Administration.ControllerTests.GenreManagementControllerTests
@@ -18,7 +12,7 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.GenreManage
     [TestClass]
     public class Create_Should
     {
-        [TestMethod] 
+        [TestMethod]
         public void ReturnCorrectViewModel_OnGet()
         {
             // Arrange
@@ -36,7 +30,7 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.GenreManage
             Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
 
-        [TestMethod] 
+        [TestMethod]
         public async Task Call_GenreServiceWithCorrectParams_OnPost()
         {
             // Arrange
@@ -102,7 +96,6 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.GenreManage
 
             var sut = new GenreManagementController(movieServiceMock.Object, genreServiceMock.Object);
             sut.ModelState.AddModelError("error", "error");
-
 
             string genreName = "Comedy";
 

@@ -4,13 +4,9 @@ using MovieManagement.Data;
 using MovieManagement.DataModels;
 using MovieManagement.Infrastructure;
 using MovieManagement.Services;
-using MovieManagement.Services.Contracts;
 using MovieManagement.Services.Exceptions;
 using MovieManagement.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Tests.Services.MovieServiceTests

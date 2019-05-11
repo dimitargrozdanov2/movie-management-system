@@ -5,9 +5,6 @@ using MovieManagement.Data;
 using MovieManagement.Infrastructure;
 using MovieManagement.Services;
 using MovieManagement.Services.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Tests.Services.MovieServiceTests

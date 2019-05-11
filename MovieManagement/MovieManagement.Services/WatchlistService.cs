@@ -28,7 +28,6 @@ namespace MovieManagement.Services
 
         public async Task<ICollection<MovieViewModel>> GetAllMovies(string username)
         {
-
             var movies = await this.context.Movies
                 .Include(x => x.ApplicationUserMovie)
                 .Include(x => x.Genre)

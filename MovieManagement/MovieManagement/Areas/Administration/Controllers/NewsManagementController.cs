@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Areas.Administration.Models.News;
 using MovieManagement.Services.Contracts;
 using MovieManagement.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Areas.Administration.Controllers
@@ -31,7 +28,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         public IActionResult Create()
         {
             var model = new CreateNewsViewModel();
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -45,7 +42,7 @@ namespace MovieManagement.Areas.Administration.Controllers
             using (var ms = new MemoryStream())
             {
                 model.Image.CopyTo(ms);
-                var uploads = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                var uploads = Path.Combine(this.hostingEnvironment.WebRootPath, "images");
                 var filePath = Path.Combine(uploads, imageNameToSave);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
@@ -61,7 +58,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         {
             var model = await this.newsService.GetNewsByNameAsync(oldName);
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -70,13 +67,13 @@ namespace MovieManagement.Areas.Administration.Controllers
         {
             await this.newsService.EditNewsTextAsync(oldName, model);
 
-            return this.RedirectToAction("Index", "News"); 
+            return this.RedirectToAction("Index", "News");
         }
 
         [HttpGet]
         public IActionResult Delete()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]

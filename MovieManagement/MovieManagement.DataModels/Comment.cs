@@ -1,8 +1,4 @@
 ﻿using MovieManagement.DataModels.Base;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace MovieManagement.DataModels
 {
@@ -18,6 +14,6 @@ namespace MovieManagement.DataModels
 
         public string ApplicationUserId { get; set; }
 
-        public  ApplicationUser ApplicationUser {get; set;}
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

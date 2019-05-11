@@ -8,7 +8,6 @@ using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Services
@@ -26,7 +25,6 @@ namespace MovieManagement.Services
 
         public async Task<CommentViewModel> AddComment(string commentText, string title, string userName)
         {
-
             var news = await this.context.News.Include(x => x.Comments).ThenInclude(x => x.ApplicationUser).FirstOrDefaultAsync(m => m.Title == title);
 
             var user = await this.context.Users.FirstOrDefaultAsync(m => m.UserName == userName);
@@ -35,6 +33,7 @@ namespace MovieManagement.Services
             {
                 throw new EntityInvalidException($"Text cannot be empty!");
             }
+
             var comment = new Comment { CreatedOn = DateTime.Now, Text = commentText, News = news, ApplicationUser = user };
 
             await this.context.Comments.AddAsync(comment);
@@ -45,6 +44,7 @@ namespace MovieManagement.Services
 
             return returnComment;
         }
+
         public async Task<ICollection<CommentViewModel>> GetAllComments()
         {
             var comments = await this.context.Comments

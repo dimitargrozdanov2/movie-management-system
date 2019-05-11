@@ -12,8 +12,8 @@ using MovieManagement.DataModels;
 using MovieManagement.Infrastructure;
 using MovieManagement.Services;
 using MovieManagement.Services.Contracts;
-using MovieManagement.Wrappers;
 using MovieManagement.Utilities;
+using MovieManagement.Wrappers;
 
 namespace MovieManagement
 {
@@ -39,7 +39,7 @@ namespace MovieManagement
             });
 
             services.AddDbContext<MovieManagementContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("DConnection")));
+                options.UseSqlServer(this.Configuration.GetConnectionString("TConnection")));
 
             if (this.Environment.IsDevelopment())
             {
@@ -78,7 +78,6 @@ namespace MovieManagement
 
             services.AddAutoMapper();
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -112,7 +111,6 @@ namespace MovieManagement
                 routes.MapRoute(
                     name: "admin",
                     template: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
-               
 
                 routes.MapRoute(
                     name: "default",

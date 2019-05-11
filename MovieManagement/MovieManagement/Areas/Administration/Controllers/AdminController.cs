@@ -1,14 +1,10 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Areas.Administration.Models;
 using MovieManagement.Areas.Administration.Models.User;
-using MovieManagement.DataModels;
 using MovieManagement.Services.Contracts;
 using MovieManagement.Wrappers;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Areas.Administration.Controllers
@@ -35,7 +31,7 @@ namespace MovieManagement.Areas.Administration.Controllers
 
             model.Users = users;
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpGet]
@@ -44,7 +40,7 @@ namespace MovieManagement.Areas.Administration.Controllers
             var model = new UpdateRoleViewModel();
             model.UserName = id;
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -68,7 +64,7 @@ namespace MovieManagement.Areas.Administration.Controllers
             var model = new EditUserViewModel();
             model.OldName = id;
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -95,7 +91,6 @@ namespace MovieManagement.Areas.Administration.Controllers
             //var c = this.userManager.IsInRoleAsync(user.Result, model.RoleName).Result;
 
             //var d = this.userManager.Users;
-
 
             return this.RedirectToAction(nameof(Index));
         }
