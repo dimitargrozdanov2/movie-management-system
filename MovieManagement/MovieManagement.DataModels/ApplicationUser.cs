@@ -8,5 +8,8 @@ namespace MovieManagement.DataModels
     public class ApplicationUser : IdentityUser
     {
         public ICollection<ApplicationUserMovie> ApplicationUserMovie { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
+
     }
 }

@@ -11,6 +11,11 @@
     <Compile Remove="Migrations\20190505191618_Initial.cs" />
     <Compile Remove="Migrations\20190505192659_Initial.cs" />
     <Compile Remove="Migrations\20190505210257_Initial.cs" />
+    <Compile Remove="Migrations\20190505223044_Initial.cs" />
+    <Compile Remove="Migrations\20190509153852_Initial.cs" />
+    <Compile Remove="Migrations\20190509182523_Initial.cs" />
+    <Compile Remove="Migrations\20190509213216_Initial.cs" />
+    <Compile Remove="Migrations\20190509221651_Initial.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +27,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieManagement.DataModels\MovieManagement.DataModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

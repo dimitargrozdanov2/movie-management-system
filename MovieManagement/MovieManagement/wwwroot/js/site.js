@@ -29,3 +29,8 @@ $('.rating-dropdown .dropdown-item').on('click', async (ev) => {
         alert('There was an error submitting your request!');
     }
 })
+
+//marks textarea of comments default value to empty
+ $(function () {
+        $("#Comments").html("");
+    });

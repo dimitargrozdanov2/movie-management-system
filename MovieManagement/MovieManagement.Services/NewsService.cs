@@ -93,7 +93,12 @@ namespace MovieManagement.Services
         }
         public async Task<NewsViewModel> GetNewsByNameAsync(string title)
         {
-            var news = await this.context.News.FirstOrDefaultAsync(m => m.Title == title);
+            var news = await this.context.News.Include(x => x.Comments).ThenInclude(x => x.ApplicationUser)
+                    .FirstOrDefaultAsync(m => m.Title == title);
+
+            var comments =  news.Comments.OrderByDescending(x => x.CreatedOn).ToList();
+            //this is only done to sort the comments by time of creation
+            news.Comments = comments;
 
             if (news == null)
             {

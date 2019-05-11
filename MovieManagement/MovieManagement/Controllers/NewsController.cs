@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Areas.Administration.Models.News;
 using MovieManagement.Models.News;
 using MovieManagement.Services.Contracts;
+using MovieManagement.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,5 +38,6 @@ namespace MovieManagement.Controllers
 
             return View(model);
         }
+
     }
 }

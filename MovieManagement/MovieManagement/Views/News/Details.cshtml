@@ -34,9 +34,40 @@
     <div class="form-row">
         <div class="p-3 mb-2 bg-light text-dark col-lg-8">
             <div class="form-group">
-                <div class="d-flex justify-content-center" >
-                   <p>@Model.Text</p>
+                <div class="d-flex justify-content-center">
+                    <p>@Model.Text</p>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="col-lg-2">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form asp-area="" asp-controller="Comment" asp-action="AddComment" asp-route-username="@User.Identity.Name" asp-route-newsTitle="@Model.Title" method="post">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <label asp-for="Comments" class="control-label"></label>
+                        <textarea asp-for="Text" id="Comments" class="form-control"></textarea>
+                        <span asp-validation-for="Text" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="AddComment" class="btn btn-primary" />
+                    </div>
+                    <input asp-for="Title" id="Title" hidden value="@Model.Title" />
+                    <input asp-for="User" id="User" hidden value="@User.Identity.Name" />
+
+                </div>
+                <hr />
+            </form>
+        }
+    </div>
+
+    @foreach (var comment in Model.Comments)
+    {
+        <p class="text-danger">Username @comment.ApplicationUser.UserName </p>
+        <p>@comment.CreatedOn</p>
+        <h1> @comment.Text</h1>
+        <hr />
+    }
+</div>

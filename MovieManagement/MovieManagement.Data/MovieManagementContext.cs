@@ -36,6 +36,8 @@ namespace MovieManagement.Data
 
         public DbSet<ApplicationUserMovie> UserMovies { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -49,6 +51,7 @@ namespace MovieManagement.Data
             modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new NewsConfiguration());
             modelBuilder.ApplyConfiguration(new ApplicationUserMovieConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
 
             modelBuilder.Entity<Movie>().HasQueryFilter(b => EF.Property<bool>(b, "IsDeleted") == false);
         }
