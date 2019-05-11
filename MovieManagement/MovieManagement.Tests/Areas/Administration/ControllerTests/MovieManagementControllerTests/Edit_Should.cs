@@ -45,8 +45,6 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
                 .Setup(g => g.GetMovieByNameAsync(movieName))
                 .ReturnsAsync(new MovieViewModel());
 
-
-
             var sut = new MovieManagementController(movieServiceMock.Object, genreServiceMock.Object);
 
             // Act
@@ -147,7 +145,6 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
 
             var viewResultRedirect = (ViewResult)result;
             Assert.IsInstanceOfType(viewResultRedirect.Model, typeof(MovieViewModel));
-
         }
     }
 }

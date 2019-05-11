@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using MovieManagement.DataModels;
 using MovieManagement.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace MovieManagement.Infrastructure.Mappings
 {
@@ -25,7 +22,7 @@ namespace MovieManagement.Infrastructure.Mappings
             //    this.Actors = movie.MovieActor
             //        .Select(x => x.Actor.Name)
             //        .ToList();
-            CreateMap<Movie, MovieViewModel>()
+            this.CreateMap<Movie, MovieViewModel>()
                 .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Duration, opts => opts.MapFrom(src => src.Duration))

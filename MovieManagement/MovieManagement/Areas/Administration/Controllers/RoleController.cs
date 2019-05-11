@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Areas.Administration.Models.Role;
-using MovieManagement.DataModels;
-using MovieManagement.Services.Contracts;
 using MovieManagement.Wrappers;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MovieManagement.Areas.Administration.Controllers
 {
@@ -32,13 +26,13 @@ namespace MovieManagement.Areas.Administration.Controllers
 
             model.Roles = roles;
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -52,7 +46,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Delete()
         {
-            return View();   
+            return this.View();
         }
 
         [HttpPost]
@@ -70,7 +64,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         {
             var model = new RoleEditViewModel();
             model.OldName = id;
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]

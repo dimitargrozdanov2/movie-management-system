@@ -3,8 +3,6 @@ using MovieManagement.Models.Comment;
 using MovieManagement.Services.Contracts;
 using MovieManagement.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Controllers
@@ -13,17 +11,18 @@ namespace MovieManagement.Controllers
     {
         private readonly ICommentService commentService;
 
-
         public CommentController(ICommentService commentService)
         {
             this.commentService = commentService ?? throw new ArgumentNullException(nameof(commentService));
         }
+
         [HttpGet]
         public IActionResult Comment()
         {
             var model = new CommentViewModel();
-            return View(model);
+            return this.View(model);
         }
+
         //}
 
         [HttpPost]
@@ -32,8 +31,7 @@ namespace MovieManagement.Controllers
         {
             var role = await this.commentService.AddComment(model.Text, model.Title, model.User);
 
-            return this.RedirectToAction("Details", "News", new { Id = model.Title});
+            return this.RedirectToAction("Details", "News", new { Id = model.Title });
         }
-
     }
 }

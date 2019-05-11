@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieManagement.DataModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MovieManagement.Data.Configurations
 {
-    class MovieActorConfiguration : IEntityTypeConfiguration<MovieActor>
+    internal class MovieActorConfiguration : IEntityTypeConfiguration<MovieActor>
     {
         public void Configure(EntityTypeBuilder<MovieActor> builder)
         {

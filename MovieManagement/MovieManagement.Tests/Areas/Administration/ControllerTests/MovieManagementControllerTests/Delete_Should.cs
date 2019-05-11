@@ -2,12 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MovieManagement.Areas.Administration.Controllers;
-using MovieManagement.Areas.Administration.Models.Movie;
-using MovieManagement.DataModels;
 using MovieManagement.Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManagementControllerTests

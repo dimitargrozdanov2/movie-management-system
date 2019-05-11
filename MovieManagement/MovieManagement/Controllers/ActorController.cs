@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using MovieManagement.Data;
-using MovieManagement.DataModels;
+﻿using Microsoft.AspNetCore.Mvc;
 using MovieManagement.Models.Actor;
 using MovieManagement.Services.Contracts;
+using System;
+using System.Threading.Tasks;
 
 namespace MovieManagement.Controllers
 {
@@ -36,8 +30,7 @@ namespace MovieManagement.Controllers
         {
             var model = await this.actorService.GetActorByNameAsync(id);
 
-            return View(model);
+            return this.View(model);
         }
-
     }
 }

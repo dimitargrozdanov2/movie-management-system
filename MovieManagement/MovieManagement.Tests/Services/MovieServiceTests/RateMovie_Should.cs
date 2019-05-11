@@ -7,10 +7,7 @@ using MovieManagement.Infrastructure;
 using MovieManagement.Services;
 using MovieManagement.Services.Exceptions;
 using MovieManagement.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Tests.Services.MovieServiceTests
@@ -37,7 +34,7 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
                 string movieName = "InvalidName";
 
                 await Assert.ThrowsExceptionAsync<EntityInvalidException>(
-                    async () => await sut.RateMovieAsync(movieName, 1)); 
+                    async () => await sut.RateMovieAsync(movieName, 1));
             }
         }
 
@@ -59,7 +56,7 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
                 var sut = new MovieService(actAndAssertContext, mappingProviderMock.Object);
                 string movieName = "Spiderman";
                 double rating = 10;
-                
+
                 var movie = await actAndAssertContext.Movies.FirstOrDefaultAsync(m => m.Name == movieName);
 
                 Assert.IsTrue(movie.Rating == 0);

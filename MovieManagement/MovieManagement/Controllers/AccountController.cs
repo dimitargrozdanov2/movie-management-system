@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MovieManagement.DataModels;
 using MovieManagement.Models.Account;
+using System.Threading.Tasks;
 
 namespace MovieManagement.Controllers
 {
@@ -58,7 +55,7 @@ namespace MovieManagement.Controllers
                 else
                 {
                     this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
+                    return this.View(model);
                 }
                 //if (result.RequiresTwoFactor)
                 //{
@@ -75,15 +72,15 @@ namespace MovieManagement.Controllers
                 //return View(model);
                 //}
             }
-            return View(model);
+            return this.View(model);
         }
 
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            this.ViewData["ReturnUrl"] = returnUrl;
+            return this.View();
         }
 
         [HttpPost]
@@ -91,14 +88,14 @@ namespace MovieManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+            this.ViewData["ReturnUrl"] = returnUrl;
+            if (this.ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
                 var result = await this.userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    this._logger.LogInformation("User created a new account with password.");
 
                     var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
                     //var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
@@ -107,31 +104,31 @@ namespace MovieManagement.Controllers
                     // automatically adding user to User Role;
                     await this.userManager.AddToRoleAsync(user, "User");
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    await this._signInManager.SignInAsync(user, isPersistent: false);
+                    this._logger.LogInformation("User created a new account with password.");
+                    return this.RedirectToLocal(returnUrl);
                 }
-                AddErrors(result);
+                this.AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            await this._signInManager.SignOutAsync();
+            this._logger.LogInformation("User logged out.");
+            return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError(string.Empty, error.Description);
+                this.ModelState.AddModelError(string.Empty, error.Description);
             }
         }
 

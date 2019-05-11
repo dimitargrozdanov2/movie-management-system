@@ -8,7 +8,6 @@ using MovieManagement.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Services
@@ -41,6 +40,7 @@ namespace MovieManagement.Services
 
             return returnNews;
         }
+
         public async Task<ICollection<NewsViewModel>> GetAllNewsAsync()
         {
             var news = await this.context.News.OrderByDescending(x => x.CreatedOn).ToListAsync();
@@ -48,7 +48,6 @@ namespace MovieManagement.Services
             var returnNews = this.mappingProvider.MapTo<ICollection<NewsViewModel>>(news);
 
             return returnNews;
-
         }
 
         public async Task<NewsViewModel> DeleteNews(string title)
@@ -66,9 +65,7 @@ namespace MovieManagement.Services
 
             var returnNews = this.mappingProvider.MapTo<NewsViewModel>(news);
 
-
             return returnNews;
-
         }
 
         public async Task<NewsViewModel> EditNewsTextAsync(string title, NewsViewModel model)
@@ -91,12 +88,15 @@ namespace MovieManagement.Services
 
             return returnNews;
         }
+
         public async Task<NewsViewModel> GetNewsByNameAsync(string title)
         {
-            var news = await this.context.News.Include(x => x.Comments).ThenInclude(x => x.ApplicationUser)
-                    .FirstOrDefaultAsync(m => m.Title == title);
+            var news = await this.context.News
+                .Include(x => x.Comments)
+                    .ThenInclude(x => x.ApplicationUser)
+                .FirstOrDefaultAsync(m => m.Title == title);
 
-            var comments =  news.Comments.OrderByDescending(x => x.CreatedOn).ToList();
+            var comments = news.Comments.OrderByDescending(x => x.CreatedOn).ToList();
             //this is only done to sort the comments by time of creation
             news.Comments = comments;
 

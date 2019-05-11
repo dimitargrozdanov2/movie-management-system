@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MovieManagement.Data;
 using MovieManagement.DataModels;
 using MovieManagement.Infrastructure;
 using MovieManagement.Services.Contracts;
 using MovieManagement.Services.Exceptions;
 using MovieManagement.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MovieManagement.Services
 {
@@ -40,7 +40,7 @@ namespace MovieManagement.Services
             await this.context.SaveChangesAsync();
 
             var returnGenre = this.mappingProvider.MapTo<GenreViewModel>(genre);
-                
+
             return returnGenre;
         }
     }

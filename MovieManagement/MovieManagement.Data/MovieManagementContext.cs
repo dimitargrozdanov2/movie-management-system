@@ -4,10 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MovieManagement.Data.Configurations;
 using MovieManagement.DataModels;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace MovieManagement.Data
 {
@@ -15,13 +12,11 @@ namespace MovieManagement.Data
     {
         public MovieManagementContext()
         {
-
         }
 
         public MovieManagementContext(DbContextOptions<MovieManagementContext> options)
-            :base (options)
+            : base(options)
         {
-
         }
 
         public DbSet<Movie> Movies { get; set; }
@@ -69,8 +64,8 @@ namespace MovieManagement.Data
             var rolesPath = @"..\MovieManagement.Data\JsonFiles\roles.json";
             var userRolesPath = @"..\MovieManagement.Data\JsonFiles\userRoles.json";
 
-            var isPathFound = File.Exists(moviePath) &&  File.Exists(genrePath) && File.Exists(genrePath) 
-                && File.Exists(actorsPath) && File.Exists(userPath) && File.Exists(rolesPath) 
+            var isPathFound = File.Exists(moviePath) && File.Exists(genrePath) && File.Exists(genrePath)
+                && File.Exists(actorsPath) && File.Exists(userPath) && File.Exists(rolesPath)
                 && File.Exists(userRolesPath) && File.Exists(movieActorsPath);
             if (isPathFound)
             {

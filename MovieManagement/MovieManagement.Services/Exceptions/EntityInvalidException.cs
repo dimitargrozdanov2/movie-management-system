@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MovieManagement.Services.Exceptions
 {
@@ -9,7 +7,6 @@ namespace MovieManagement.Services.Exceptions
         public EntityInvalidException(string message)
             : base(message)
         {
-
         }
     }
 }

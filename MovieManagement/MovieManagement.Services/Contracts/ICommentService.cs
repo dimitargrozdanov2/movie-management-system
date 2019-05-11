@@ -1,7 +1,5 @@
 ﻿using MovieManagement.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieManagement.Services.Contracts
@@ -11,6 +9,5 @@ namespace MovieManagement.Services.Contracts
         Task<CommentViewModel> AddComment(string commentText, string title, string userName);
 
         Task<ICollection<CommentViewModel>> GetAllComments();
-
     }
 }
