@@ -5,7 +5,7 @@ using MovieManagement.DataModels;
 
 namespace MovieManagement.Tests.Services.MovieServiceTests
 {
-    public class TestUtils
+    public class MovieTestUtils
     {
         public static DbContextOptions<MovieManagementContext> GetOptions(string databaseName)
         {

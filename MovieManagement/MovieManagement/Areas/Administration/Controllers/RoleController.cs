@@ -60,11 +60,6 @@ namespace MovieManagement.Areas.Administration.Controllers
         {
             var role = await this.roleManagerWrapper.FindByNameAsync(id);
 
-            if (role == null)
-            {
-                throw new ArgumentNullException("Role not found!");
-            }
-
             await this.roleManagerWrapper.DeleteRoleAsync(id);
 
             return this.RedirectToAction(nameof(Index));
@@ -82,16 +77,6 @@ namespace MovieManagement.Areas.Administration.Controllers
         public async Task<IActionResult> Edit(RoleEditViewModel model)
         {
             var role = await this.roleManagerWrapper.FindByNameAsync(model.OldName);
-
-            if (role == null)
-            {
-                throw new ArgumentNullException("Role not found!");
-            }
-
-            if(role.Name == "Admin")
-            {
-                throw new ArgumentException("You are not allowed to edit the Admin role!");
-            }
 
             role.Name = model.NewName;
 

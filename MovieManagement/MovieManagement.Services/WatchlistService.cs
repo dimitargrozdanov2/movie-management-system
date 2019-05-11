@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using MovieManagement.Data;
 using MovieManagement.DataModels;
 using MovieManagement.Infrastructure;
@@ -16,11 +17,13 @@ namespace MovieManagement.Services
     {
         private readonly MovieManagementContext context;
         private readonly IMappingProvider mappingProvider;
+        private readonly IMemoryCache cache;
 
-        public WatchlistService(MovieManagementContext context, IMappingProvider mappingProvider)
+        public WatchlistService(MovieManagementContext context, IMappingProvider mappingProvider, IMemoryCache cache)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.mappingProvider = mappingProvider ?? throw new ArgumentNullException(nameof(mappingProvider));
+            this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
         }
 
         public async Task<ICollection<MovieViewModel>> GetAllMovies(string username)
@@ -73,6 +76,8 @@ namespace MovieManagement.Services
             user.ApplicationUserMovie.Add(userMovie);
             await this.context.SaveChangesAsync();
 
+            this.cache.Remove("Movies");
+
             return true;
         }
 
@@ -106,6 +111,8 @@ namespace MovieManagement.Services
 
             user.ApplicationUserMovie.Remove(userMovie);
             await this.context.SaveChangesAsync();
+
+            this.cache.Remove("Movies");
 
             return true;
         }

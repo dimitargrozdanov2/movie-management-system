@@ -23,10 +23,10 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
         {
             var dabataseName = nameof(Throw_WhenMovie_DoesNotExists);
 
-            var options = TestUtils.GetOptions(dabataseName);
+            var options = MovieTestUtils.GetOptions(dabataseName);
 
             // We fill the context with data and save it.
-            TestUtils.FillContextWithActorsMoviesAndGenres(options);
+            MovieTestUtils.FillContextWithActorsMoviesAndGenres(options);
 
             var mappingProviderMock = new Mock<IMappingProvider>();
 
@@ -46,10 +46,10 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
         {
             var dabataseName = nameof(Add_RatingSuccessfully);
 
-            var options = TestUtils.GetOptions(dabataseName);
+            var options = MovieTestUtils.GetOptions(dabataseName);
 
             // We fill the context with data and save it.
-            TestUtils.FillContextWithActorsMoviesAndGenres(options);
+            MovieTestUtils.FillContextWithActorsMoviesAndGenres(options);
 
             var mappingProviderMock = new Mock<IMappingProvider>();
 
@@ -59,7 +59,7 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
                 var sut = new MovieService(actAndAssertContext, mappingProviderMock.Object);
                 string movieName = "Spiderman";
                 double rating = 10;
-
+                
                 var movie = await actAndAssertContext.Movies.FirstOrDefaultAsync(m => m.Name == movieName);
 
                 Assert.IsTrue(movie.Rating == 0);
@@ -75,10 +75,10 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
         {
             var dabataseName = nameof(Add_VotesCountSuccessfully);
 
-            var options = TestUtils.GetOptions(dabataseName);
+            var options = MovieTestUtils.GetOptions(dabataseName);
 
             // We fill the context with data and save it.
-            TestUtils.FillContextWithActorsMoviesAndGenres(options);
+            MovieTestUtils.FillContextWithActorsMoviesAndGenres(options);
 
             var mappingProviderMock = new Mock<IMappingProvider>();
 
@@ -104,10 +104,10 @@ namespace MovieManagement.Tests.Services.MovieServiceTests
         {
             var dabataseName = nameof(Call_MapFunction_Once);
 
-            var options = TestUtils.GetOptions(dabataseName);
+            var options = MovieTestUtils.GetOptions(dabataseName);
 
             // We fill the context with data and save it.
-            TestUtils.FillContextWithActorsMoviesAndGenres(options);
+            MovieTestUtils.FillContextWithActorsMoviesAndGenres(options);
 
             Movie movieReturned = null;
 

@@ -21,11 +21,6 @@ namespace MovieManagement.Controllers
             this.genreService = genreService ?? throw new ArgumentNullException(nameof(genreService));
         }
 
-        public IActionResult Index()
-        {
-            return this.View();
-        }
-
         [HttpGet]
         public async Task<IActionResult> TopRated()
         {
