@@ -9,7 +9,5 @@ namespace MovieManagement.DataModels
     {
         public ICollection<ApplicationUserMovie> ApplicationUserMovie { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
-
     }
 }
