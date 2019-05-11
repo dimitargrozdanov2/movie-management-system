@@ -26,9 +26,9 @@ namespace MovieManagement.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(string actorName)
         {
-            var model = await this.actorService.GetActorByNameAsync(id);
+            var model = await this.actorService.GetActorByNameAsync(actorName);
 
             return this.View(model);
         }

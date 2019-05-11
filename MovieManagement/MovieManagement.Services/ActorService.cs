@@ -61,7 +61,7 @@ namespace MovieManagement.Services
             return returnActor;
         }
 
-        public async Task<ActorViewModel> DeleteActor(string currentName)
+        public async Task<ActorViewModel> DeleteActorAsync(string currentName)
         {
             bool nameExists = await this.context.Actors.AnyAsync(n => n.Name == currentName);
             if (nameExists == false)

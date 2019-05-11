@@ -10,7 +10,7 @@ using MovieManagement.Data;
 namespace MovieManagement.Data.Migrations
 {
     [DbContext(typeof(MovieManagementContext))]
-    [Migration("20190511113924_Initial")]
+    [Migration("20190511131332_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -598,7 +598,7 @@ namespace MovieManagement.Data.Migrations
             modelBuilder.Entity("MovieManagement.DataModels.Comment", b =>
                 {
                     b.HasOne("MovieManagement.DataModels.ApplicationUser", "ApplicationUser")
-                        .WithMany("Comments")
+                        .WithMany()
                         .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("MovieManagement.DataModels.News", "News")

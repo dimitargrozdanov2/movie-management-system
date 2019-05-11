@@ -39,7 +39,7 @@
                 @if (User.IsInRole("Admin"))
                 {
                     <a asp-area="Administration" asp-controller="ActorManagement" asp-action="Edit" asp-route-oldName="@Model.Name" class="btn btn-primary detailsMovieButton btn-block">Edit Actor</a>
-                    <a asp-area="Administration" asp-controller="ActorManagement" asp-action="Delete" asp-route-id="@Model.Name" class="btn btn-danger detailsMovieButton btn-block">Delete Actor</a>
+                    <a asp-area="Administration" asp-controller="ActorManagement" asp-action="Delete" asp-route-actorName="@Model.Name" class="btn btn-danger detailsMovieButton btn-block">Delete Actor</a>
                 }
             </div>
         </div>

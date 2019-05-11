@@ -18,7 +18,7 @@
     @foreach (var actor in Model.Actors)
     {
         <td>@actor.CreatedOn</td>
-        <td><a asp-area="" asp-controller="Actor" asp-action="Details" asp-route-id="@actor.Name" class="text-dark">@actor.Name</a></td>
+        <td><a asp-area="" asp-controller="Actor" asp-action="Details" asp-route-actorName="@actor.Name" class="text-dark">@actor.Name</a></td>
         <tr></tr>
     }
     <tbody></tbody>

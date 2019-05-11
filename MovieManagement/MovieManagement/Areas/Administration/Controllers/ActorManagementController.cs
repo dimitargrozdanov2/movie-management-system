@@ -33,7 +33,7 @@ namespace MovieManagement.Areas.Administration.Controllers
         {
             var role = await this.actorService.CreateActorAsync(model.Name);
 
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Index", "Actor");
         }
 
         [HttpGet]
@@ -61,9 +61,9 @@ namespace MovieManagement.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string actorName)
         {
-            await this.actorService.DeleteActor(id);
+            await this.actorService.DeleteActorAsync(actorName);
 
             return this.RedirectToAction("Index", "Actor");
         }
