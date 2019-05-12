@@ -35,7 +35,6 @@ namespace MovieManagement.Areas.Administration.Controllers
             {
                 await this.genreService.CreateGenreAsync(model.Name);
 
-                // TODO: RETURN DIRECTOYL TO THE DETAILS OF THIS ONE;
                 return this.RedirectToAction("Index", "Admin");
             }
 

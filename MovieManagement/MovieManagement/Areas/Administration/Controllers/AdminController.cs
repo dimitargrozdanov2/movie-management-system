@@ -81,17 +81,6 @@ namespace MovieManagement.Areas.Administration.Controllers
 
             var ss = await this.userManagerWrapper.UpdateUserAsync(user);
 
-            //var role = this.roleManager.CreateAsync(new IdentityRole(model.RoleName));
-            //role.Wait();
-
-            //var a = this.userManager.GetRolesAsync(user.Result).Result;
-
-            //var b = this.userManager.GetUsersInRoleAsync(model.RoleName).Result;
-
-            //var c = this.userManager.IsInRoleAsync(user.Result, model.RoleName).Result;
-
-            //var d = this.userManager.Users;
-
             return this.RedirectToAction(nameof(Index));
         }
     }

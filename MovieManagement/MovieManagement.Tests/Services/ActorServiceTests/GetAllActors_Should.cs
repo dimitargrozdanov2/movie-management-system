@@ -28,7 +28,6 @@ namespace MovieManagement.Tests.Services.ActorServiceTests
             mappingProviderMock
                 .Setup(x => x.MapTo<ICollection<ActorViewModel>>(It.IsAny<List<Actor>>()))
                 .Callback<object>(inputargs => collectionOfActors = inputargs as List<Actor>);
-
             using (var arrangeContext = new MovieManagementContext(options))
             {
                 arrangeContext.Actors.Add(new Actor()
@@ -46,7 +45,7 @@ namespace MovieManagement.Tests.Services.ActorServiceTests
             {
                 var sut = new ActorService(actAndAssertContext, mappingProviderMock.Object);
                 await sut.GetAllActorsAsync();
-
+                //checks if the map function is called once with two added actors
                 mappingProviderMock.Verify(m => m.MapTo<ICollection<ActorViewModel>>(collectionOfActors), Times.Once);
             }
         }
