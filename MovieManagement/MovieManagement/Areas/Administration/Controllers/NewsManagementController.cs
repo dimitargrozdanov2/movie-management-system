@@ -50,7 +50,7 @@ namespace MovieManagement.Areas.Administration.Controllers
                 }
             }
 
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Index", "News");
         }
 
         [HttpGet]
@@ -78,9 +78,9 @@ namespace MovieManagement.Areas.Administration.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string title)
         {
-            await this.newsService.DeleteNews(id);
+            await this.newsService.DeleteNews(title);
 
             return this.RedirectToAction("Index", "News");
         }

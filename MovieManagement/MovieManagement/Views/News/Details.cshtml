@@ -23,7 +23,7 @@
             @if (User.IsInRole("Admin"))
             {
                 <a asp-area="Administration" asp-controller="NewsManagement" asp-action="Edit" asp-route-oldName="@Model.Title" class="btn btn-primary detailsMovieButton btn-block">Edit News</a>
-                <a asp-area="Administration" asp-controller="NewsManagement" asp-action="Delete" asp-route-id="@Model.Title" class="btn btn-danger detailsMovieButton btn-block">Delete News</a>
+                <a asp-area="Administration" asp-controller="NewsManagement" asp-action="Delete" asp-route-title="@Model.Title" class="btn btn-danger detailsMovieButton btn-block">Delete News</a>
             }
         </div>
     </div>

@@ -17,11 +17,12 @@
     </thead>
     @foreach (var news in Model.News)
     {
+    <tr>
         <td>@news.CreatedOn</td>
-        <td><a asp-area="" asp-controller="News" asp-action="Details" asp-route-id="@news.Title" class="text-dark">@news.Title</a></td>
+        <td><a asp-area="" asp-controller="News" asp-action="Details" asp-route-title="@news.Title" class="text-dark">@news.Title</a></td>
         <td>@news.Text</td>
-        <td><img src="~/images/@news.Image" width="100px" height="150px"></td>
-        <tr></tr>
+        <td><img src="~/images/@news.Image" style="width:300px; height:200px"></td>
+    </tr>
     }
     <tbody></tbody>
 </table>

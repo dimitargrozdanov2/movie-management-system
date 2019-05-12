@@ -18,6 +18,7 @@ namespace MovieManagement.Controllers
         }
 
         // GET: /<controller>/
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var model = new ListNewsViewModel();
@@ -28,9 +29,9 @@ namespace MovieManagement.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(string title)
         {
-            var model = await this.newsService.GetNewsByNameAsync(id);
+            var model = await this.newsService.GetNewsByNameAsync(title);
 
             return this.View(model);
         }

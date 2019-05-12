@@ -62,7 +62,6 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.ActorManage
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
             var redirect = (RedirectToActionResult)result;
 
-            // They are redirecting to the basic Movie Controller, not the MovieManagement one.
             Assert.IsTrue(redirect.ControllerName == "Actor");
             Assert.IsTrue(redirect.ActionName == "Index");
         }
