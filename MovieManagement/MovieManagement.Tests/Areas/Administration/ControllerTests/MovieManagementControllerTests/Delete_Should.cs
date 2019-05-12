@@ -19,8 +19,6 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.MovieManage
 
             var sut = new MovieManagementController(movieServiceMock.Object, genreServiceMock.Object);
 
-            string movieName = "Spiderman";
-
             // Act
             var result = sut.Delete() as ViewResult;
 

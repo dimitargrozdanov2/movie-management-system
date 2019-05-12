@@ -21,8 +21,6 @@ namespace MovieManagement.Tests.Areas.Administration.ControllerTests.GenreManage
 
             var sut = new GenreManagementController(movieServiceMock.Object, genreServiceMock.Object);
 
-            string genreName = "Comedy";
-
             // Act
             var result = sut.Create() as ViewResult;
 

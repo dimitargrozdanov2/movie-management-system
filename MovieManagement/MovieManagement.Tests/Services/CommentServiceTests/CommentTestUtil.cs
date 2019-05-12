@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MovieManagement.Tests.Services.ActorServiceTests
+namespace MovieManagement.Tests.Services.CommentServiceTests
 {
-    public class ActorTestUtils
+    public class CommentTestUtil
     {
         public static DbContextOptions<MovieManagementContext> GetOptions(string databaseName)
         {
@@ -21,17 +21,6 @@ namespace MovieManagement.Tests.Services.ActorServiceTests
                 .UseInMemoryDatabase(databaseName)
                 .UseInternalServiceProvider(serviceCollection)
                 .Options;
-        }
-
-        public static MovieManagementContext FillContextWithActors(DbContextOptions<MovieManagementContext> options)
-        {
-            var context = new MovieManagementContext(options);
-
-            context.Actors.Add(new Actor() { Name = "Julia Roberts", Id = "98121da1-d6b0-4248-84aa-75b7b931d9fc"});
-       
-            context.SaveChanges();
-
-            return context;
         }
     }
 }

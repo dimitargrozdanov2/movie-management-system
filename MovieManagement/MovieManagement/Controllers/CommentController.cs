@@ -16,15 +16,6 @@ namespace MovieManagement.Controllers
             this.commentService = commentService ?? throw new ArgumentNullException(nameof(commentService));
         }
 
-        [HttpGet]
-        public IActionResult Comment()
-        {
-            var model = new CommentViewModel();
-            return this.View(model);
-        }
-
-        //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddComment(CreateCommentViewModel model)
