@@ -29,7 +29,6 @@ namespace MovieManagement.Tests.Services.ActorServiceTests
 
             ActorViewModel actorViewModel = null;
 
-            // we use new instance of that context, but it has the data already saved.
             using (var actAndAssertContext = new MovieManagementContext(options))
             {
                 var sut = new ActorService(actAndAssertContext, mappingProviderMock.Object);

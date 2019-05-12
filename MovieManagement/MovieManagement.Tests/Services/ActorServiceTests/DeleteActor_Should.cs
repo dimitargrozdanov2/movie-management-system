@@ -29,6 +29,7 @@ namespace MovieManagement.Tests.Services.ActorServiceTests
             using (var actAndAssertContext = new MovieManagementContext(options))
             {
                 var sut = new ActorService(actAndAssertContext, mappingProviderMock.Object);
+
                 string actorName = "Brat Pitt";
 
                 await Assert.ThrowsExceptionAsync<EntityInvalidException>(

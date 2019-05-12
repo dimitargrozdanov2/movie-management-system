@@ -31,7 +31,7 @@ namespace MovieManagement.Controllers
         {
             var role = await this.commentService.AddComment(model.Text, model.Title, model.User);
 
-            return this.RedirectToAction("Details", "News", new { Id = model.Title });
+            return this.RedirectToAction("Details", "News", new { title = model.Title });
         }
     }
 }

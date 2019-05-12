@@ -96,14 +96,16 @@ namespace MovieManagement.Services
                     .ThenInclude(x => x.ApplicationUser)
                 .FirstOrDefaultAsync(m => m.Title == title);
 
+             if (news == null)
+            {
+                throw new EntityInvalidException($"News with title `{title}` does not exist.");
+            }
+
             var comments = news.Comments.OrderByDescending(x => x.CreatedOn).ToList();
             //this is only done to sort the comments by time of creation
             news.Comments = comments;
 
-            if (news == null)
-            {
-                throw new EntityInvalidException($"News with title `{title}` does not exist.");
-            }
+           
 
             var returnNews = this.mappingProvider.MapTo<NewsViewModel>(news);
 
