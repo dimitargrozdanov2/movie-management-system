@@ -28,9 +28,9 @@ namespace MovieManagement.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(string title)
+        public async Task<IActionResult> Details(string id)
         {
-            var model = await this.newsService.GetNewsByNameAsync(title);
+            var model = await this.newsService.GetNewsByNameAsync(id);
 
             return this.View(model);
         }
