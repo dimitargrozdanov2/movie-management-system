@@ -39,7 +39,7 @@ namespace MovieManagement
             });
 
             services.AddDbContext<MovieManagementContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("DConnection")));
+                options.UseSqlServer(this.Configuration.GetConnectionString("TConnection")));
 
             if (this.Environment.IsDevelopment())
             {
@@ -116,10 +116,10 @@ namespace MovieManagement
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
-                //routes.MapRoute(
-                //   name: "notfound",
-                //   template: "{*url}",
-                //   defaults: new { controller = "Home", action = "ServerError" });
+                routes.MapRoute(
+                   name: "notfound",
+                   template: "{*url}",
+                   defaults: new { controller = "Home", action = "ServerError" });
             });
         }
     }
